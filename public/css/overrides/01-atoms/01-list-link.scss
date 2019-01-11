@@ -1,0 +1,11 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.sfgov-list-link {
+  @include merriweather;
+  color: #0071BC;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 26px;
+  text-decoration: none;
+}

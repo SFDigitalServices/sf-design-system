@@ -1,0 +1,12 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+div.sfgov-timestamp {
+  font-style: italic;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  @include media-max($narrow-screen) {
+    padding: 0 0 0 20px;
+  }
+}

@@ -1,0 +1,14 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.sidebar-card {
+  background-color: $color-gray-lightest;
+  padding: 20px 0px 20px;
+  .sidebar-card__title {
+    margin-top: 0;
+  }
+  .sidebar-card__body {
+    color: $color-gray;
+    line-height: 26px;
+  }
+}

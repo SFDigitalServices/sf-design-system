@@ -1,0 +1,10 @@
+context:
+    pl_test_content: true
+    main_navigation: true
+    tabbed_navigation:
+        - label: Tab 1
+          link: "#"
+        - label: Tab 2
+          link: "#"
+        - label: Tab 3
+          link: "#"

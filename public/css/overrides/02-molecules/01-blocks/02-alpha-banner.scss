@@ -1,0 +1,17 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.sfgov-alpha-banner {
+  //todo: add this color to color palette.
+  background: $color-gray-dark;
+  padding: 11px 0;
+  .sfgov-alpha-banner__content {
+    color: $color-white;
+    font-size: 14px;
+    line-height: 18px;
+    a {
+      color: $color-white;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.sfgov-three-column {
+  > * {
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+  }
+  @include media-max($medium-screen) {
+    > * {
+      width: 49%;
+      text-align: center;
+    }
+  }
+}

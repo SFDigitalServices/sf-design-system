@@ -1,0 +1,16 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.address_card {
+  padding: 20px 18px 20px;
+  border: 1px solid $color-gray-light;
+  color: $color-gray-medium;
+  width: 280px;
+  margin: 30px 0 30px;
+  .address_card__organization {
+    margin-top: 0;
+  }
+  .address_card__line1, .address_card__line2 {
+    line-height: 26px;
+  }
+}

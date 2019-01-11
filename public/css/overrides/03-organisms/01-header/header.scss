@@ -1,0 +1,17 @@
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+.sfgov-nav-container {
+  @include clearfix;
+  padding: 0;
+  @include media($narrow-screen) {
+    width: 949px;
+    margin: 0 auto;
+  }
+  .sfgov-nav-container__content {
+    display: flex;
+    @include media-max($narrow-screen) {
+      max-height: 60px;
+    }
+  }
+}

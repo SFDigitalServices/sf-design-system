@@ -1,0 +1,8 @@
+<div class="sfgov-alert sfgov-alert-{{ type }}" {% if role %}role="{{role}}"{% endif %}>
+  <div class="sfgov-alert-body">
+    {%- if title -%}
+      <h3 class="sfgov-alert-heading">{{ title }}</h3>
+    {%- endif -%}
+    <p class="sfgov-alert-content">{{ content|striptags('<a>')|raw }}</p>
+  </div>
+</div>

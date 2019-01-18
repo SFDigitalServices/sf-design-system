@@ -1,7 +1,6 @@
 context:
-    pl_test_content: true
-    main_navigation:
-        - label: Services
+    items:
+        - title: Services
           link: "#"
-        - label: Departments
-          link: "#"
+        - title: Departments
+          url: "#"

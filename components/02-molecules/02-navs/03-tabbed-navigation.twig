@@ -1,16 +1,6 @@
 <div class="sfgov-container">
   <nav class="sfgov-tabbed-navigation">
 
-    {% if pl_test_content and main_navigation %}
-      <ul>
-        {% for item in tabbed_navigation %}
-          <li>
-            <a href="{{ item.link }}">{{ item.label }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
     {# Drupal specific #}
 
     {% if primary %}

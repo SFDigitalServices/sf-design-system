@@ -110,18 +110,6 @@
   font-weight: $font-bold;
 }
 
-@mixin h5 {
-  font-size: $h5-font-size;
-  font-weight: $font-bold;
-}
-
-@mixin h6 {
-  font-size: $h6-font-size;
-  font-weight: $font-normal;
-  line-height: $base-line-height;
-  text-transform: uppercase;
-}
-
 // Focus state mixin
 @mixin focus {
   outline: $focus-outline;

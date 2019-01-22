@@ -34,78 +34,6 @@ select {
   max-width: $input-max-width;
   padding: $input-padding-vertical 0.7em;
   width: 100%;
-
-  &.usa-input-success {
-    border: 3px solid $color-green-light;
-  }
-}
-/* stylelint-enable */
-
-.usa-input-error {
-  border-left: 4px solid $color-secondary-dark;
-  margin-top: 3rem;
-  padding-bottom: 0.8rem;
-  padding-left: 1.5rem;
-  padding-top: 0.8rem;
-  position: relative;
-  right: 1.9rem;
-
-  input,
-  textarea,
-  select {
-    border: 3px solid $color-secondary-dark;
-    width: calc(100% + 1.9rem); // 1.5rem left padding + 4px border from input error spacing
-  }
-
-  label {
-    margin-top: 0;
-  }
-
-  .usa-input-inline {
-    border: $input-border-width solid $color-gray;
-    width: inherit;
-  }
-
-  .usa-input-inline-error {
-    border: 3px solid $color-secondary-dark;
-  }
-}
-
-.usa-input-error-label {
-  display: block;
-  font-size: $base-font-size;
-  font-weight: $font-bold;
-}
-
-.usa-input-error-message {
-  color: $color-secondary-dark;
-  display: block;
-  font-size: $base-font-size;
-  font-weight: $font-bold;
-  padding-bottom: 3px;
-  padding-top: 3px;
-}
-
-// Deprecated: Some screen readers can't read CSS content.
-// Will be removed in 2.0.
-.usa-input-required:after {
-  color: $color-secondary-darkest;
-  content: ' (*required)';
-}
-
-// Deprecated: Some screen readers can't read CSS content.
-// Will be removed in 2.0.
-.usa-input-optional:after {
-  color: $color-gray-medium;
-  content: ' (optional)';
-}
-
-.usa-input-label-helper {
-  color: $color-gray-medium;
-}
-
-.usa-input-label-required {
-  color: $color-secondary-darkest;
 }
 
 label {
@@ -153,20 +81,6 @@ option:first-child {
 legend {
   font-size: $h2-font-size;
   font-weight: $font-bold;
-}
-
-.usa-fieldset-inputs {
-  label {
-    margin-top: 0;
-  }
-}
-
-// Hint text
-
-.usa-form-hint {
-  color: $color-gray-medium;
-  font-family: $font-sans;
-  margin-bottom: 0;
 }
 
 // Custom checkboxes
@@ -364,42 +278,4 @@ legend {
 [type='file'] {
   border: none;
   padding-left: 0;
-}
-
-// Memorable dates
-
-.usa-date-of-birth { /* stylelint-disable-line */
-  label {
-    margin-top: 0;
-  }
-
-  [type=number] {
-    -moz-appearance: textfield;
-
-    &::-webkit-inner-spin-button {
-      appearance: none;
-    }
-
-    &::-webkit-contacts-auto-fill-button {
-      visibility: hidden;
-      display: none !important; /* stylelint-disable-line declaration-no-important */
-      pointer-events: none;
-      height: 0;
-      width: 0;
-      margin: 0;
-    }
-  }
-}
-
-.usa-form-group-day,
-.usa-form-group-month,
-.usa-form-group-year {
-  clear: none;
-  float: left;
-  margin-right: 1.5rem;
-  width: 5rem;
-}
-
-.usa-form-group-year {
-  width: 7rem;
 }

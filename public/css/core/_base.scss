@@ -30,7 +30,6 @@ body {
   display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
-*:focus,
-.usa-focus {
+*:focus {
   @include focus;
 }

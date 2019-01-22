@@ -26,27 +26,6 @@ td {
   padding: 1rem 1.5rem;
 }
 
-.usa-table-borderless {
-  thead {
-    th {
-      background-color: transparent;
-      border-top: 0;
-    }
-  }
-
-  th,
-  td {
-    border-left: 0;
-    border-right: 0;
-  }
-
-  th {
-    &:first-child {
-      padding-left: 0;
-    }
-  }
-}
-
 caption {
   @include h5;
   font-family: $font-serif;

@@ -1,4 +1,15 @@
-context:
-    transaction_card: 
-        title: Affordable Housing
-        body: Donec mollis hendrerit risus. Sed consequat leo eget bibendum sodales augue velit cursus nunc quis gravida magna mi a libero. Donec id justo. Pellentesque posuere.
+title: Transaction Card
+collated: true
+default: link
+variants:
+  - name: no-link
+    context:
+        transaction_card:
+            title: Why do we register businesses?
+            body: "Registering is the first step to opening your business. The information helps us know who is operating."
+  - name: link
+    context:
+          url: https://sf.gov/topics/business
+          transaction_card:
+              title: Business
+              body: Starting, owning, and closing a business.

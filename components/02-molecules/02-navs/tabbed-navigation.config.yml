@@ -1,10 +1,5 @@
 context:
-    pl_test_content: true
-    main_navigation: true
-    tabbed_navigation:
-        - label: Tab 1
-          link: "#"
-        - label: Tab 2
-          link: "#"
-        - label: Tab 3
-          link: "#"
+    primary: |
+      <li><a href="#">Primary Tab 1</a></li><li><a href="#">Primary Tab 2</a></li>
+    secondary: |
+      <li><a href="#">Secondary Tab 1</a></li><li><a href="#">Secondary Tab 2</a></li>

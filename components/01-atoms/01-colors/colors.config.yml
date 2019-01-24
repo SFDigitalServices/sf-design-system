@@ -16,6 +16,16 @@ context:
           color: "#9bdaf1"
         - label: color-primary-alt-lightest
           color: "#e1f3f8"
+        - label: color-secondary
+          color: "#e31c3d"
+        - label: color-secondary-dark
+          color: "#cd2026"
+        - label: color-secondary-darkest
+          color: "#981b1e"
+        - label: color-secondary-light
+          color: "#e59393"
+        - label: color-secondary-lightest
+          color: "#f9dede"
         - label: color-white
           color: "#ffffff"
         - label: color-black
@@ -26,12 +36,18 @@ context:
           color: "#323a45"
         - label: color-gray
           color: "#5b616b"
+        - label: color-gray-medium
+          color: "#757575"
         - label: color-gray-light
           color: "#aeb0b5"
         - label: color-gray-lighter
           color: "#d6d7d9"
         - label: color-gray-lightest
           color: "#f1f1f1"
+        - label: color-gold
+          color: "#fdb81e"
+        - label: color-gold-lightest
+          color: "#fff1d2"
         - label: color-green
           color: "#2e8540"
         - label: color-green-light

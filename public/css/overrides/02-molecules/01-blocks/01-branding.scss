@@ -3,7 +3,7 @@
 
 .branding-link {
   text-decoration: none;
-  color: $color-black-light;
+  color: $color-base;
 }
 
 .sfgov-logo__container {
@@ -47,7 +47,7 @@
         font-family: "Helvetica", sans-serif;
         font-size: 10px;
         line-height: 12px;
-        color: $color-black-light;
+        color: $color-base;
       }
       .sfgov-logo__text--title {
         @include merriweather;
@@ -55,7 +55,7 @@
         font-weight: bold;
         line-height: 26px;
         text-decoration: none;
-        color: $color-black-light;
+        color: $color-base;
       }
     }
   }

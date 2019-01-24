@@ -22,13 +22,13 @@ $hit-area: 4.4rem;
       a {
         @include source-sans-pro;
         font-size: 15px;
-        color: $color-blue-darkest;
+        color: $color-primary-darkest;
         line-height: 19px;
         font-weight: bold;
         text-decoration: none;
         &:hover, &.is-active {
           @include media($medium-screen + 1) {
-            border-bottom: 5px solid $color-blue-darker;
+            border-bottom: 5px solid $color-primary-darker;
             padding-bottom: 8px;
           }
         }
@@ -267,14 +267,14 @@ $hit-area: 4.4rem;
             &.is-active {
               font-weight: bold;
               border-bottom: 0;
-              border-left: 5px solid $color-blue-darker;
+              border-left: 5px solid $color-primary-darker;
               &:hover {
                 padding-left: 15px;
               }
             }
             &:hover {
               border-bottom: 0;
-              border-left: 5px solid $color-blue-darker;
+              border-left: 5px solid $color-primary-darker;
               padding-left: 10px;
             }
           }

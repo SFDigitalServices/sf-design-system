@@ -5,7 +5,7 @@
   text-decoration: none;
   .transaction-card {
     &:hover {
-      background-color: $color-blue;
+      background-color: $color-primary;
       .transaction-card__title {
         color: $color-white;
       }

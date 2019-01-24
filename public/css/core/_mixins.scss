@@ -71,14 +71,6 @@
   font-family: "Merriweather", sans-serif;
 }
 
-@mixin open-sans {
-  font-family: "Open Sans", sans-serif;
-}
-
-@mixin montserrat {
-  font-family: "Montserrat", sans-serif;
-}
-
 // Heading mixins
 @mixin title {
   font-size: $title-font-size;

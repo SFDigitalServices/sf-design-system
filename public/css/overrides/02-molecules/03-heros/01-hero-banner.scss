@@ -2,7 +2,7 @@
 @import './public/css/core/mixins';
 
 .sfgov-banner {
-  background: $color-aqua-lightest;
+  background: $color-primary-alt-lightest;
   .sfgov-banner__container {
     overflow: auto;
     padding: 42px 0 53px 0;
@@ -14,8 +14,7 @@
     }
   }
   h1 {
-    // todo: add this color to the styleguide.
-    color: $color-blue-darker;
+    color: $color-primary-darker;
     @include merriweather;
   }
   &.no-banner-text {

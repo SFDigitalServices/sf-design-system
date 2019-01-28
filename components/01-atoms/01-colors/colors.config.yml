@@ -1,36 +1,36 @@
 context: 
     colorset:
-        - label: color-blue
+        - label: color-primary
           color: "#0071bc"
-        - label: color-blue-darker
+        - label: color-primary-darker
           color: "#205493"
-        - label: color-blue-darkest
+        - label: color-primary-darkest
           color: "#112e51"
-        - label: color-aqua
+        - label: color-primary-alt
           color: "#02bfe7"
-        - label: color-aqua-dark
+        - label: color-primary-alt-dark
           color: "#00a6d2"
-        - label: color-aqua-darkest
+        - label: color-primary-alt-darkest
           color: "#046b99"
-        - label: color-aqua-light
+        - label: color-primary-alt-light
           color: "#9bdaf1"
-        - label: color-aqua-lightest
+        - label: color-primary-alt-lightest
           color: "#e1f3f8"
-        - label: color-red
+        - label: color-secondary
           color: "#e31c3d"
-        - label: color-red-dark
+        - label: color-secondary-dark
           color: "#cd2026"
-        - label: color-red-darkest
+        - label: color-secondary-darkest
           color: "#981b1e"
-        - label: color-red-light
+        - label: color-secondary-light
           color: "#e59393"
-        - label: color-red-lightest
+        - label: color-secondary-lightest
           color: "#f9dede"
         - label: color-white
           color: "#ffffff"
         - label: color-black
           color: "#000000"
-        - label: color-black-light
+        - label: color-base
           color: "#212121"
         - label: color-gray-dark
           color: "#323a45"
@@ -44,18 +44,8 @@ context:
           color: "#d6d7d9"
         - label: color-gray-lightest
           color: "#f1f1f1"
-        - label: color-gray-warm-dark
-          color: "#494440"
-        - label: color-gray-warm-light
-          color: "#e4e2e0"
-        - label: color-gray-cool-light
-          color: "#dce4ef"
         - label: color-gold
           color: "#fdb81e"
-        - label: color-gold-light
-          color: "#f9c642"
-        - label: color-gold-lighter
-          color: "#fad980"
         - label: color-gold-lightest
           color: "#fff1d2"
         - label: color-green
@@ -66,13 +56,5 @@ context:
           color: "#94bfa2"
         - label: color-green-lightest
           color: "#e7f4e4"      
-        - label: color-cool-blue
-          color: "#205493"
-        - label: color-cool-blue-light
-          color: "#4773aa"
-        - label: color-cool-blue-lighter
-          color: "#8ba6ca"
-        - label: color-cool-blue-lightest
-          color: "#dce4ef"
-        - label: color-purple
+        - label: color-visited
           color: "#4c2c92"

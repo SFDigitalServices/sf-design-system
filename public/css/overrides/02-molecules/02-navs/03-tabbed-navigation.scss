@@ -3,7 +3,7 @@
 
 .sfgov-tabbed-navigation {
   ul {
-    border-bottom: 1px solid $color-aqua-lightest;
+    border-bottom: 1px solid $color-primary-alt-lightest;
     margin: 10px 0 0 0;
     li {
       margin: 0;
@@ -13,7 +13,7 @@
         border: 1px solid $color-gray-lighter;
         text-decoration: none;
         &.is-active {
-          background: $color-aqua-lightest;
+          background: $color-primary-alt-lightest;
         }
       }
     }

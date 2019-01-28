@@ -75,17 +75,8 @@ h3 {
   @include h3();
 }
 
-h4 {
+h4, h5, h6 {
   @include h4();
-}
-
-h5 {
-  @include h5();
-}
-
-h6 {
-  @include h6();
-  font-family: $font-sans;
 }
 
 // Remove user agent styles

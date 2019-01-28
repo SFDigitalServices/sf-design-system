@@ -71,14 +71,6 @@
   font-family: "Merriweather", sans-serif;
 }
 
-@mixin open-sans {
-  font-family: "Open Sans", sans-serif;
-}
-
-@mixin montserrat {
-  font-family: "Montserrat", sans-serif;
-}
-
 // Heading mixins
 @mixin title {
   font-size: $title-font-size;
@@ -108,18 +100,6 @@
 @mixin h4 {
   font-size: $h4-font-size;
   font-weight: $font-bold;
-}
-
-@mixin h5 {
-  font-size: $h5-font-size;
-  font-weight: $font-bold;
-}
-
-@mixin h6 {
-  font-size: $h6-font-size;
-  font-weight: $font-normal;
-  line-height: $base-line-height;
-  text-transform: uppercase;
 }
 
 // Focus state mixin

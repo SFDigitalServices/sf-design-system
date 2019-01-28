@@ -9,14 +9,6 @@
   @include merriweather;
 }
 
-.open-sans {
-  @include open-sans;
-}
-
-.montserrat {
-  @include montserrat;
-}
-
 .lead-paragraph {
   @include merriweather;
   font-size: 20px;
@@ -25,10 +17,10 @@
 }
 
 a:visited {
-  color: $color-blue;
+  color: $color-primary;
 }
 
 a:hover {
-  color: $color-blue-darker;
+  color: $color-primary-darker;
 }
 

@@ -20,19 +20,3 @@ context:
             and thick weights gives the font family stylistic range, while conveying a desirable
             mix of classic, yet modern simplicity. Merriweather communicates warmth and credibility
             at both large and smaller font sizes.'
-        - id: open-sans
-          name: Open Sans
-          description: Praesent egestas neque eu enim. Phasellus consectetuer vestibulum elit.
-            Nullam quis ante. Fusce commodo aliquam arcu. Praesent egestas neque eu enim.
-            Phasellus consectetuer vestibulum elit. Nullam quis ante. Fusce commodo aliquam
-            arcu.Praesent egestas neque eu enim. Phasellus consectetuer vestibulum elit. Nullam
-            quis ante. Fusce commodo aliquam arcu.
-        - id: montserrat
-          name: Montserrat
-          description: Praesent egestas neque eu enim. Phasellus consectetuer vestibulum elit.
-            Nullam quis ante. Fusce commodo aliquam arcu. Praesent egestas neque eu enim.
-            Phasellus consectetuer vestibulum elit. Nullam quis ante. Fusce commodo aliquam
-            arcu. Praesent egestas neque eu enim. Phasellus consectetuer vestibulum elit.
-            Nullam quis ante. Fusce commodo aliquam arcu. Praesent egestas neque eu enim.
-            Phasellus consectetuer vestibulum elit. Nullam quis ante. Fusce commodo aliquam
-            arcu.

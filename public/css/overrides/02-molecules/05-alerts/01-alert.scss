@@ -59,8 +59,7 @@ $alerts-bar: map-merge($sfgov-alerts-bar, $sfgov-custom-alerts-bar);
   margin-bottom: 0;
 }
 
-.sfgov-alert-text {
-  @include open-sans;
+.sfgov-alert-content {
   margin-bottom: 0;
   margin-top: 0;
 }

@@ -9,7 +9,6 @@ To use a different style button on your link, add the special button class in ad
   - `sfgov-button-gray`
   - `sfgov-button-outline`
   - `sfgov-button-outline-inverse`
-  - `sfgov-button-disabled`
   - `sfgov-button-big`
   
 For example, a secondary button style would use the following code: `<a class="sfgov-button sfgov-button-secondary" href="/my-link">My button</a>`

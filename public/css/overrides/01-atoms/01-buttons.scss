@@ -135,11 +135,6 @@ button,
   }
 }
 
-.sfgov-button-disabled  // Deprecated
-{
-  @include disabledesque
-}
-
 .sfgov-button-secondary:disabled,
 .sfgov-button-secondary-inverse:disabled,
 .sfgov-button-outline-inverse:disabled {   // Outline inverse to be deprecated in 2.0

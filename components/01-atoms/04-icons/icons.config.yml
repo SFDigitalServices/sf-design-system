@@ -9,7 +9,7 @@ context:
         - name: Email
           file: 
         - name: In-person address
-          file: location.svg
+          file: location
         - name: Mailing address
           file: mail
         - name: Open

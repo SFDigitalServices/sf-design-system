@@ -2,7 +2,7 @@
 // styles for grids, animations, color swatches, etc.
 // These styles will not be your production CSS.
 
-#sg-patterns {
+#sf-patterns {
   -webkit-box-sizing: border-box !important;
           box-sizing: border-box !important;
   max-width: 100%;
@@ -19,7 +19,7 @@
 }
 
 
-.sg-colors {
+.sf-colors {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -27,7 +27,7 @@
 }
 
 
-.sg-colors li {
+.sf-colors li {
   width: 100%;
   border: 1px solid rgba(#000,0.2);
   box-shadow: 0 1px 2px rgba(#000,0.1);
@@ -48,13 +48,13 @@
   }
 }
 
-.sg-swatch {
+.sf-swatch {
   display: block;
   height: 4em;
   box-shadow: inset 0 -1px 0 rgba(#000,0.1);
 }
 
-.sg-label {
+.sf-label {
   font-size: 90%;
   line-height: 1;
   padding: 1em;
@@ -65,13 +65,13 @@
   margin-bottom: 1.5em;
 }
 
-.icon-grid {
+.sf-icon-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
 
-.icon-item {
+.sf-icon-item {
   text-align: center;
   margin-bottom: 1.5rem;
   background: rgba(#000, 0.05);

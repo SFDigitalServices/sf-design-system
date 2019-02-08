@@ -1,0 +1,22 @@
+context:
+    icons:
+        - name: Close
+          file: close
+        - name: Department
+          file: department
+        - name: Document
+          file: fileFilled
+        - name: Email
+          file: 
+        - name: In-person address
+          file: location.svg
+        - name: Mailing address
+          file: mail
+        - name: Open
+          file:
+        - name: Phone
+          file: phone
+        - name: Search
+          file: search
+        - name: Translation
+          file: translate

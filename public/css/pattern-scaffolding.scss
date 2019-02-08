@@ -64,3 +64,15 @@
 .transaction-card {
   margin-bottom: 1.5em;
 }
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.icon-item {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: rgba(#000, 0.05);
+}

@@ -1,3 +1,4 @@
+collated: true
 context:
     content_type: Department
     url: "#"
@@ -6,6 +7,12 @@ context:
       sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Proin sapien ipsum,
       porta a, auctor quis, euismod ut, mi. In dui magna, posuere eget, vestibulum et,
       tempor auctor, justo.
+variants:
+- name: default
+  label: "Without phone or location"
+- name: phone-location
+  label: "With phone and location"
+  context:
     phone:
         number: 211-122-1122
     address:

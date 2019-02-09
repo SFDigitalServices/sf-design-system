@@ -6,7 +6,11 @@ context:
 variants:
   - name: default
     label: "In Person"
-    icon: location
+    context:
+        address_card:
+            icon: location
   - name: mail
     label: Mailing Address
-    icon: mail
+    context:
+        address_card:
+            icon: mail

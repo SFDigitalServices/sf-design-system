@@ -1,0 +1,10 @@
+context:
+    summary: "This is the summary"
+    content: "This is the content inside the details element"
+variants:
+    - name: default
+      label: "Default"
+    - name: open
+      label: "Open"
+      context:
+        open: true

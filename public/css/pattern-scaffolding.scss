@@ -2,6 +2,9 @@
 // styles for grids, animations, color swatches, etc.
 // These styles will not be your production CSS.
 
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
 #sf-patterns {
   -webkit-box-sizing: border-box !important;
           box-sizing: border-box !important;
@@ -92,4 +95,10 @@
 
 .sf-inline * {
   display: inline-block;
+}
+
+.sf-logo-dark {
+  background: $color-gray;
+  display: inline-block;
+  padding: 1rem;
 }

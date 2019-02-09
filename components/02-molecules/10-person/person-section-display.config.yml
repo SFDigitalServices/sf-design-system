@@ -4,4 +4,19 @@ context:
     first_name: "Malia"
     last_name: "Cohen"
     position_title: "Supervisor, President of the Board"
-    position_subtitle: "District 10"
+variants:
+  - name: default
+    label: Without subtitle
+  - name: subtitle
+    label: With subtitle
+    context:
+      position_subtitle: "District 10"
+  - name: hero-default
+    label: Hero without subtitle
+    context:
+      class: person-hero
+  - name: hero-subtitle
+    label: Hero with subtitle
+    context:
+      class: person-hero
+      position_subtitle: "District 10"

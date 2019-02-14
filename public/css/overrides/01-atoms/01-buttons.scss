@@ -30,16 +30,14 @@ button,
     width: auto;
   }
 
-  &:hover,
-  &.sfgov-button-hover {
+  &:hover {
     background-color: $color-primary-darker;
     border-bottom: 0;
     color: $color-white;
     text-decoration: none;
   }
 
-  &:active,
-  &.sfgov-button-active {
+  &:active {
     background-color: $color-primary-darkest;
   }
 
@@ -47,13 +45,11 @@ button,
     background-color: $color-primary-alt;
     color: $color-base;
 
-    &:hover,
-    &.sfgov-button-hover {
+    &:hover {
       background-color: $color-primary-alt-dark;
     }
 
-    &:active,
-    &.sfgov-button-active {
+    &:active {
       background-color: $color-primary-alt-darkest;
       color: $color-white;
     }
@@ -64,14 +60,12 @@ button,
     box-shadow: $button-stroke $color-primary;
     color: $color-primary;
 
-    &:hover,
-    &.sfgov-button-hover {
+    &:hover {
       box-shadow: $button-stroke $color-primary-darker;
       color: $color-primary-darker;
     }
 
-    &:active,
-    &.sfgov-button-active {
+    &:active {
       box-shadow: $button-stroke $color-primary-darkest;
       color: $color-primary-darkest;
     }
@@ -83,14 +77,12 @@ button,
     box-shadow: $button-stroke $color-white;
     color: $color-white;
 
-    &:hover,
-    &.sfgov-button-hover {
+    &:hover {
       box-shadow: $button-stroke $color-gray-lighter;
       color: $color-gray-lighter;
     }
 
-    &:active,
-    &.sfgov-button-active {
+    &:active {
       box-shadow: $button-stroke $color-gray-light;
       color: $color-gray-lighter;
     }
@@ -99,13 +91,11 @@ button,
   &.sfgov-button-gray {
     background-color: $color-gray;
 
-    &:hover,
-    &.sfgov-button-hover {
+    &:hover {
       background-color: $color-gray-dark;
     }
 
-    &:active,
-    &.sfgov-button-active {
+    &:active {
       background-color: $color-base;
     }
   }
@@ -113,31 +103,18 @@ button,
   &.sfgov-button-red {
     background-color: $color-secondary;
 
-    &:hover,
-    &.sfgov-button-hover {
+    &:hover {
       background-color: $color-secondary-dark;
     }
 
-    &:active,
-    &.sfgov-button-active {
+    &:active {
       background-color: $color-secondary-darkest;
     }
-  }
-
-  &.sfgov-button-big {
-    border-radius: 8px;
-    font-size: 2.4rem;
-    padding: 1.5rem 3rem;
   }
 
   &:disabled {
     @include disabledesque;
   }
-}
-
-.sfgov-button-disabled  // Deprecated
-{
-  @include disabledesque
 }
 
 .sfgov-button-secondary:disabled,
@@ -148,11 +125,8 @@ button,
   color: $color-gray-lighter;
 
   &:hover,
-  &.sfgov-button-hover,
   &:active,
-  &.sfgov-button-active,
-  &:focus,
-  &.sfgov-focus {
+  &:focus {
     background-color: $color-white;
     border: 0;
   }

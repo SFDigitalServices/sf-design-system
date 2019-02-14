@@ -1,0 +1,8 @@
+<div class="sf-icon-grid">
+{% for icon in icons %}
+	<div class="sf-icon-item">
+		<img src="/images/icons/{{ icon.file }}.svg" alt="Icon for {{ icon.name }}" />
+		<p><strong>{{ icon.name }}</strong></p>
+	</div>
+{% endfor %}
+</div>

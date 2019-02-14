@@ -2,7 +2,10 @@
 // styles for grids, animations, color swatches, etc.
 // These styles will not be your production CSS.
 
-#sg-patterns {
+@import './public/css/core/variables';
+@import './public/css/core/mixins';
+
+#sf-patterns {
   -webkit-box-sizing: border-box !important;
           box-sizing: border-box !important;
   max-width: 100%;
@@ -19,26 +22,31 @@
 }
 
 
-.sg-colors {
+.sf-colors {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
 }
 
-
-.sg-colors li {
-  width: 100%;
+@mixin swatch-border {
   border: 1px solid rgba(#000,0.2);
   box-shadow: 0 1px 2px rgba(#000,0.1);
+  margin: 0 1% 5%;
+  @media screen and (min-width: 30rem) {
+    margin-bottom: 2%;
+  }
+}
+
+.sf-colors li {
+  width: 100%;
+  @include swatch-border;
   list-style: none;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin: 0 1% 5%;
   @media screen and (min-width: 30rem) {
     width: 48%;
-    margin-bottom: 2%;
   }
   @media screen and (min-width: 45rem) {
     width: 31%;
@@ -48,13 +56,13 @@
   }
 }
 
-.sg-swatch {
+.sf-swatch {
   display: block;
   height: 4em;
   box-shadow: inset 0 -1px 0 rgba(#000,0.1);
 }
 
-.sg-label {
+.sf-label {
   font-size: 90%;
   line-height: 1;
   padding: 1em;
@@ -63,4 +71,34 @@
 
 .transaction-card {
   margin-bottom: 1.5em;
+}
+
+.sf-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.sf-icon-item {
+  text-align: center;
+  @include swatch-border;
+  padding: 1.5rem;
+
+  img {
+    height: 4rem;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.sf-inline * {
+  display: inline-block;
+}
+
+.sf-logo-dark {
+  background: $color-gray;
+  display: inline-block;
+  padding: 1rem;
 }

@@ -3,6 +3,11 @@
 
 .person-container {
   margin-bottom: 35px;
+
+  &.person-hero {
+    margin-bottom: 40px;
+  }
+
   .person-photo {
     background-size: cover;
     background-position: top center;

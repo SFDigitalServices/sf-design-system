@@ -1,0 +1,16 @@
+context:
+    address_card:
+        organization: Treasurer and Tax Collector
+        line1: P.O. Box 7426
+        line2: San Francisco, CA 94102
+variants:
+  - name: default
+    label: "In Person"
+    context:
+        address_card:
+            icon: location
+  - name: mail
+    label: Mailing Address
+    context:
+        address_card:
+            icon: mail

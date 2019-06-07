@@ -49,7 +49,7 @@
       font-weight: normal;
     }
   }
-  @include media-max($medium-screen) {    
+  @include media-max($medium-screen) {
     .person-photo {
       display: block;
       margin: 10px auto;

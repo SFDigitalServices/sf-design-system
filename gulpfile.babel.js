@@ -121,6 +121,8 @@ exports.css = gulp.series(css);
 exports.js = gulp.series(js);
 exports.images = gulp.series(images);
 
+exports.build = gulp.parallel(css, js, images);
+
 exports.fractal = gulp.series(
     gulp.parallel(css, js, images),
     gulp.parallel(watch, serve)

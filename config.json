@@ -9,7 +9,7 @@
       "public/css/*.scss",
       "public/css/**/*.scss"
     ],
-    "dist_folder": "public/dist/css"
+    "dest": "public/dist/css"
   },
   "js": {
     "src": [
@@ -20,8 +20,8 @@
   "pattern_lab": {
     "javascript": {
       "src": [
-        "public/js/components.js",
-        "public/js/main-navigation.js"
+        "public/js/*.js",
+        "public/js/**/*.js"
       ],
       "destination": [
         "public/dist/js"
@@ -31,7 +31,8 @@
   "images": {
     "src": [
       "public/images/**/*"
-    ]
+    ],
+    "dest": "public/dist/images"
   },
   "autoprefixer": [
     "last 2 versions",

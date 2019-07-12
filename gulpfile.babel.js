@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 // Initialize browser sync.
-let browserSync = require('browser-sync').create();
 
 // Read the default configuration.
 let config = require('./config.json');
@@ -18,6 +17,8 @@ import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
 
 let importOnce = require('node-sass-import-once');
+
+const fractal = require('./fractal');
 
 // Require a copy of the JS compiler for uswds.
 // the gulptask is called "javascript"
@@ -44,7 +45,7 @@ let errorHandler = (error) => {
 
 // Pattern Lab CSS.
 // -------------------------------------------------------------- //
-gulp.task('pl:css', () => {
+let css = () => {
     return gulp.src(config.css.src)
         .pipe(glob())
         .pipe(plumber({
@@ -67,47 +68,28 @@ gulp.task('pl:css', () => {
         }))
         .pipe(autoprefix('last 2 versions', '> 1%', 'ie 9', 'ie 10'))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(config.css.dist_folder))
-        .pipe(browserSync.reload({stream: true, match: '**/*.css'}));
-});
+        .pipe(gulp.dest(config.css.dest));
+}
 
-gulp.task('pl:imagemin', () => {
+let images = () => {
     return gulp.src(config.images.src)
         .pipe(imagemin())
-        .pipe(gulp.dest('./public/dist/images'))
-});
+        .pipe(gulp.dest(config.images.dest))
+}
+
 
 // Watch task.
 // ------------------------------------------------------------------- //
 
-gulp.task('watch', function () {
-    gulp.watch(config.js.src, ['legacy:js']);
-    gulp.watch(config.css.src, ['pl:css']);
-    gulp.watch(config.css.src, ['pl:js']);
-    gulp.watch(config.pattern_lab.src, ['generate:pl']);
-    gulp.watch(config.pattern_lab.javascript.src, ['generate:pl']);
-    gulp.watch(config.images.src, ['pl:imagemin']);
-});
+let watch = async () => {
+    gulp.watch(config.js.src, js);
+    gulp.watch(config.css.src, css);
+    gulp.watch(config.images.src, images);
+}
 
-// Static Server + Watch.
-// ------------------------------------------------------------------- //
-
-gulp.task('serve', ['watch', 'generate:pl'], () => {
-    browserSync.init({
-        serveStatic: ['./pattern-lab/public']
-    });
-});
-
-// generate Pattern library.
-gulp.task('generate:pl', ['legacy:js', 'pl:css', 'pl:js', 'pl:imagemin']);
-
-// Component JS.
-// -------------------------------------------------------------------- //
-// the following task concatenates all the javascript files inside the
-// _patterns folder, if new patterns need to be added the config.json array
-// needs to be edited to watch for more folders.
-
-gulp.task('pl:js', () => {
+// // Component JS.
+// // -------------------------------------------------------------------- //
+let js = () => {
     return gulp.src(config.pattern_lab.javascript.src)
         .pipe(sourcemaps.init())
         .pipe(babel({
@@ -115,12 +97,31 @@ gulp.task('pl:js', () => {
         }))
         .pipe(concat("components.js"))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./pattern-lab/public/js'))
-        .pipe(gulp.dest('./dist/pl/js'))
-        .pipe(browserSync.reload({stream: true, match: '**/*.js'}));
-});
+        .pipe(gulp.dest('./public/dist/js'));
+}
 
-// Default Task
-// --------------------------------------------------------------------- //
+// fractal dev server
+let serve = () => {
+    const logger = fractal.cli.console;
+    const server = fractal.web.server({ // uses fractal's builtin integration with browsersync
+        sync: true,
+        syncOptions: {
+            open: true,
+            notify: true,
+            reload: true
+        }
+    });
+    server.on('error', err => logger.error(err.message));
+    return server.start().then(() => {
+        logger.success(`Fractal server is now running at ${server.url}`);
+    });
+}
 
-gulp.task('default', ['serve']);
+exports.css = gulp.series(css);
+exports.js = gulp.series(js);
+exports.images = gulp.series(images);
+
+exports.fractal = gulp.series(
+    gulp.parallel(css, js, images),
+    gulp.parallel(watch, serve)
+);

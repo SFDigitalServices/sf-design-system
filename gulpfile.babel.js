@@ -16,6 +16,7 @@ import shell from 'gulp-shell';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
+import replace from 'gulp-replace';
 
 let importOnce = require('node-sass-import-once');
 
@@ -66,6 +67,7 @@ gulp.task('pl:css', () => {
             importer: importOnce
         }))
         .pipe(autoprefix('last 2 versions', '> 1%', 'ie 9', 'ie 10'))
+        .pipe(replace('url("/images/', 'url("../images/'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.css.dist_folder))
         .pipe(browserSync.reload({stream: true, match: '**/*.css'}));

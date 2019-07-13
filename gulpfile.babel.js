@@ -132,7 +132,10 @@ exports.images = gulp.series(images);
 
 exports.build = gulp.parallel(css, js, images);
 
-exports.export = fractal_export;
+exports.export = gulp.series(
+    gulp.parallel(css, js, images),
+    fractal_export
+);
 
 exports.fractal = gulp.series(
     gulp.parallel(css, js, images),

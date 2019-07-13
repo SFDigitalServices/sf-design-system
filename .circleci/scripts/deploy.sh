@@ -20,9 +20,9 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   mkdir -p gh-pages/.circleci && cp -a .circleci/. gh-pages/.circleci/.
   cd gh-pages
 
-  git add -A
-  git commit -m "Automated deploy to gh pages: ${CIRCLE_SHA1}" --allow-empty
+  # git add -A
+  # git commit -m "Automated deploy to gh pages: ${CIRCLE_SHA1}" --allow-empty
 
-  git push origin $TARGET_BRANCH
+  # git push origin $TARGET_BRANCH
 
 fi

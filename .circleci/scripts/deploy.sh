@@ -13,11 +13,11 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git rm -rf .
   cd ..
 
-  ./node_modules/gulp/bin/gulp.js export
+  ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js
   
   cp -a export/. gh-pages/.
   
-  mkdir -p gh-pages/.circleci && cp -a .circleci/. gh-pages/.circleci/.
+  mkdir -p gh-pages/.circleci && cp -a .circleci/. gh-pages/.circleci/. # copy circleci config to ignore triggering builds when pushing to gh-pages
   cd gh-pages
 
   git add -A

@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master.svg?style=svg)](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master)
+
 # SFGOV Pattern Library.
 
 This project is based off [Fractal](https://fractal.build/), with an [adapter for Twig.](https://github.com/WondrousLLC/fractal-twig-drupal-adapter)

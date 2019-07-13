@@ -15,13 +15,11 @@ import shell from 'gulp-shell';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
+import replace from 'gulp-replace';
 
 let importOnce = require('node-sass-import-once');
 
 const fractal = require('./fractal');
-const fractal_builder = fractal.web.builder({
-    dest: './export'
-});
 const logger = fractal.cli.console;
 
 // Require a copy of the JS compiler for uswds.
@@ -121,16 +119,15 @@ let serve = () => {
 }
 
 let fractal_export = async () => {
-    const mandelbrot = require('@frctl/mandelbrot');
-    const custom = mandelbrot({
-        skin: 'fuchsia',
-        static: {
-            mount: 'sf-design-system'
-        }
-    });
-    fractal.web.theme(custom);
-    fractal_builder.build().then(function() { 
-        logger.success('Fractal static build complete')
+    fractal.web.builder({
+        dest: './export'
+    }).build().then(function() { 
+        logger.success('Fractal static build complete');
+        logger.log('Replacing css paths for gh-pages');
+        return gulp.src(['./export/components/preview/**/*.html'])
+            .pipe(replace(/href="\/css\//g, 'href="/sf-design-system/css/'))
+            .pipe(replace(/src="\/js\//g, 'src="/sf-design-system/js/'))
+            .pipe(gulp.dest('./export/components/preview'));
     });
 }
 

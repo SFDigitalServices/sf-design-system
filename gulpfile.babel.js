@@ -121,6 +121,7 @@ let serve = () => {
 }
 
 let fractal_export = async () => {
+    fractal.web.set('static.mount', 'sf-design-system');
     fractal_builder.build().then(function() { 
         logger.success('Fractal static build complete')
     });

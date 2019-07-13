@@ -10,9 +10,7 @@ This project is based off [Fractal](https://fractal.build/), with an [adapter fo
 
 1. `npm install`
 
-2. `gulp` (You might need to re-install with `npm install gulp -g`)
-
-3. `fractal start --sync`
+2. `gulp fractal` (You might need to re-install with `npm install gulp -g`)
 
 ### Documentation
 

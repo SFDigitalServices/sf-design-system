@@ -24,3 +24,5 @@ const twig = twigAdapter({handlePrefix: '@components/'});
 
 fractal.components.engine(twig);
 fractal.components.set('ext', '.twig'); 
+
+module.exports = fractal;

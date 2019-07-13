@@ -15,6 +15,10 @@ jobs:
 
     working_directory: ~/repo
 
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+
     steps:
       - checkout
 
@@ -33,6 +37,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
+      
+      - deploy: 
+          name: Deploy
+          command: ./.circleci/scripts/deploy

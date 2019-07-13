@@ -121,7 +121,14 @@ let serve = () => {
 }
 
 let fractal_export = async () => {
-    fractal.web.set('static.mount', 'sf-design-system');
+    const mandelbrot = require('@frctl/mandelbrot');
+    const custom = mandelbrot({
+        skin: 'fuchsia',
+        static: {
+            mount: 'sf-design-system'
+        }
+    });
+    fractal.web.theme(custom);
     fractal_builder.build().then(function() { 
         logger.success('Fractal static build complete')
     });

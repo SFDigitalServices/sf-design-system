@@ -19,6 +19,10 @@ import imagemin from 'gulp-imagemin';
 let importOnce = require('node-sass-import-once');
 
 const fractal = require('./fractal');
+const fractal_builder = fractal.web.builder({
+    dest: './export'
+});
+const logger = fractal.cli.console;
 
 // Require a copy of the JS compiler for uswds.
 // the gulptask is called "javascript"
@@ -102,7 +106,6 @@ let js = () => {
 
 // fractal dev server
 let serve = () => {
-    const logger = fractal.cli.console;
     const server = fractal.web.server({ // uses fractal's builtin integration with browsersync
         sync: true,
         syncOptions: {
@@ -117,11 +120,19 @@ let serve = () => {
     });
 }
 
+let fractal_export = async () => {
+    fractal_builder.build().then(function() { 
+        logger.success('Fractal static build complete')
+    });
+}
+
 exports.css = gulp.series(css);
 exports.js = gulp.series(js);
 exports.images = gulp.series(images);
 
 exports.build = gulp.parallel(css, js, images);
+
+exports.export = fractal_export;
 
 exports.fractal = gulp.series(
     gulp.parallel(css, js, images),

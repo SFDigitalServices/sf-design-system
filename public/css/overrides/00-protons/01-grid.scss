@@ -20,60 +20,61 @@
   }
 }
 
+
+.sfgov-width-one-whole,
+  .sfgov-width-one-half,
+  .sfgov-width-one-third,
+  .sfgov-width-one-fourth,
+  .sfgov-width-one-sixth,
+  .sfgov-width-one-twelfth {
+    width: susy-span(12 of 12);
+    float: inherit;
+}
+
+
 .sfgov-width-one-whole {
   width: susy-span(12 of 12);
 }
 
 .sfgov-width-one-half {
-  width: susy-span(6 wide of 12 wide);
-  float: left;
   @include media($medium-screen) {
-    width: 100%;
-    float: inherit;
+    width: susy-span(6 wide of 12 wide);
+    float: left;
   }
 }
 
 .sfgov-width-one-third {
-  width: susy-span(4 wide of 12 wide);
-  float: left;
   @include media($medium-screen) {
-    width: 100%;
-    float: inherit;
+    width: susy-span(4 wide of 12 wide);
+    float: left;
   }
 }
 
 .sfgov-width-one-fourth {
-  width: susy-span(3 wide of 12 wide);
-  float: left;
   @include media($medium-screen) {
-    width: 100%;
-    float: inherit;
+    width: susy-span(3 wide of 12 wide);
+    float: left;
   }
 }
 
 .sfgov-width-one-sixth {
-  width: susy-span(2 wide of 12 wide);
-  float: left;
-  @include media($medium-screen) {
+  @include media($mobile-screen) {
     width: susy-span(4 wide of 12 wide);
     float: left;
   }
-  @include media($mobile-screen) {
-    width: 100%;
-    float: inherit;
+  @include media($medium-screen) {
+    width: susy-span(2 wide of 12 wide);
+    float: left;
   }
 }
 .sfgov-width-one-twelfth {
-  width: susy-span(1 wide of 12 wide);
-  float: left;
-  @include media($medium-screen) {
+  @include media($mobile-screen) {
     width: susy-span(4 wide of 12 wide);
     float: left;
   }
-  @include media($mobile-screen) {
-
-    width: 100%;
-    float: inherit;
+  @include media($medium-screen) {
+    width: susy-span(1 wide of 12 wide);
+    float: left;
   }
 }
 

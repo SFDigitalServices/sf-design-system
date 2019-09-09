@@ -22,7 +22,7 @@
 // Elements -------------- //
 // Styles basic HTML elements
 @import "elements/*.scss";
-@import "components/*.scss";
+@import "components/**/*.scss";
 
 // Styles inside patterns.
 @import "overrides/**/*.scss";

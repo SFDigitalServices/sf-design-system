@@ -73,6 +73,11 @@ let css = () => {
         .pipe(gulp.dest(config.css.dest));
 }
 
+let fonts = () => {
+    return gulp.src(config.fonts.src)
+        .pipe(gulp.dest(config.fonts.dest));
+}
+
 let images = () => {
     return gulp.src(config.images.src)
         .pipe(imagemin())
@@ -138,11 +143,11 @@ exports.images = gulp.series(images);
 exports.build = gulp.parallel(css, js, images);
 
 exports.export = gulp.series(
-    gulp.parallel(css, js, images),
+    gulp.parallel(css, js, fonts, images),
     fractal_export
 );
 
 exports.fractal = gulp.series(
-    gulp.parallel(css, js, images),
+    gulp.parallel(css, js, fonts, images),
     gulp.parallel(watch, serve)
 );

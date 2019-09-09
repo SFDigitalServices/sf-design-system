@@ -17,6 +17,10 @@
       "public/js/**/*.js"
     ]
   },
+  "fonts": {
+    "src": "public/fonts/*/**",
+    "dest": "public/dist/fonts"
+  },
   "pattern_lab": {
     "javascript": {
       "src": [

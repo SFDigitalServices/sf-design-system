@@ -14,12 +14,29 @@
           <p class="text-tiny">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
           <p class="text-tiny">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
           <p class="text-tiny">0 1 2 3 4 5 6 7 8 9</p>
+          <div class="weights-styles">
+            <p class="{{ face.id }} light">Light</p>,
+            <p class="{{ face.id }} light italic">Light Italic</p>,
+            <p class="{{ face.id }} regular">Regular</p>,
+            <p class="{{ face.id }} regular italic">Regular Italic</p>,
+            <p class="{{ face.id }} medium">Medium</p>,
+            <p class="{{ face.id }} medium italic">Medium Italic</p>,
+            <p class="{{ face.id }} bold">Bold</p>,
+            <p class="{{ face.id }} bold italic">Bold Italic</p>,
+            <p class="{{ face.id }} black">Black</p>,
+            <p class="{{ face.id }} black italic">Black Italic</p>
+          </div>
         </div>
       </div>
   </section>
 {% endfor %}
 
 <style scoped>
+  .weights-styles p {
+    font-size: 22px;
+    display: inline-block;
+    margin: 0;
+  }
   .spaced {
     margin-top: 30px;
   }

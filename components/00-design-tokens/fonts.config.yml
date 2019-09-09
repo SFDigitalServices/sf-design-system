@@ -20,3 +20,6 @@ context:
             and thick weights gives the font family stylistic range, while conveying a desirable
             mix of classic, yet modern simplicity. Merriweather communicates warmth and credibility
             at both large and smaller font sizes.'
+        - id: rubik
+          name: Rubik
+          description: "Rubik is a sans serif font family with slightly rounded corners designed by Philipp Hubert and Sebastian Fischer at Hubert & Fischer as part of the Chrome Cube Lab project."

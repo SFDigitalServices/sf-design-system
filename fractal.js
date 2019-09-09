@@ -23,6 +23,6 @@ const twigAdapter = require('@wondrousllc/fractal-twig-drupal-adapter');
 const twig = twigAdapter({handlePrefix: '@components/'});
 
 fractal.components.engine(twig);
-fractal.components.set('ext', '.twig'); 
+fractal.components.set('ext', '.twig');
 
 module.exports = fractal;

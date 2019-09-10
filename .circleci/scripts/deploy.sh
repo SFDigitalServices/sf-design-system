@@ -29,7 +29,7 @@ git add -A
 
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git commit -m "Automated deploy to gh pages: ${CIRCLE_SHA1}" --allow-empty
-  git push origin $TARGET_BRANCH
+  git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${CIRCLE_SHA1}" --allow-empty
   # terminus commands

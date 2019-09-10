@@ -11,9 +11,9 @@ jobs:
 
     docker:
       # specify the version you desire here
-      - image: circleci/node:10
+      - image: circleci/php:5.6-cli-node
 
-    working_directory: ~/repo
+    working_directory: /home/circleci/repo
 
     environment:
       - SOURCE_BRANCH: master
@@ -21,6 +21,7 @@ jobs:
 
     steps:
       - checkout
+      - add_ssh_keys
 
       # Download and cache dependencies
       - restore_cache:
@@ -38,6 +39,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
+      - run:
+          name: Install composer
+          command: ./.circleci/scripts/install-composer.sh
+      
+      - run:
+          name: Install terminus
+          command: |
+            cd ..
+            curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
+
       - deploy: 
           name: Deploy
           command: ./.circleci/scripts/deploy.sh

@@ -7,22 +7,26 @@ const path = require('path');
 const fractal = module.exports = require('@frctl/fractal').create();
 
 /* Set the title of the project */
-fractal.set('project.title', 'SFGOV Pattern Library');
+fractal.set('project.title', 'San Francisco Digital Services Design System');
 
 /* Tell Fractal where the components will live */
-fractal.components.set('path', __dirname + '/components');
+fractal.components.set('path', __dirname + '/src/components');
 
 /* Tell Fractal where the documentation pages will live */
-fractal.docs.set('path', __dirname + '/docs');
+fractal.docs.set('path', __dirname + '/src/docs');
 
 /* Tell the Fractal web preview plugin where to look for static assets. */
 fractal.web.set('static.path', path.join(__dirname, '/public/dist'));
 
-/* Add Twig adapter. */
-const twigAdapter = require('@wondrousllc/fractal-twig-drupal-adapter');
-const twig = twigAdapter({handlePrefix: '@components/'});
+fractal.web.set('builder.dest', __dirname + '/build');
 
-fractal.components.engine(twig);
-fractal.components.set('ext', '.twig'); 
+// fractal.components.set('default.preview', '@preview');
+
+// /* Add Twig adapter. */
+// const twigAdapter = require('@wondrousllc/fractal-twig-drupal-adapter');
+// const twig = twigAdapter({handlePrefix: '@components/'});
+
+// fractal.components.engine(twig);
+// fractal.components.set('ext', '.twig'); 
 
 module.exports = fractal;

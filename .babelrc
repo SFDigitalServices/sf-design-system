@@ -2,7 +2,7 @@
   "plugins": [
     ["transform-object-rest-spread", { "useBuiltIns": true }]
   ],
-  "presets": ["es2015"],
+  "presets": ["env"],
   "ignore": [],
   "retainLines": true
 }

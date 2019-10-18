@@ -11,7 +11,7 @@ import notify from 'gulp-notify';
 import autoprefix from 'gulp-autoprefixer';
 import glob from 'gulp-sass-glob';
 import sourcemaps from 'gulp-sourcemaps';
-import shell from 'gulp-shell';
+// import shell from 'gulp-shell';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
@@ -25,7 +25,7 @@ const logger = fractal.cli.console;
 // Require a copy of the JS compiler for uswds.
 // the gulptask is called "javascript"
 // the following task compiles the node_modules/uswds/src/js/start.js file.
-require('./gulptasks/javascript');
+// require('./gulptasks/javascript');
 
 // Error Handler
 // -------------------------------------------------------------- //
@@ -63,7 +63,7 @@ let css = () => {
         }))
         .pipe(sourcemaps.init())
         .pipe(sass({
-            outputStyle: 'compressed',
+            outputStyle: 'expanded',
             errLogToConsole: true,
             includePaths: config.css.includePaths,
             importer: importOnce
@@ -84,9 +84,9 @@ let images = () => {
 // ------------------------------------------------------------------- //
 
 let watch = async () => {
-    gulp.watch(config.js.src, js);
+    // gulp.watch(config.js.src, js);
     gulp.watch(config.css.src, css);
-    gulp.watch(config.images.src, images);
+    // gulp.watch(config.images.src, images);
 }
 
 // // Component JS.
@@ -143,6 +143,7 @@ exports.export = gulp.series(
 );
 
 exports.fractal = gulp.series(
-    gulp.parallel(css, js, images),
+    // gulp.parallel(css, js, images),
+    gulp.parallel(css),
     gulp.parallel(watch, serve)
 );

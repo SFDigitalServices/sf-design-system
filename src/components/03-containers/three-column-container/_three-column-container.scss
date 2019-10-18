@@ -1,0 +1,26 @@
+.sfgov-container-three-column {
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  @include media($bp-narrow) {
+    flex-direction: row;
+  }
+  > div {
+    width: 100%;
+    margin-bottom: 10px;
+    @include media($bp-narrow) {
+      width: 33.33%;
+      display: flex;
+      align-items: stretch;
+      &:nth-child(3n+3) {
+        > * {
+          margin-right: 0;
+        }
+      }
+      > * {
+        margin-right: 20px;
+        width: 100%;
+      }
+    }
+  }
+}

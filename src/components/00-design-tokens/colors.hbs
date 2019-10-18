@@ -1,0 +1,8 @@
+<ul>
+  {{#each colorset}}
+    <li style="display:block;float:left;margin:0 10px 10px 0;text-align:center;">
+      <div style="display:inline-block;padding:50px;border:1px solid;background:{{this.color}}">&nbsp;</div><br/>
+      {{ this.label }}
+    </li>
+  {{/each}}
+</ul>

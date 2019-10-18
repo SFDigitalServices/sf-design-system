@@ -1,0 +1,19 @@
+.sfgov-featured-item {
+  @include rubik;
+  display: block;
+  background: $c-purple-3;
+  text-decoration: none;
+  color: $c-white;
+  border-radius: 8px;
+  padding: 20px;
+  
+  h5 {
+    @include fs-title-5;
+    color: $c-white;
+    margin: 0 0 10px 0;
+  }
+  p {
+    @include fs-body-short;
+    color: $c-white;
+  }
+}

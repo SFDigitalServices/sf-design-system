@@ -8,26 +8,15 @@
   },
   "js": {
     "src": [
-      "public/js/*.js",
-      "public/js/**/*.js"
-    ]
-  },
-  "pattern_lab": {
-    "javascript": {
-      "src": [
-        "public/js/*.js",
-        "public/js/**/*.js"
-      ],
-      "destination": [
-        "public/dist/js"
-      ]
-    }
+      "src/**/*.js"
+    ],
+    "dest": "public/dist/js"
   },
   "images": {
     "src": [
-      "public/images/**/*"
+      "src/images/**/*"
     ],
-    "dest": "public/dist/images"
+    "dest": "src/dist/images"
   },
   "autoprefixer": [
     "last 2 versions",

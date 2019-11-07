@@ -7,7 +7,7 @@ const path = require('path');
 const fractal = module.exports = require('@frctl/fractal').create();
 
 /* Set the title of the project */
-fractal.set('project.title', 'San Francisco Digital Services Design System');
+fractal.set('project.title', 'San Francisco Design System');
 
 /* Tell Fractal where the components will live */
 fractal.components.set('path', __dirname + '/src/components');

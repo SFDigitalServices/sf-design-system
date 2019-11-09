@@ -1,7 +1,7 @@
 composer.phar
 /vendor/
 node_modules/*
-public/dist/
+public/
 *.css.map
 .vscode
 .DS_Store

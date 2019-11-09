@@ -1,8 +1,8 @@
-<ul>
+<ul class="sf-colors">
   {{#each colorset}}
-    <li style="display:block;float:left;margin:0 10px 10px 0;text-align:center;">
-      <div style="display:inline-block;padding:50px;border:1px solid;background:{{this.color}}">&nbsp;</div><br/>
-      {{ this.label }}
+    <li>
+      <span class="sf-swatch" style="background: {{ this.color }};"></span>
+      <span class="sf-label">{{ this.color }}<br/>{{ this.label }}</span>
     </li>
   {{/each}}
 </ul>

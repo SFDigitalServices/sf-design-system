@@ -1,5 +1,10 @@
 @mixin antialiasing($type:antialiased) {
   /* antialiased, none, subpixel-antialiased*/
+  @if $type == antialiased {
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -moz-osx-font-smoothing: auto;
+  }
   -webkit-font-smoothing: $type;
   font-smoothing: $type;
   font-smooth: always;

@@ -143,7 +143,6 @@ exports.export = gulp.series(
 );
 
 exports.fractal = gulp.series(
-    // gulp.parallel(css, js, images),
-    gulp.parallel(css),
+    gulp.parallel(css, js, images),
     gulp.parallel(watch, serve)
 );

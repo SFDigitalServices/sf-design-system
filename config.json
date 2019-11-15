@@ -16,7 +16,7 @@
     "src": [
       "src/images/**/*"
     ],
-    "dest": "src/dist/images"
+    "dest": "public/dist/images"
   },
   "autoprefixer": [
     "last 2 versions",

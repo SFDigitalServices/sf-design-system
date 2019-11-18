@@ -1,0 +1,43 @@
+@mixin antialiasing($type:antialiased) {
+  /* antialiased, none, subpixel-antialiased*/
+  @if $type == antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else if $type == none {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
+  } @else {
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+@mixin rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+@mixin noto-sans-tc {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+@mixin title-5 {
+  font-size: 1.176rem;
+  font-weight: $fw-medium;
+  line-height: 1.588rem;
+  &.zh-TW {
+    font-weight: $fw-bold;
+    line-height: 1.76rem;
+    letter-spacing: 0.12rem;
+    @include antialiasing;
+  }
+}
+
+@mixin body-short {
+  font-size: 1rem;
+  font-weight: $fw-regular;
+  line-height: 1.412rem;
+  &.zh-TW {
+    font-size: 1.06rem;
+    line-height: 1.76rem;
+    letter-spacing: 0.06rem;
+  }
+}

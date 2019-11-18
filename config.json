@@ -1,36 +1,20 @@
 {
   "name": "components",
   "css": {
-    "file" : [
-      "public/css/all.scss",
-      "public/css/pattern-scaffolding.scss"
-    ],
     "src": [
-      "public/css/*.scss",
-      "public/css/**/*.scss"
+      "src/**/*.scss"
     ],
     "dest": "public/dist/css"
   },
   "js": {
     "src": [
-      "public/js/*.js",
-      "public/js/**/*.js"
-    ]
-  },
-  "pattern_lab": {
-    "javascript": {
-      "src": [
-        "public/js/*.js",
-        "public/js/**/*.js"
-      ],
-      "destination": [
-        "public/dist/js"
-      ]
-    }
+      "src/**/*.js"
+    ],
+    "dest": "public/dist/js"
   },
   "images": {
     "src": [
-      "public/images/**/*"
+      "src/images/**/*"
     ],
     "dest": "public/dist/images"
   },

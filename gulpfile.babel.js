@@ -11,7 +11,7 @@ import notify from 'gulp-notify';
 import autoprefix from 'gulp-autoprefixer';
 import glob from 'gulp-sass-glob';
 import sourcemaps from 'gulp-sourcemaps';
-import shell from 'gulp-shell';
+// import shell from 'gulp-shell';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
@@ -25,7 +25,7 @@ const logger = fractal.cli.console;
 // Require a copy of the JS compiler for uswds.
 // the gulptask is called "javascript"
 // the following task compiles the node_modules/uswds/src/js/start.js file.
-require('./gulptasks/javascript');
+// require('./gulptasks/javascript');
 
 // Error Handler
 // -------------------------------------------------------------- //
@@ -63,7 +63,7 @@ let css = () => {
         }))
         .pipe(sourcemaps.init())
         .pipe(sass({
-            outputStyle: 'compressed',
+            outputStyle: 'expanded',
             errLogToConsole: true,
             includePaths: config.css.includePaths,
             importer: importOnce
@@ -84,22 +84,22 @@ let images = () => {
 // ------------------------------------------------------------------- //
 
 let watch = async () => {
-    gulp.watch(config.js.src, js);
+    // gulp.watch(config.js.src, js);
     gulp.watch(config.css.src, css);
-    gulp.watch(config.images.src, images);
+    // gulp.watch(config.images.src, images);
 }
 
 // // Component JS.
 // // -------------------------------------------------------------------- //
 let js = () => {
-    return gulp.src(config.pattern_lab.javascript.src)
+    return gulp.src(config.js.src)
         .pipe(sourcemaps.init())
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['env']
         }))
-        .pipe(concat("components.js"))
+        .pipe(concat("all.js"))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./public/dist/js'));
+        .pipe(gulp.dest(config.js.dest));
 }
 
 // fractal dev server
@@ -124,10 +124,10 @@ let fractal_export = async () => {
     }).build().then(function() { 
         logger.success('Fractal static build complete');
         logger.log('Replacing css paths for gh-pages');
-        return gulp.src(['./export/components/preview/**/*.html'])
-            .pipe(replace(/href="\/css\//g, 'href="/sf-design-system/css/'))
-            .pipe(replace(/src="\/js\//g, 'src="/sf-design-system/js/'))
-            .pipe(gulp.dest('./export/components/preview'));
+        // return gulp.src(['./export/components/preview/**/*.html'])
+        //     .pipe(replace(/href="\/css\//g, 'href="/sf-design-system/css/'))
+        //     .pipe(replace(/src="\/js\//g, 'src="/sf-design-system/js/'))
+        //     .pipe(gulp.dest('./export/components/preview'));
     });
 }
 

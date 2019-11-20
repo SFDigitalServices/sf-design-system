@@ -26,6 +26,20 @@ legend {
   margin-bottom: 0.75rem;
 }
 
+
+.form-group {
+  position: relative;
+  margin-bottom: 2.5rem;
+
+  p + &,
+  ul + &,
+  h1 + &,
+  h2 + &,
+  h3 + & {
+    margin-top: 2rem;
+  }
+}
+
 input[type="checkbox"],
 input[type="radio"],
 input[type="checkbox"] + label,
@@ -449,15 +463,42 @@ option:not(:checked) {
   margin: 0.5rem 0 0;
 }
 
-.help-block:empty {
-  margin: 0;
-}
+// Error messages
 
-.help-block ul {
-  margin: 0;
-}
+.help-block {
+  margin-top: 0.5rem;
 
-.help-block .list-unstyled {
-  padding: 0;
-}
+  &:empty {
+    margin-top: 0;
+  }
 
+  &.with-errors {
+    display: block;
+    color: $white;
+
+    ul {
+      font-size: 1rem;
+      background: $red-4;
+      color: $white;
+      padding: 0.25rem 0.75rem;
+      border-radius: $radius;
+      display: inline-block;
+      @include antialiasing;
+      margin: 0;
+    }
+
+    &.with-errors-inline {
+      @include small-text;
+      padding: 0;
+      background: transparent;
+      color: $red-4;
+      position: relative;
+      top: -0.25rem;
+      margin: 0 0 1rem;
+    }
+
+    li {
+      list-style-type: none;
+    }
+  }
+}

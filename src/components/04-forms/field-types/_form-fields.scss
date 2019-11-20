@@ -1,3 +1,5 @@
+// Mixins
+
 @mixin input-border {
   border-color: $slate;
   border-width: 2px;
@@ -10,109 +12,6 @@
   border-color: $bright-blue;
   box-shadow: inset 0 0 0 2px $bright-blue;
   outline: none;
-}
-
-form {
-  max-width: 38rem;
-}
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-legend {
-  margin-bottom: 0.75rem;
-}
-
-
-.form-group {
-  position: relative;
-  margin-bottom: 2.5rem;
-
-  p + &,
-  ul + &,
-  h1 + &,
-  h2 + &,
-  h3 + & {
-    margin-top: 2rem;
-  }
-}
-
-input[type="checkbox"],
-input[type="radio"],
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  margin: 0 0 1rem;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  margin-right: 1rem;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-input[type="password"],
-input[type="time"],
-input[type="search"],
-input[type="date"],
-input[type="email"],
-input[type="url"],
-textarea {
-  display: block;
-}
-
-
-input,
-textarea,
-select,
-button {
-  @include rubik;
-  @include body-short;
-  color: $slate;
-  font-weight: $fw-regular;
-}
-
-label,
-legend {
-  @include rubik;
-  color: $slate;
-  font-weight: $fw-regular;
-  font-size: (24em / 17);
-  letter-spacing: -0.016em;
-  line-height: 1.5;
-  @include antialiasing;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-
-input,
-textarea,
-select {
-  width: 100%;
-  @include input-border;
-  border-radius: 8px;
-  &:focus {
-    @include input-border-focus;
-  }
-}
-
-input[type='text'],
-input[type='email'],
-input[type='url'],
-input[type='tel'],
-input[type='number'],
-input[type='password'],
-input[type='date'],
-input[type='time'],
-input[type='search'],
-textarea,
-select {
-  padding: 0.64rem 1rem;
 }
 
 // Cross-browser consistency / bug fixes
@@ -165,6 +64,120 @@ input[type='file'] {
   padding: 0;
 }
 
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 $bright-blue;
+}
+
+select::-ms-expand {
+  // Hide browser-standard chevron on IE
+  display: none;
+}
+
+option:not(:checked) {
+  color: $black;
+}
+
+// Layout
+
+form {
+  max-width: 38rem;
+}
+
+legend {
+  margin-bottom: 0.75rem;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 2.5rem;
+
+  p + &,
+  ul + &,
+  h1 + &,
+  h2 + &,
+  h3 + & {
+    margin-top: 2rem;
+  }
+}
+
+.form-section {
+  @include contain-1090;
+}
+
+// Base styles
+
+input,
+textarea,
+select,
+button {
+  @include rubik;
+  @include body-short;
+  color: $slate;
+  font-weight: $fw-regular;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  @include input-border;
+  border-radius: 8px;
+  &:focus {
+    @include input-border-focus;
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  margin: 0 0 1rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+textarea {
+  display: block;
+  padding: 0.64rem 1rem;
+}
+
+select {
+  padding: 0.64rem 1rem;
+}
+
+
+label,
+legend {
+  @include rubik;
+  color: $slate;
+  font-weight: $fw-regular;
+  @include font-size-to-rem(24);
+  letter-spacing: -0.016em;
+  line-height: 1.5;
+  @include antialiasing;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
 // Field-specific styles
 
 // Number
@@ -190,7 +203,7 @@ input[type='file'] {
 
   .dollar {
     font-weight: $fw-light;
-    font-size: 3rem;
+    @include font-size-to-rem(51);
     line-height: 1;
     position: relative;
     top: 0.75rem;
@@ -205,7 +218,7 @@ input[type='file'] {
   }
 
   label {
-    font-size: (15em / 17);
+    @include small-text;
     margin: 0 0 0.25rem;
   }
 
@@ -395,6 +408,7 @@ input[type='submit'],
   display: inline-block;
   text-decoration: none;
   margin: 0 0.4375rem 0.875rem 0;
+  cursor: pointer;
 }
 
 button,
@@ -443,20 +457,6 @@ select {
   }
 }
 
-select:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 $bright-blue;
-}
-
-select::-ms-expand {
-  // Hide browser-standard chevron on IE
-  display: none;
-}
-
-option:not(:checked) {
-  color: $black;
-}
-
 // Help text
 
 .help-text {
@@ -464,6 +464,8 @@ option:not(:checked) {
 }
 
 // Error messages
+// (The formbuilder uses 1000hz-bootstrap-validator,
+// which requires the .help-block class)
 
 .help-block {
   margin-top: 0.5rem;

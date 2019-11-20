@@ -1,3 +1,4 @@
+.sfgov-container-two-column,
 .sfgov-container-three-column {
   flex-direction: column;
   display: flex;
@@ -9,16 +10,28 @@
     width: 100%;
     margin-bottom: $rhythm;
     @media screen and (min-width: $mq-narrow) {
-      width: 33.33%;
       display: flex;
       align-items: stretch;
-      &:nth-child(3n+3) > a {
-        margin-right: 0;
-      }
       > * {
         margin-right: $rhythm * 2;
         width: 100%;
       }
+    }
+  }
+}
+
+@media screen and (min-width: $mq-narrow) {
+  .sfgov-container-two-column > div {
+    width: 50%;
+    &:nth-child(2n+2) > * {
+      margin-right: 0;
+    }
+  }
+
+  .sfgov-container-three-column > div {
+    width: 33.33%;
+    &:nth-child(3n+3) > * {
+      margin-right: 0;
     }
   }
 }

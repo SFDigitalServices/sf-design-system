@@ -301,7 +301,6 @@ legend {
 @for $i from 1 to 16 {
   .length-#{$i} {
     width: 2.5rem + (0.65rem * $i);
-    margin-bottom: 1rem;
   }
 }
 

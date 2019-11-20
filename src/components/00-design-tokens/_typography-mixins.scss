@@ -108,36 +108,36 @@ h5, .h5 {
 
 @mixin display-1 {
   @include font-size-to-rem(33);
+  @include line-height-to-rem(39);
   font-weight: $fw-light;
   letter-spacing: 0;
-  @include line-height-to-rem(39);
 
   @media screen and (min-width: $mq-medium) {
     @include font-size-to-rem(72);
     @include line-height-to-rem(80.2);
-    letter-spacing: -2px;
+    letter-spacing: 0.12rem;
   }
 }
 
 @mixin title-5 {
-  font-size: 1.176rem;
+  @include font-size-to-rem(20);
+  @include line-height-to-rem(27);
   font-weight: $fw-medium;
-  line-height: 1.588rem;
   &.zh-TW {
-    font-weight: $fw-bold;
-    line-height: 1.76rem;
-    letter-spacing: 0.12rem;
+    @include line-height-to-rem(30);
     @include antialiasing;
+    font-weight: $fw-bold;
+    letter-spacing: 0.12rem;
   }
 }
 
 @mixin body-short {
   font-size: 1rem;
   font-weight: $fw-regular;
-  line-height: 1.412rem;
+  @include line-height-to-rem(24);
   &.zh-TW {
-    font-size: 1.06rem;
-    line-height: 1.76rem;
+    @include font-size-to-rem(18);
+    @include line-height-to-rem(30);
     letter-spacing: 0.06rem;
   }
 }
@@ -155,7 +155,7 @@ h5, .h5 {
 
   &.sfgov-translate-lang-zh-TW {
     @include line-height-to-rem(36);
-    letter-spacing: 2px;
+    letter-spacing: 0.12rem;
   }
 
   @media screen and (min-width: $mq-medium) {
@@ -165,20 +165,7 @@ h5, .h5 {
     &.sfgov-translate-lang-zh-TW {
       @include font-size-to-rem(26);
       @include line-height-to-rem(42);
-      letter-spacing: 2px;
+      letter-spacing: 0.12rem;
     }
-  }
-}
-
-
-
-@mixin fs-big-description {
-  font-size: 24px;
-  font-weight: $fw-regular;
-  line-height: 36px;
-  &.sfgov-translate-lang-zh-TW {
-    font-size: 26px;
-    line-height: 42px;
-    letter-spacing: 2px;
   }
 }

@@ -489,18 +489,18 @@ select {
       margin: 0;
     }
 
-    &.with-errors-inline {
-      @include small-text;
-      padding: 0;
-      background: transparent;
-      color: $red-4;
-      position: relative;
-      top: -0.25rem;
-      margin: 0 0 1rem;
-    }
-
     li {
       list-style-type: none;
     }
+  }
+
+  &.with-errors-inline ul {
+    @include small-text;
+    padding: 0;
+    background: transparent;
+    color: $red-4;
+    position: relative;
+    top: -0.25rem;
+    margin: 0;
   }
 }

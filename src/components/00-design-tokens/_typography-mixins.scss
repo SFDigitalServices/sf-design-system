@@ -142,7 +142,11 @@ h5, .h5 {
   }
 }
 
-
+@mixin small-text {
+  @include font-size-to-rem(14);
+  @include line-height-to-rem(18);
+  font-weight: $fw-regular;
+}
 
 @mixin big-description {
   @include font-size-to-rem(20);

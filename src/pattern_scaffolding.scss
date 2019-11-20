@@ -4,12 +4,30 @@
 
 @import 'components/00-design-tokens/colors';
 @import 'components/00-design-tokens/typography-mixins';
+@import 'components/00-design-tokens/breakpoints';
+
 
 #sf-patterns {
   -webkit-box-sizing: border-box !important;
           box-sizing: border-box !important;
   max-width: 100%;
   padding: 1em;
+}
+
+.display-1 {
+  @include display-1;
+}
+
+.title-5 {
+  @include title-5;
+}
+
+.big-description {
+  @include big-description;
+}
+
+.small-text {
+  @include small-text;
 }
 
 .demo-animate {

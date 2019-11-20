@@ -1,6 +1,6 @@
 {
   "name": "sf-design-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "[![CircleCI](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master.svg?style=shield)](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master) [![Site sf-design-system](https://img.shields.io/badge/site-sf--design--system-blue.svg)](https://sfdigitalservices.github.io/sf-design-system/)",
   "main": "fractal.js",
   "directories": {
@@ -42,8 +42,5 @@
   "bugs": {
     "url": "https://github.com/SFDigitalServices/sf-design-system/issues"
   },
-  "homepage": "https://github.com/SFDigitalServices/sf-design-system#readme",
-  "files": [
-    "public/dist/**/*"
-  ]
+  "homepage": "https://github.com/SFDigitalServices/sf-design-system#readme"
 }

@@ -17,6 +17,7 @@ cd $CIRCLE_BRANCH
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 cp -r .circleci .. # save circleci config
 npm install
+export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js
 git rm -rf .
 rm -rf node_modules

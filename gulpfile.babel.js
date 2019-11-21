@@ -16,13 +16,13 @@ import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
 import replace from 'gulp-replace';
-import gulpSassError from 'gulp-sass-error';
+import gulpif from 'gulp-if';
 
 let importOnce = require('node-sass-import-once');
 
 const fractal = require('./fractal');
 const logger = fractal.cli.console;
-const throwError = true; // gulp-sass-error
+const production = process.env.NODE_ENV == "production" ? true : false;
 
 // Require a copy of the JS compiler for uswds.
 // the gulptask is called "javascript"
@@ -50,9 +50,10 @@ let errorHandler = (error) => {
 // Pattern Lab CSS.
 // -------------------------------------------------------------- //
 let css = () => {
+    console.log(production);
     return gulp.src(config.css.src)
         .pipe(glob())
-        .pipe(plumber({
+        .pipe(gulpif(!production, plumber({
             errorHandler: function (error) {
                 notify.onError({
                     title: "Gulp",
@@ -61,19 +62,14 @@ let css = () => {
                     sound: "Beep"
                 })(error);
                 this.emit('end');
-                process.exit(1);
             }
-        }))
+        })))
         .pipe(sourcemaps.init())
         .pipe(sass({
             outputStyle: 'expanded',
             errLogToConsole: true,
             includePaths: config.css.includePaths,
-            importer: importOnce,
-            onError: function() {
-                process.exit(1);
-                gulpSassError(throwError);
-            }
+            importer: importOnce
         }))
         .pipe(autoprefix('last 2 versions', '> 1%', 'ie 9', 'ie 10'))
         .pipe(sourcemaps.write('./'))

@@ -22,7 +22,7 @@ git rm -rf .
 rm -rf node_modules
 rm -rf public
 mv export/* .
-mv .circleci .. # move circleci config to ignore triggering builds when pushing to gh-pages
+mv ../.circleci . # move circleci config to ignore triggering builds when pushing to gh-pages
 
 git remote add pantheon $PANTHEON_REMOTE
 git add -A
@@ -30,7 +30,7 @@ git add -A
 terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  git commit -m "static site deploy: ${CIRCLE_SHA1}" --allow-empty
+  git commit -m "automated static site deploy: ${CIRCLE_SHA1}" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
 else

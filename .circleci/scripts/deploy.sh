@@ -27,13 +27,15 @@ mv ../.circleci . # move circleci config to ignore triggering builds when pushin
 git remote add pantheon $PANTHEON_REMOTE
 git add -A
 
+terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
+
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git commit -m "Automated deploy to gh pages: ${CIRCLE_SHA1}" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH
+  git push -f pantheon $TARGET_BRANCH:master # push to pantheon master
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${CIRCLE_SHA1}" --allow-empty
   # terminus commands
-  terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
   # do some cleanup
   terminus multidev:list $PANTHEON_SITENAME --format=list --fields=name > multidevs.txt # capture multidevs to file
   MD_COUNT="$(< multidevs.txt wc -l)" # capture the multidev count (# lines in file from above)

@@ -61,6 +61,7 @@ let css = () => {
                     sound: "Beep"
                 })(error);
                 this.emit('end');
+                process.exit(1);
             }
         }))
         .pipe(sourcemaps.init())
@@ -70,6 +71,7 @@ let css = () => {
             includePaths: config.css.includePaths,
             importer: importOnce,
             onError: function() {
+                process.exit(1);
                 gulpSassError(throwError);
             }
         }))

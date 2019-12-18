@@ -8,6 +8,7 @@ jobs:
     branches:
       ignore:
         - gh-pages
+        - /distribution.*/
 
     docker:
       # specify the version you desire here

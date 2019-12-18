@@ -15,12 +15,12 @@ ssh-keyscan -H -p $PANTHEON_CODESERVER_PORT $PANTHEON_CODESERVER >> ~/.ssh/known
 
 cd $CIRCLE_BRANCH
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
+GIT_COMMIT_MSG=$CIRCLE_SHA1:$(git log --format=oneline -n 1)
 cp -r .circleci .. # save circleci config
 npm install
 export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
 cp -r src .. # copy out src
-cp -r public .. # copy out public compiled assets
 git rm -rf .
 rm -rf node_modules
 rm -rf public
@@ -33,11 +33,11 @@ git add -A
 terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  git commit -m "automated static site deploy: ${CIRCLE_SHA1}" --allow-empty
+  git commit -m "automated static site deploy: ${GIT_COMMIT_MSG}" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
 else
-  git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${CIRCLE_SHA1}" --allow-empty
+  git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
   # terminus commands
   # do some cleanup
   terminus multidev:list $PANTHEON_SITENAME --format=list --fields=name > multidevs.txt # capture multidevs to file
@@ -59,7 +59,7 @@ fi
 
   # copy src and public back in
   mv ../src .
-  mv ../public .
+  rm -rf components themes *.html *.txt
   git add .
-  git commit -m "distribution build: ${CIRCLE_SHA1}" --allow-empty
+  git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
   git push origin -f $CIRCLE_BRANCH:distribution-${CIRCLE_BRANCH}

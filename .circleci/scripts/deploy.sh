@@ -18,6 +18,8 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
 cp -r .circleci .. # save circleci config
 npm install
+NPM_PACKAGE_VERSION=$(npm view sf-design-system version)
+GIT_TAG=NPM_PACKAGE_VERSION
 export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
 cp -r src .. # copy out src
@@ -36,6 +38,9 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git commit -m "automated static site deploy: ${GIT_COMMIT_MSG}" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
+  git checkout $SOURCE_BRANCH
+  git tag -a v$GIT_TAG -m "version ${GIT_TAG}: ${GIT_COMMIT_MSG}"
+  git push origin v$GIT_TAG
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
   # terminus commands
@@ -57,9 +62,11 @@ else
   terminus auth:logout
 fi
 
-  # copy src and public back in
-  mv ../src .
-  rm -rf components themes *.html *.txt
-  git add .
-  git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
-  git push origin -f $CIRCLE_BRANCH:distribution-${CIRCLE_BRANCH}
+# copy src back in, remove unnecessary things, commit, tag, and push
+mv ../src .
+rm -rf components themes *.html *.txt
+git add .
+git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
+git push origin -f $CIRCLE_BRANCH:distribution
+git tag -a v$GIT_TAG-$CIRCLE_SHA1 -m "version ${GIT_TAG}-${$CIRCLE_SHA1}: ${GIT_COMMIT_MSG}"
+git push origin v$GIT_TAG-$CIRCLE_SHA1

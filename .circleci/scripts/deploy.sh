@@ -18,7 +18,9 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 cp -r .circleci .. # save circleci config
 npm install
 export NODE_ENV=production # exit properly on gulp errors
-./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js
+./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
+cp -r src .. # copy out src
+cp -r public .. # copy out public compiled assets
 git rm -rf .
 rm -rf node_modules
 rm -rf public
@@ -54,3 +56,10 @@ else
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
 fi
+
+  # copy src and public back in
+  mv ../src .
+  mv ../public .
+  git add .
+  git commit -m "distribution build: ${CIRCLE_SHA1}" --allow-empty
+  git push origin -f $CIRCLE_BRANCH:distribution-${CIRCLE_BRANCH}

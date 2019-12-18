@@ -15,7 +15,7 @@ ssh-keyscan -H -p $PANTHEON_CODESERVER_PORT $PANTHEON_CODESERVER >> ~/.ssh/known
 
 cd $CIRCLE_BRANCH
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
-GIT_COMMIT_MSG=$CIRCLE_SHA1:$(git log --format=oneline -n 1)
+GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
 cp -r .circleci .. # save circleci config
 npm install
 export NODE_ENV=production # exit properly on gulp errors

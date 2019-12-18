@@ -68,5 +68,5 @@ rm -rf components themes *.html *.txt
 git add .
 git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
 git push origin -f $CIRCLE_BRANCH:distribution
-git tag -a v$GIT_TAG-$CIRCLE_SHA1 -m "version ${GIT_TAG}-${$CIRCLE_SHA1}: ${GIT_COMMIT_MSG}"
+git tag -a v$GIT_TAG-$CIRCLE_SHA1 -m "version ${GIT_TAG}-${CIRCLE_SHA1}: ${GIT_COMMIT_MSG}"
 git push origin v$GIT_TAG-$CIRCLE_SHA1

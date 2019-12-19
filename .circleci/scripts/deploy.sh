@@ -65,7 +65,7 @@ fi
 
 # copy src back in, remove unnecessary things, commit, tag, and push
 git checkout distribution || git checkout --orphan distribution
-mv ../src .
+cp -r ../src .
 rm -rf *.txt
 git rm -rf components themes *.html
 git add -A

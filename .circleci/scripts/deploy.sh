@@ -67,7 +67,7 @@ fi
 git checkout distribution || git checkout --orphan distribution
 cp -r ../src .
 rm -rf *.txt
-git rm -rf components themes *.html
+rm -rf components themes *.html
 git add -A
 git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
 git push origin -f distribution

@@ -65,8 +65,8 @@ fi
 
 # copy src back in, remove unnecessary things, commit, tag, and push
 mv ../src .
-rm -rf components themes *.html *.txt
-git add .
+git rm -rf components themes *.html *.txt
+git add -A
 git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
 git push origin -f $CIRCLE_BRANCH:distribution
 git tag -a $GIT_TAG-$SHORT_SHA -m "version ${GIT_TAG}-${SHORT_SHA}: ${GIT_COMMIT_MSG}"

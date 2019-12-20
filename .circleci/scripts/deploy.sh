@@ -13,17 +13,24 @@ ssh-add -D
 ssh-add ~/.ssh/id_rsa_$PANTHEON_SSH_FINGERPRINT
 ssh-keyscan -H -p $PANTHEON_CODESERVER_PORT $PANTHEON_CODESERVER >> ~/.ssh/known_hosts
 
-cd $CIRCLE_BRANCH
-git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
-cp -r .circleci .. # save circleci config
-npm install
 NPM_PACKAGE_VERSION=$(npm view sf-design-system version)
 GIT_TAG=v$NPM_PACKAGE_VERSION
 SHORT_SHA=$(git log --pretty=format:"%h" -n 1)
+
+cd $CIRCLE_BRANCH
+git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
+
+# tag $SOURCE_BRANCH with version
+if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+  git tag -a $GIT_TAG -m "version ${GIT_TAG}: ${GIT_COMMIT_MSG}"
+  git push origin $GIT_TAG
+fi
+
+# static site build and deploy
 export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
-cp -r src .. # copy out src
+cp -r src .. # copy out src to bring back in later for distribution branch
 git rm -rf .
 rm -rf node_modules
 rm -rf public
@@ -39,9 +46,19 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git commit -m "automated static site deploy: ${GIT_COMMIT_MSG}" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
-  git checkout $SOURCE_BRANCH
-  git tag -a $GIT_TAG -m "version ${GIT_TAG}: ${GIT_COMMIT_MSG}"
-  git push origin $GIT_TAG
+
+  # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
+  GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
+  git checkout distribution || git checkout --orphan distribution
+  cp -r ../src .
+  rm -rf *.txt
+  rm -rf components themes *.html
+  git add -A
+  git commit -m $GIT_DIST_MSG --allow-empty
+  git push origin -f distribution
+  git tag -a $GIT_TAG-dist -m $GIT_DIST_MSG
+  git push origin $GIT_TAG-dist
+
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
   # terminus commands
@@ -63,13 +80,14 @@ else
   terminus auth:logout
 fi
 
-# copy src back in, remove unnecessary things, commit, tag, and push
+# circleci test, delete
+GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
 git checkout distribution || git checkout --orphan distribution
 cp -r ../src .
 rm -rf *.txt
 rm -rf components themes *.html
 git add -A
-git commit -m "distribution build: ${GIT_COMMIT_MSG}" --allow-empty
+git commit -m $GIT_DIST_MSG --allow-empty
 git push origin -f distribution
-git tag -a $GIT_TAG-$SHORT_SHA -m "version ${GIT_TAG}-${SHORT_SHA}: ${GIT_COMMIT_MSG}"
-git push origin $GIT_TAG-$SHORT_SHA
+git tag -a $GIT_TAG-dist -m $GIT_DIST_MSG
+git push origin $GIT_TAG-dist

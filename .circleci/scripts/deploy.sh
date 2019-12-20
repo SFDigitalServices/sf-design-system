@@ -49,16 +49,23 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
 
   # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
-  GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${GIT_COMMIT_MSG}"
-  git checkout distribution || git checkout --orphan distribution
-  cp -r ../src .
-  rm -rf *.txt
-  rm -rf components themes *.html
-  git add -A
-  git commit -m $GIT_DIST_MSG --allow-empty
-  git push origin -f distribution
-  git tag -a $GIT_TAG-dist -m $GIT_DIST_MSG
-  git push origin $GIT_TAG-dist
+  GIT_DIST_TAG=$GIT_TAG-dist
+  GIT_DIST_MSG="distribution build. tag:${GIT_DIST_TAG}, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
+  GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_DIST_TAG)
+  if [ "$GIT_TAG_EXISTS" ]; then
+    echo "tag ${GIT_DIST_TAG} already exists.  Did you update the npm package version?"
+    exit 1
+  else
+    git checkout distribution || git checkout --orphan distribution
+    cp -r ../src .
+    rm -rf *.txt
+    rm -rf components themes *.html
+    git add -A
+    git commit -m "${GIT_DIST_MSG}" --allow-empty
+    git push origin -f distribution
+    git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
+    git push origin $GIT_DIST_TAG
+  fi
 
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
@@ -79,23 +86,4 @@ else
   terminus multidev:create $PANTHEON_SITENAME.dev ci-$CIRCLE_BUILD_NUM
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
-fi
-
-# circleci test, delete
-GIT_DIST_TAG=$GIT_TAG-dist
-GIT_DIST_MSG="distribution build. tag:${GIT_DIST_TAG}, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
-GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_DIST_TAG)
-if [ "$GIT_TAG_EXISTS" ]; then
-  echo "tag ${GIT_DIST_TAG} already exists.  Did you update the npm package version?"
-  exit 1
-else
-  git checkout distribution || git checkout --orphan distribution
-  cp -r ../src .
-  rm -rf *.txt
-  rm -rf components themes *.html
-  git add -A
-  git commit -m "${GIT_DIST_MSG}" --allow-empty
-  git push origin -f distribution
-  git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
-  git push origin $GIT_DIST_TAG
 fi

@@ -23,6 +23,11 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 # tag $SOURCE_BRANCH with version
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+  GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_TAG)
+  if [ "$GIT_TAG_EXISTS" ]; then
+    echo "tag ${GIT_TAG} already exists.  Did you update the npm package version?"
+    exit 1
+  fi
   git tag -a $GIT_TAG -m "version ${GIT_TAG}: ${GIT_COMMIT_MSG}"
   git push origin $GIT_TAG
 fi
@@ -51,22 +56,15 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
   GIT_DIST_TAG=$GIT_TAG-dist
   GIT_DIST_MSG="distribution build. tag:${GIT_DIST_TAG}, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
-  GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_DIST_TAG)
-  if [ "$GIT_TAG_EXISTS" ]; then
-    echo "tag ${GIT_DIST_TAG} already exists.  Did you update the npm package version?"
-    exit 1
-  else
-    git checkout distribution || git checkout --orphan distribution
-    cp -r ../src .
-    rm -rf *.txt
-    rm -rf components themes *.html
-    git add -A
-    git commit -m "${GIT_DIST_MSG}" --allow-empty
-    git push origin -f distribution
-    git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
-    git push origin $GIT_DIST_TAG
-  fi
-
+  git checkout distribution || git checkout --orphan distribution
+  cp -r ../src .
+  rm -rf *.txt
+  rm -rf components themes *.html
+  git add -A
+  git commit -m "${GIT_DIST_MSG}" --allow-empty
+  git push origin -f distribution
+  git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
+  git push origin $GIT_DIST_TAG
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
   # terminus commands

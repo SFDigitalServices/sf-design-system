@@ -84,7 +84,8 @@ fi
 # circleci test, delete
 GIT_DIST_TAG=$GIT_TAG-dist
 GIT_DIST_MSG="distribution build. tag:${GIT_DIST_TAG}, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
-if [ $(git ls-remote --tags --quiet | grep $GIT_DIST_TAG) ]; then
+GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_DIST_TAG)
+if [ $GIT_TAG_EXISTS ]; then
   echo "tag ${GIT_DIST_TAG} already exists.  Did you update the npm package version?"
   exit 1
 else

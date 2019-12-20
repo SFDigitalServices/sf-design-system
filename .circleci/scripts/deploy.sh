@@ -88,7 +88,7 @@ cp -r ../src .
 rm -rf *.txt
 rm -rf components themes *.html
 git add -A
-git commit -m $GIT_DIST_MSG --allow-empty
+git commit -m "${GIT_DIST_MSG}" --allow-empty
 git push origin -f distribution
-git tag -a $GIT_TAG-dist -m $GIT_DIST_MSG
+git tag -a $GIT_TAG-dist -m "${GIT_DIST_MSG}"
 git push origin $GIT_TAG-dist

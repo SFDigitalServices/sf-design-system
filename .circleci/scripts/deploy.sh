@@ -82,13 +82,19 @@ else
 fi
 
 # circleci test, delete
-GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
-git checkout distribution || git checkout --orphan distribution
-cp -r ../src .
-rm -rf *.txt
-rm -rf components themes *.html
-git add -A
-git commit -m "${GIT_DIST_MSG}" --allow-empty
-git push origin -f distribution
-git tag -a $GIT_TAG-dist -m "${GIT_DIST_MSG}"
-git push origin $GIT_TAG-dist
+GIT_DIST_TAG=$GIT_TAG-dist
+GIT_DIST_MSG="distribution build. tag:${GIT_DIST_TAG}, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
+if [[ $(git ls-remote --tags --quiet | grep $GIT_DIST_TAG)]]; then
+  echo "tag ${GIT_DIST_TAG} already exists.  Did you update the npm package version?"
+  exit 1
+else
+  git checkout distribution || git checkout --orphan distribution
+  cp -r ../src .
+  rm -rf *.txt
+  rm -rf components themes *.html
+  git add -A
+  git commit -m "${GIT_DIST_MSG}" --allow-empty
+  git push origin -f distribution
+  git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
+  git push origin $GIT_DIST_TAG
+fi

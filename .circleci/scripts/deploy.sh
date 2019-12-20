@@ -28,6 +28,7 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
 fi
 
 # static site build and deploy
+npm install
 export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
 cp -r src .. # copy out src to bring back in later for distribution branch

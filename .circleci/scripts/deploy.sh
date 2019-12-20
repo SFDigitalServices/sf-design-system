@@ -49,7 +49,7 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
 
   # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
-  GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${SHORT_SHA} ${GIT_COMMIT_MSG}"
+  GIT_DIST_MSG="distribution build. tag:${GIT_TAG}-dist, commit:${GIT_COMMIT_MSG}"
   git checkout distribution || git checkout --orphan distribution
   cp -r ../src .
   rm -rf *.txt

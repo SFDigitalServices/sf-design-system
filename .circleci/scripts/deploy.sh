@@ -23,9 +23,9 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 # tag $SOURCE_BRANCH with version
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep $GIT_TAG)
+  GIT_TAG_EXISTS=$(git ls-remote --tags --quiet | grep ^$GIT_TAG)
   if [ "$GIT_TAG_EXISTS" ]; then
-    echo "tag ${GIT_TAG} already exists.  Did you update the npm package version?"
+    echo "tag ${GIT_TAG} already exists.  Did you bump the npm package version?"
     exit 1
   fi
   git tag -a $GIT_TAG -m "version ${GIT_TAG}: ${GIT_COMMIT_MSG}"

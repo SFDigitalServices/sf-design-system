@@ -95,7 +95,7 @@ $fw-black: 900;
   @media screen and (min-width: $mq-medium) {
     @include font-size-to-rem(72);
     @include line-height-to-rem(80.2);
-    letter-spacing: 0.12rem;
+    letter-spacing: -0.12rem;
   }
 }
 

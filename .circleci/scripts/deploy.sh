@@ -14,7 +14,7 @@ cd $CIRCLE_BRANCH
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
-NPM_PACKAGE_VERSION=$(npm view sf-design-system version)
+NPM_PACKAGE_VERSION=$(awk -F'\"' '/\"version\": \".+\"/{ print $4; exit; }' package.json)
 GIT_TAG=v$NPM_PACKAGE_VERSION
 SHORT_SHA=$(git log --pretty=format:"%h" -n 1)
 

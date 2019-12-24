@@ -11,12 +11,12 @@ git config --global user.name $GH_NAME
 git clone $CIRCLE_REPOSITORY_URL $CIRCLE_BRANCH
 cd $CIRCLE_BRANCH
 
+git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
+
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
 NPM_PACKAGE_VERSION=$(npm view sf-design-system version)
 GIT_TAG=v$NPM_PACKAGE_VERSION
 SHORT_SHA=$(git log --pretty=format:"%h" -n 1)
-
-git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 # tag $SOURCE_BRANCH with version
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then

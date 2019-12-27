@@ -14,6 +14,13 @@
   outline: none;
 }
 
+// Layout
+
+.form-content {
+  @include contain-1090;
+  margin-top: 2rem;
+}
+
 // Cross-browser consistency / bug fixes
 
 input::-webkit-outer-spin-button,
@@ -315,6 +322,10 @@ $rc-size: 3rem;
     padding-left: $rc-size + 0.75rem;
     margin-bottom: 1rem;
     min-height: $rc-size;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   input,

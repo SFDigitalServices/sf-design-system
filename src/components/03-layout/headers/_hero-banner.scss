@@ -53,8 +53,10 @@
 
 .form-header-meta {
   position: relative;
+  color: $black;
   h2 {
     font-size: 1rem;
+    color: $black;
     font-weight: $fw-regular;
     margin-bottom: 0.25rem;
     @media screen and (min-width: $mq-medium) {
@@ -64,6 +66,10 @@
 }
 
 // Progress
+
+$progressColor: $purple-4;
+$progressColorLight: rgba($progressColor, 0.2);
+$progressColorDark: $progressColor;
 
 .form-progress {
   position: relative;
@@ -106,7 +112,7 @@
   border-radius: 0.375rem;
   &::before {
     content: '';
-    background: #6b8292;
+    background: $purple-3;
     height: 0.75rem;
     border-radius: 0.375rem 0 0 0.375rem;
     position: absolute;
@@ -132,7 +138,7 @@
 
 @for $i from 91 to 99 {
   .form-progress-bar-#{$i} {
-    background: #6b8292;
+     background: $purple-3;
     &::before {
       background: $purple-1;
       left: auto;

@@ -15,5 +15,6 @@
   .description {
     @include body-short;
     color: $white;
+    margin: 0;
   }
 }

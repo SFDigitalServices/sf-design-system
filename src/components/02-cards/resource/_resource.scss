@@ -16,5 +16,6 @@
   .description {
     @include body-short;
     color: $slate;
+    margin: 0;
   }
 }

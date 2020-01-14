@@ -1,0 +1,20 @@
+.sfgov-service-card {
+  @include rubik;
+  background: $white;
+  border: 3px solid $grey-3;
+  border-radius: 8px;
+  color: $white;
+  display: block;
+  padding: $rhythm * 2;
+  text-decoration: none;
+  
+  .title {
+    @include body-link-bold;
+    color: $bright-blue;
+    margin: 0 0 $rhythm 0;
+  }
+  .description {
+    @include body-short;
+    color: $slate;
+  }
+}

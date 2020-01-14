@@ -1,0 +1,9 @@
+context:
+  url: "https://sf.gov"
+  image: "/images/event-image.jpg"
+  title: "Event title"
+  date: 
+    month: "February"
+    date: "2"
+  description: "Event card description describes this event card.  Use a descriptive description."
+  

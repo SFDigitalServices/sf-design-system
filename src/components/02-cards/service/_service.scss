@@ -3,7 +3,7 @@
   background: $white;
   border: 3px solid $grey-3;
   border-radius: 8px;
-  color: $white;
+  color: $slate;
   display: block;
   padding: $rhythm * 2;
   text-decoration: none;
@@ -12,6 +12,7 @@
     @include body-link-bold;
     color: $bright-blue;
     margin: 0 0 $rhythm 0;
+    text-decoration: underline;
   }
   .description {
     @include body-short;

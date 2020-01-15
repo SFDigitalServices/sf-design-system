@@ -22,21 +22,20 @@
   &.date {
     padding: 0;
     position: relative;
-    .event-image {
+    .event-image,
+    .event-date {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
       border-radius: 8px 8px 0 0;
       height: 160px;
-    }
-    .event-date {
-      background: $green-2;
-      border-radius: 8px 8px 0 0;
-      color: $slate;
-      height: 160px;
-      opacity: 0.65;
       padding-top: 26px;
       text-align: center;
+    }
+    .event-date {
+      color: $slate;
+      background: $green-2;
+      opacity: 0.65;
       .month {
         @include font-size-to-rem(32);
         @include line-height-to-rem(38);

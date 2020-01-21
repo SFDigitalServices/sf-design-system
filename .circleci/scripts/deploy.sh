@@ -34,6 +34,7 @@ npm install
 export NODE_ENV=production # exit properly on gulp errors
 ./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
 cp -r src .. # copy out src to bring back in later for distribution branch
+cp -r .circleci ..
 git rm -rf .
 rm -rf node_modules
 rm -rf public
@@ -53,13 +54,12 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
   GIT_DIST_TAG=$GIT_TAG-dist
   GIT_DIST_MSG="distribution build. version [${GIT_DIST_TAG}] ${GIT_COMMIT_MSG}"
-  git checkout distribution || git checkout --orphan distribution
   cp -r ../src .
   rm -rf *.txt
   rm -rf components themes *.html
   git add -A
   git commit -m "${GIT_DIST_MSG}" --allow-empty
-  git push origin -f distribution
+  git push origin -f $SOURCE_BRANCH:distribution
   git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
   git push origin $GIT_DIST_TAG
 else

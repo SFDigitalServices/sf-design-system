@@ -14,7 +14,7 @@
   },
   "images": {
     "src": [
-      "src/images/**/*"
+      "src/**/*.{png,gif,jpg,jpeg}"
     ],
     "dest": "public/dist/images"
   },

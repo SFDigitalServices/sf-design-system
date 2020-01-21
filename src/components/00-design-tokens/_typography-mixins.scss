@@ -122,6 +122,12 @@ $fw-black: 900;
   }
 }
 
+@mixin body-link-bold {
+  font-size: 1rem;
+  font-weight: $fw-medium;
+  @include line-height-to-rem(24);
+}
+
 @mixin small-text {
   @include font-size-to-rem(14);
   @include line-height-to-rem(18);

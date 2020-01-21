@@ -17,6 +17,7 @@ import babel from 'gulp-babel';
 import imagemin from 'gulp-imagemin';
 import replace from 'gulp-replace';
 import gulpif from 'gulp-if';
+import rename from 'gulp-rename';
 
 let importOnce = require('node-sass-import-once');
 
@@ -79,6 +80,7 @@ let css = () => {
 let images = () => {
     return gulp.src(config.images.src)
         .pipe(imagemin())
+        .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(config.images.dest))
 }
 
@@ -87,9 +89,9 @@ let images = () => {
 // ------------------------------------------------------------------- //
 
 let watch = async () => {
-    // gulp.watch(config.js.src, js);
+    gulp.watch(config.js.src, js);
     gulp.watch(config.css.src, css);
-    // gulp.watch(config.images.src, images);
+    gulp.watch(config.images.src, images);
 }
 
 // // Component JS.

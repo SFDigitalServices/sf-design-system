@@ -1,6 +1,6 @@
 <div class="sfgov-container-three-column">
   {{#each items}}
-    <div class="item{{#if @last}} last {{/if}}">
+    <div class="sfgov-container-item{{#if @last}} last {{/if}}">
       {{> @featured-item url="#" title=this.title description=this.description }}
     </div>
   {{/each}}

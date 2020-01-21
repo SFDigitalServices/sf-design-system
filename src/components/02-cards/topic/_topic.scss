@@ -1,0 +1,22 @@
+.sfgov-topic-card {
+  @include rubik;
+  background: $grey-1;
+  border: 0;
+  border-radius: $radius;
+  color: $slate;
+  display: block;
+  padding: $rhythm * 4;
+  text-decoration: none;
+  
+  .title {
+    @include h3;
+    color: $bright-blue;
+    margin: 0 0 $rhythm 0;
+  }
+  .description {
+    @include body-short;
+    color: $slate;
+    margin: 0;
+    opacity: 0.6;
+  }
+}

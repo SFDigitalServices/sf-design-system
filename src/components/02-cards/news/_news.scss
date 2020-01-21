@@ -2,7 +2,7 @@
   @include rubik;
   background: $yellow-3;
   border: 0;
-  border-radius: 8px;
+  border-radius: $radius;
   color: $slate;
   display: block;
   padding: $rhythm * 2;

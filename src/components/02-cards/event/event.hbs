@@ -9,7 +9,9 @@
 </a>
 <br/>
 <a class="sfgov-event-card image" href="{{ url }}">
-  <div class="event-image" style="background-image:url({{ image }})"></div>
+  <div class="event-image">
+    <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+  </div>
   <div class="event-info">
     <h5 class="title">{{ title }}</h5>
     <p class="description">

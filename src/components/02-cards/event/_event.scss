@@ -24,13 +24,18 @@
     position: relative;
     .event-image,
     .event-date {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: top center;
-      border-radius: 8px 8px 0 0;
+      border-radius: $radius $radius 0 0;
       height: 160px;
       padding-top: 26px;
       text-align: center;
+    }
+    .event-image {
+      padding-top: 0;
+      overflow: hidden;
+      img {
+        border-radius: $radius $radius 0 0;
+        width: 100%;
+      }
     }
     .event-date {
       color: $slate;

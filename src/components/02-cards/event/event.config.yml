@@ -1,6 +1,8 @@
 context:
   url: "https://sf.gov"
-  image: "/images/event-image.jpg"
+  image: 
+    src: "/images/event-image.jpg"
+    alt: "this is the alt text for the event image"
   title: "Event title"
   date: 
     month: "February"

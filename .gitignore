@@ -1,8 +1,0 @@
-composer.phar
-/vendor/
-node_modules/*
-public/
-*.css.map
-.vscode
-.DS_Store
-export/

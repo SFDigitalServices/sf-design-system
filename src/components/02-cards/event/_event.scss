@@ -62,4 +62,7 @@
       padding: $rhythm * 2;
     }
   }
+  &:hover {
+    background: $green-4;
+  }
 }

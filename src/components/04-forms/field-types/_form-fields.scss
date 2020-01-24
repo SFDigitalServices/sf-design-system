@@ -180,7 +180,7 @@ legend {
   @include rubik;
   color: $slate;
   font-weight: $fw-regular;
-  @include font-size-to-rem(24);
+  font-size: px-to-rem(24);
   letter-spacing: -0.016em;
   line-height: 1.5;
   @include antialiasing;
@@ -213,7 +213,7 @@ legend {
 
   .dollar {
     font-weight: $fw-light;
-    @include font-size-to-rem(51);
+    font-size: px-to-rem(51);
     line-height: 1;
     position: relative;
     top: 0.75rem;

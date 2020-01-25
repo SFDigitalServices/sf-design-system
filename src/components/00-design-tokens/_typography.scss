@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	@include line-height-to-rem(28);
+  line-height: px-to-rem(28);
 }
 
 h1, .h1 {

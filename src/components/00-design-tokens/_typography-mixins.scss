@@ -1,5 +1,3 @@
-$base-font-size: 17;
-
 $fw-light: 300;
 $fw-regular: 400;
 $fw-medium: 500;
@@ -27,30 +25,22 @@ $fw-black: 900;
   font-family: "Noto Sans TC", sans-serif;
 }
 
-@mixin font-size-to-rem($number) {
-  font-size: ($number * 1rem) / $base-font-size;
-}
-
-@mixin line-height-to-rem($number) {
-  line-height: $number * 1rem / $base-font-size;
-}
-
 @mixin h1 {
   color: $slate;
   font-weight: $fw-medium;
   margin: 1.75rem 0 0;
-  @include font-size-to-rem(33);
-  @include line-height-to-rem(44);
+  font-size: px-to-rem(33);
+  line-height: px-to-rem(44);
   &.title {
     line-height: normal;
     font-weight: $fw-light;
   }
   @media screen and (min-width: 40rem) {
-    @include font-size-to-rem(62);
+    font-size: px-to-rem(62);
     line-height: normal;
     letter-spacing: -0.3px;
     &.title {
-      @include font-size-to-rem(50);
+      font-size: px-to-rem(50);
       letter-spacing: 0;
     }
   }
@@ -60,7 +50,7 @@ $fw-black: 900;
   color: $slate;
   font-weight: $fw-medium;
   margin: 1.25rem 0 0.875rem;
-  @include font-size-to-rem(40);
+  font-size: px-to-rem(40);
   line-height: normal;
 }
 
@@ -68,43 +58,43 @@ $fw-black: 900;
   color: $slate;
   font-weight: $fw-medium;
   margin: 1.25rem 0 0.875rem;
-  @include font-size-to-rem(30);
-  @include line-height-to-rem(42);
+  font-size: px-to-rem(30);
+  line-height: px-to-rem(42);
 }
 
 @mixin h4 {
   font-weight: $fw-regular;
   margin: 1.25rem 0 0.875rem;
-  @include font-size-to-rem(24);
-  @include line-height-to-rem(34);
+  font-size: px-to-rem(24);
+  line-height: px-to-rem(34);
 }
 
 @mixin h5 {
   margin: 1rem 0 0.875rem;
   font-weight: $fw-medium;
-  @include font-size-to-rem(20);
-  @include line-height-to-rem(27);
+  font-size: px-to-rem(20);
+  line-height: px-to-rem(27);
 }
 
 @mixin display-1 {
-  @include font-size-to-rem(33);
-  @include line-height-to-rem(39);
+  font-size: px-to-rem(33);
+  line-height: px-to-rem(39);
   font-weight: $fw-light;
   letter-spacing: 0;
 
   @media screen and (min-width: $mq-medium) {
-    @include font-size-to-rem(72);
-    @include line-height-to-rem(80.2);
+    font-size: px-to-rem(72);
+    line-height: px-to-rem(80.2);
     letter-spacing: -0.12rem;
   }
 }
 
 @mixin title-5 {
-  @include font-size-to-rem(20);
-  @include line-height-to-rem(27);
+  font-size: px-to-rem(20);
+  line-height: px-to-rem(27);
   font-weight: $fw-medium;
   &.zh-TW {
-    @include line-height-to-rem(30);
+    line-height: px-to-rem(30);
     @include antialiasing;
     font-weight: $fw-bold;
     letter-spacing: 0.12rem;
@@ -114,10 +104,10 @@ $fw-black: 900;
 @mixin body-short {
   font-size: 1rem;
   font-weight: $fw-regular;
-  @include line-height-to-rem(24);
+  line-height: px-to-rem(24);
   &.zh-TW {
-    @include font-size-to-rem(18);
-    @include line-height-to-rem(30);
+    font-size: px-to-rem(18);
+    line-height: px-to-rem(30);
     letter-spacing: 0.06rem;
   }
 }
@@ -125,32 +115,32 @@ $fw-black: 900;
 @mixin body-link-bold {
   font-size: 1rem;
   font-weight: $fw-medium;
-  @include line-height-to-rem(24);
+  line-height: px-to-rem(24);
 }
 
 @mixin small-text {
-  @include font-size-to-rem(14);
-  @include line-height-to-rem(18);
+  font-size: px-to-rem(14);
+  line-height: px-to-rem(18);
   font-weight: $fw-regular;
 }
 
 @mixin big-description {
-  @include font-size-to-rem(20);
-  @include line-height-to-rem(29);
+  font-size: px-to-rem(20);
+  line-height: px-to-rem(29);
   font-weight: $fw-regular;
 
   &.sfgov-translate-lang-zh-TW {
-    @include line-height-to-rem(36);
+    line-height: px-to-rem(36);
     letter-spacing: 0.12rem;
   }
 
   @media screen and (min-width: $mq-medium) {
-    @include font-size-to-rem(24);
-    @include line-height-to-rem(36);
+    font-size: px-to-rem(24);
+    line-height: px-to-rem(36);
 
     &.sfgov-translate-lang-zh-TW {
-      @include font-size-to-rem(26);
-      @include line-height-to-rem(42);
+      font-size: px-to-rem(26);
+      line-height: px-to-rem(42);
       letter-spacing: 0.12rem;
     }
   }

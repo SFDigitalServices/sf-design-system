@@ -19,4 +19,10 @@
     margin: 0;
     opacity: 0.6;
   }
+  &:hover {
+    background: $grey-2;
+    .description {
+      opacity: 1;
+    }
+  }
 }

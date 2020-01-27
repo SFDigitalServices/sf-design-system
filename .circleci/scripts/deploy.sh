@@ -81,4 +81,10 @@ else
   terminus multidev:create $PANTHEON_SITENAME.dev ci-$CIRCLE_BUILD_NUM
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
+
+  # comment on commit with review site
+  COMMENT="review site: https://ci-${CIRCLE_BUILD_NUM}-sfdesignsystem.pantheonsite.io"
+  OWNER="SFDigitalServices"
+  REPO="sf-design-system"
+  curl -u aekong:$GH_ACCESS_TOKEN -H "Content-Type: application/json" -d '{"body":"'"$COMMENT"'"}' -X POST https://api.github.com/repos/$OWNER/$REPO/commits/$CIRCLE_SHA1/comments
 fi

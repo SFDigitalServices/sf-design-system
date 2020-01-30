@@ -124,7 +124,12 @@
   }
 }
 
-@for $i from 1 to 90 {
+.form-progress-bar-1,
+.form-progress-bar-2 {
+  width: 3%;
+}
+
+@for $i from 3 to 90 {
   .form-progress-bar-#{$i}::before {
     width: $i * 1%;
   }

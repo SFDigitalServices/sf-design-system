@@ -362,6 +362,22 @@ $rc-size: 3rem;
   }
 }
 
+// Other for checkboxes and radios
+
+.other-label {
+  .inline-label {
+    float:left;
+  }
+
+  input[type=text] {
+    left:7rem;
+    filter: alpha(opacity=1);
+    opacity: 1;
+    padding:0.64rem 1rem;
+    width:calc(100% - 7rem);
+  }
+}
+
 // Radio buttons
 .field-s08 {
   .inline-label::before,

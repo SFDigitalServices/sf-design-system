@@ -5,9 +5,11 @@
   border-radius: $radius;
   color: $slate;
   display: block;
-  padding: $rhythm * 4;
   text-decoration: none;
-  
+  padding: $rhythm * 2;
+  @media screen and (min-width: $mq-narrow) {
+    padding: $rhythm * 4;
+  }
   .title {
     @include h3;
     color: $bright-blue;

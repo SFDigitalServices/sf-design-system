@@ -57,9 +57,13 @@ $fw-black: 900;
 @mixin h3 {
   color: $slate;
   font-weight: $fw-medium;
+  font-size: px-to-rem(24);
+  line-height: px-to-rem(30);
   margin: 1.25rem 0 0.875rem;
-  font-size: px-to-rem(30);
-  line-height: px-to-rem(42);
+  @media screen and (min-width: $mq-narrow) {
+    font-size: px-to-rem(30);
+    line-height: px-to-rem(42);
+  }
 }
 
 @mixin h4 {

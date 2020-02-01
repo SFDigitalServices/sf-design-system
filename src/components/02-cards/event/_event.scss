@@ -25,19 +25,16 @@
     .event-image,
     .event-date {
       border-radius: $radius $radius 0 0;
+      height: 160px;
+      padding-top: 26px;
       text-align: center;
+    }
+    .event-image {
+      padding-top: 0;
+      overflow: hidden;
       img {
-        display: none;
-      }
-      @media screen and (min-width: $mq-narrow) {
-        padding-top: 0;
-        height: px-to-rem(160);
-        overflow: hidden;
-        img {
-          display: block;
-          border-radius: $radius $radius 0 0;
-          width: 100%;
-        }
+        border-radius: $radius $radius 0 0;
+        width: 100%;
       }
     }
     .event-date {

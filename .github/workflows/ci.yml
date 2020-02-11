@@ -27,11 +27,11 @@ jobs:
           GIT_BRANCH: "$(git symbolic-ref --short HEAD)"
           PACKAGE_VERSION: "$(npx fx package.json .version)"
           DIST_TAG: canary
-        run:
-          - "echo \"GIT_SHA: '$GIT_SHA'\""
-          - "echo \"GIT_BRANCH: '$GIT_BRANCH'\""
-          - "echo \"PACKAGE_VERSION: '$PACKAGE_VERSION'\""
-          - "echo \"DIST_TAG: '$DIST_TAG'\""
+        run: |
+          echo "GIT_SHA: '$GIT_SHA'"
+          echo "GIT_BRANCH: '$GIT_BRANCH'"
+          echo "PACKAGE_VERSION: '$PACKAGE_VERSION'"
+          echo "DIST_TAG: '$DIST_TAG'"
 
       - name: tag latest
         if: env.GIT_BRANCH == 'master'

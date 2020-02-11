@@ -17,7 +17,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      DIST_TAG: canary
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
@@ -25,23 +27,31 @@ jobs:
           node-version: 12
 
       # this prevents `npm version` from committing to git
-      - run: npm config set git-tag-version false
+      - run: 'npm config set git-tag-version false'
 
       - name: tag latest
         if: github.ref == 'refs/heads/master'
         env:
           DIST_TAG: latest
-        run: echo '*** this will publish to the latest dist-tag! ***'
+        run: 'echo "*** this will publish to the latest dist-tag! ***"'
 
       - name: tag release candidate
         if: startsWith(github.ref, 'refs/heads/release-')
         env:
           DIST_TAG: rc
-        run: npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"
+        run: 'npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"'
 
       - name: tag canary
-        if: env.DIST_TAG == 'canary'
-        run: npm version "0.0.0-$(git rev-parse --short HEAD)"
+        if: '!env.DIST_TAG'
+        env:
+          DIST_TAG: canary
+        run: 'npm version "0.0.0-$(git rev-parse --short HEAD)"'
+
+      - name: prepublish
+        run: npm run prepublish
 
       - name: publish
-        run: npm publish --tag="${{ env.DIST_TAG }}" --dry-run
+        run: 'npm publish --tag="${{ env.DIST_TAG }}" --dry-run'
+
+      - name: postpublish
+        run: npm run postpublish

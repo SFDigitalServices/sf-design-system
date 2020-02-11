@@ -16,38 +16,29 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      DIST_TAG: canary
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
           node-version: 12
 
-      - env:
-          GIT_SHA: "$(git rev-parse --short HEAD)"
-          GIT_BRANCH: "$(git symbolic-ref --short HEAD)"
-          PACKAGE_VERSION: "$(npx fx package.json .version)"
-          DIST_TAG: canary
-        run: |
-          echo "GIT_SHA: '$GIT_SHA'"
-          echo "GIT_BRANCH: '$GIT_BRANCH'"
-          echo "PACKAGE_VERSION: '$PACKAGE_VERSION'"
-          echo "DIST_TAG: '$DIST_TAG'"
-
       - name: tag latest
-        if: env.GIT_BRANCH == 'master'
+        if: github.ref == 'refs/heads/master'
         env:
           DIST_TAG: latest
         run: echo '*** this will publish to the latest dist-tag! ***'
 
       - name: tag release candidate
-        if: "startsWith(env.GIT_BRANCH, 'release-')"
+        if: startsWith(github.ref, 'refs/heads/release-')
         env:
           DIST_TAG: rc
-        run: npm version "${PACKAGE_VERSION}-rc.${GIT_SHA}"
+        run: npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"
 
       - name: tag canary
         if: env.DIST_TAG == 'canary'
-        run: npm version "0.0.0-${GIT_SHA}"
+        run: npm version "0.0.0-$(git rev-parse --short HEAD)"
 
       - name: publish
-        run: npm publish --tag="$DIST_TAG" --dry-run
+        run: npm publish --tag="${{ env.DIST_TAG }}" --dry-run

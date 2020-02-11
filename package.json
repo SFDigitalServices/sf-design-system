@@ -14,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@frctl/fractal": "^1.2.0",
+    "action-status": "^0.1.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -37,7 +38,10 @@
   },
   "scripts": {
     "test": "echo 'WARNING: no tests specified'",
-    "build": "./node_modules/gulp/bin/gulp.js build"
+    "build": "gulp build",
+    "prepublish": "action-status --context=\"publish $npm_package_name\"  --state=pending --desc=\"Publishing ${npm_package_version}...\"",
+    "failpublish": "action-status --context=\"publish $npm_package_name\" --state=error   --desc=\"Failed to publish ${npm_package_version}!\"; exit 1",
+    "postpublish": "action-status --context=\"publish $npm_package_name\" --state=success --desc=\"Publishing ${npm_package_version}...\""
   },
   "repository": {
     "type": "git",

@@ -36,12 +36,13 @@ jobs:
         if: env.GIT_BRANCH == 'master'
         env:
           DIST_TAG: latest
+        run: echo '*** this will publish to the latest dist-tag! ***'
 
       - name: tag release candidate
         if: "startsWith(env.GIT_BRANCH, 'release-')"
-        run: npm version "${PACKAGE_VERSION}-rc.${GIT_SHA}"
         env:
           DIST_TAG: rc
+        run: npm version "${PACKAGE_VERSION}-rc.${GIT_SHA}"
 
       - name: tag canary
         if: env.DIST_TAG == 'canary'

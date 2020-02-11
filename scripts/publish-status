@@ -1,0 +1,6 @@
+#!/bin/bash
+echo npx action-status \
+    --context="publish $npm_package_name" \
+    --state="${1:-success}" \
+    --desc="${2:-Published $npm_package_version}" \
+    --url="${3:-https://unpkg.com/$npm_package_name@$npm_package_version/}"

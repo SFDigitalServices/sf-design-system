@@ -28,30 +28,29 @@ jobs:
 
       # this prevents `npm version` from committing to git
       - run: 'npm config set git-tag-version false'
+      - run: 'echo canary > DIST_TAG'
 
       - name: tag latest
         if: github.ref == 'refs/heads/master'
-        env:
-          DIST_TAG: latest
-        run: 'echo "*** this will publish to the latest dist-tag! ***"'
+        run: 'echo latest > DIST_TAG'
 
       - name: tag release candidate
         if: startsWith(github.ref, 'refs/heads/release-')
-        env:
-          DIST_TAG: rc
-        run: 'npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"'
+        run: |
+          npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"
+          echo next > DIST_TAG
 
       - name: tag canary
         if: '!env.DIST_TAG'
-        env:
-          DIST_TAG: canary
         run: 'npm version "0.0.0-$(git rev-parse --short HEAD)"'
 
       - name: prepublish
-        run: npm run prepublish
+        run: |
+          echo "Publishing to dist-tag: '$(cat DIST_TAG)'..."
+          npm run prepublish
 
       - name: publish
-        run: 'npm publish --tag="${{ env.DIST_TAG }}" --dry-run'
+        run: 'npm publish --tag="$(cat DIST_TAG)" --dry-run'
 
       - name: postpublish
         run: npm run postpublish

@@ -86,5 +86,5 @@ else
   COMMENT="review site: https://ci-${CIRCLE_BUILD_NUM}-sfdesignsystem.pantheonsite.io"
   OWNER="SFDigitalServices"
   REPO="sf-design-system"
-  curl -u aekong:$GH_ACCESS_TOKEN -H "Content-Type: application/json" -d '{"body":"'"$COMMENT"'"}' -X POST https://api.github.com/repos/$OWNER/$REPO/commits/$CIRCLE_SHA1/comments
+  # curl -u aekong:$GH_ACCESS_TOKEN -H "Content-Type: application/json" -d '{"body":"'"$COMMENT"'"}' -X POST https://api.github.com/repos/$OWNER/$REPO/commits/$CIRCLE_SHA1/comments
 fi

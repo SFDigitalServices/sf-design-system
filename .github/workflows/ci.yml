@@ -52,7 +52,7 @@ jobs:
           npm run before-publish
 
       - name: publish
-        run: 'npm publish --tag="$(cat DIST_TAG)" --dry-run'
+        run: 'npm publish --tag="$(cat DIST_TAG)"'
 
       - name: postpublish
         run: npm run after-publish

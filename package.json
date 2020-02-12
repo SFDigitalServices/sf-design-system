@@ -39,8 +39,8 @@
   "scripts": {
     "test": "echo 'WARNING: no tests specified'",
     "build": "gulp build",
-    "prepublish": "./scripts/publish-status  pending \"Publishing ${npm_package_version}...\"",
-    "postpublish": "./scripts/publish-status success \"Published ${npm_package_version}\""
+    "before-publish": "./scripts/publish-status  pending \"Publishing ${npm_package_version}...\"",
+    "after-publish": "./scripts/publish-status success \"Published ${npm_package_version}\""
   },
   "repository": {
     "type": "git",

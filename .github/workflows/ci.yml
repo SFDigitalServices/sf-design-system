@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      NPM_REGISTRY_URL: //registry.npmjs.org/
 
     steps:
       - uses: actions/checkout@master
@@ -28,31 +28,31 @@ jobs:
 
       - name: publish setup
         run: |
+          echo "$NPM_REGISTRY_URL:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
           # this prevents `npm version` from committing to git
           npm config set git-tag-version false
-          echo canary > DIST_TAG
 
       - name: tag latest
         if: github.ref == 'refs/heads/master'
-        run: 'echo latest > DIST_TAG'
+        run: npm config set tag latest
 
       - name: tag release candidate
         if: startsWith(github.ref, 'refs/heads/release-')
         run: |
           npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"
-          echo next > DIST_TAG
+          npm config set tag next
 
       - name: tag canary
-        if: '!env.DIST_TAG'
-        run: 'npm version "0.0.0-$(git rev-parse --short HEAD)"'
+        if: github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/heads/release-')
+        run: |
+          npm version "0.0.0-$(git rev-parse --short HEAD)"
+          npm config set tag canary
 
       - name: prepublish
-        run: |
-          echo "Publishing to dist-tag: '$(cat DIST_TAG)'..."
-          npm run before-publish
+        run: npm run before-publish
 
       - name: publish
-        run: 'npm publish --tag="$(cat DIST_TAG)"'
+        run: npm publish
 
       - name: postpublish
         run: npm run after-publish

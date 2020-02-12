@@ -26,9 +26,11 @@ jobs:
         with:
           node-version: 12
 
-      # this prevents `npm version` from committing to git
-      - run: 'npm config set git-tag-version false'
-      - run: 'echo canary > DIST_TAG'
+      - name: publish setup
+        run: |
+          # this prevents `npm version` from committing to git
+          npm config set git-tag-version false
+          echo canary > DIST_TAG
 
       - name: tag latest
         if: github.ref == 'refs/heads/master'

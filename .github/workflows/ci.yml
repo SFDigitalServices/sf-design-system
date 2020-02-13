@@ -26,33 +26,6 @@ jobs:
         with:
           node-version: 12
 
-      - name: publish setup
-        run: |
-          echo "$NPM_REGISTRY_URL:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
-          # this prevents `npm version` from committing to git
-          npm config set git-tag-version false
-
-      - name: tag latest
-        if: github.ref == 'refs/heads/master'
-        run: npm config set tag latest
-
-      - name: tag release candidate
-        if: startsWith(github.ref, 'refs/heads/release-')
-        run: |
-          npm version "$(npx fx package.json .version)-rc.$(git rev-parse --short HEAD)"
-          npm config set tag next
-
-      - name: tag canary
-        if: github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/heads/release-')
-        run: |
-          npm version "0.0.0-$(git rev-parse --short HEAD)"
-          npm config set tag canary
-
-      - name: prepublish
-        run: npm run before-publish
-
-      - name: publish
-        run: npm publish
-
-      - name: postpublish
-        run: npm run after-publish
+      - uses: primer/publish@master
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

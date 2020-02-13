@@ -9,12 +9,13 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 12
+          registry-url: https://registry.npmjs.org
 
       - run: npm ci
       - run: npm test
       - run: gulp build
 
-      - uses: primer/publish@v1.1.0
+      - uses: shawnbot/npm-publish-action@master
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

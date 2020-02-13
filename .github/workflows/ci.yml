@@ -11,10 +11,10 @@ jobs:
           node-version: 12
 
       - run: npm ci
-      # - run: npm test
+      - run: npm test
       - run: gulp build
 
-      - uses: primer/publish@master
+      - uses: primer/publish@v1.1.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

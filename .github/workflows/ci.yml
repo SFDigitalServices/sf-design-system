@@ -9,23 +9,12 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 12
+
       - run: npm ci
       # - run: npm test
       - run: gulp build
 
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-      NPM_REGISTRY_URL: //registry.npmjs.org/
-
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: 12
-
       - uses: primer/publish@master
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

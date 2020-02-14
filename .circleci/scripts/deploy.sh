@@ -87,13 +87,16 @@ else
 
   site_url="https://$site_id-sfdesignsystem.pantheonsite.io"
 
-  curl -u "aekong:$GH_ACCESS_TOKEN" -X POST -H "Content-Type: application/json" \
-    -d '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}' \
-    "https://api.github.com/repos/$GITHUB_REPO/statuses/$CIRCLE_SHA1"
+  # usage: hub METHOD url "{data}"
+  function github {
+    curl -u "${GH_ACCESS_USER-aekong}:$GH_ACCESS_TOKEN" \
+      -X "${1-POST}" -H "Content-Type: application/json" \
+      -d "$3" \
+      "https://api.github.com/repos/${GITHUB_REPO}${2}"
+  }
+
+  github POST "/statuses/$CIRCLE_SHA1" '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}'
 
   # comment on commit with review site
-  COMMENT="review site: https://ci-${CIRCLE_BUILD_NUM}-sfdesignsystem.pantheonsite.io"
-  OWNER="SFDigitalServices"
-  REPO="sf-design-system"
-  # curl -u aekong:$GH_ACCESS_TOKEN -H "Content-Type: application/json" -d '{"body":"'"$COMMENT"'"}' -X POST https://api.github.com/repos/$OWNER/$REPO/commits/$CIRCLE_SHA1/comments
+  # github POST "/commits/$CIRCLE_SHA1/comments" '{"body":"'"review site: $site_url"'"}'
 fi

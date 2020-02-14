@@ -13,6 +13,7 @@ cd $CIRCLE_BRANCH
 
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
+GITHUB_REPO="$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
 NPM_PACKAGE_VERSION=$(jq -r .version package.json)
 GIT_TAG="v$NPM_PACKAGE_VERSION"
@@ -47,13 +48,13 @@ git add -A
 terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  git commit -m "automated static site deploy: ${GIT_COMMIT_MSG}" --allow-empty
+  git commit -m "automated static site deploy: $GIT_COMMIT_MSG" --allow-empty
   git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
 
   # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
   GIT_DIST_TAG=$GIT_TAG-dist
-  GIT_DIST_MSG="distribution build. version [${GIT_DIST_TAG}] ${GIT_COMMIT_MSG}"
+  GIT_DIST_MSG="distribution build. version [$GIT_DIST_TAG] $GIT_COMMIT_MSG"
   cp -r ../src .
   rm -rf *.txt
   rm -rf components themes *.html
@@ -85,11 +86,11 @@ else
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
 
-  site_url="https://${site_id}-sfdesignsystem.pantheonsite.io"
+  site_url="https://$site_id-sfdesignsystem.pantheonsite.io"
 
   curl -u "aekong:$GH_ACCESS_TOKEN" -X POST -H "Content-Type: application/json" \
     -d '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}' \
-    "https://api.github.com/repos/$OWNER/$REPO/statuses/$CIRCLE_SHA1"
+    "https://api.github.com/repos/$GITHUB_REPO/statuses/$CIRCLE_SHA1"
 
   # comment on commit with review site
   COMMENT="review site: https://ci-${CIRCLE_BUILD_NUM}-sfdesignsystem.pantheonsite.io"

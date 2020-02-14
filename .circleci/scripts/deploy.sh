@@ -93,9 +93,10 @@ else
       "https://api.github.com/repos/${GITHUB_REPO}${2}"
   }
 
-  site_url="https://$site_id-sfdesignsystem.pantheonsite.io"
+  site_domain="$site_id-sfdesignsystem.pantheonsite.io"
+  site_url="https://$site_domain"
 
-  github POST "/statuses/$CIRCLE_SHA1" '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}'
+  github POST "/statuses/$CIRCLE_SHA1" '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"'"$site_domain"'"}'
 
   # comment on commit with review site
   # github POST "/commits/$CIRCLE_SHA1/comments" '{"body":"'"review site: $site_url"'"}'

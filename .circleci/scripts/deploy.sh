@@ -63,7 +63,9 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git tag -a $GIT_DIST_TAG -m "$GIT_DIST_MSG"
   git push origin $GIT_DIST_TAG
 else
-  git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
+  site_id="ci-$CIRCLE_BUILD_NUM"
+  git commit -m "build branch '$CIRCLE_BRANCH' to pantheon remote $site_id: $GIT_COMMIT_MSG" --allow-empty
+
   # terminus commands
   # do some cleanup
   terminus multidev:list $PANTHEON_SITENAME --format=list --fields=name > multidevs.txt # capture multidevs to file
@@ -78,9 +80,16 @@ else
   else
     echo "No need to remove multidevs. Count: $MD_COUNT"
   fi
-  terminus multidev:create $PANTHEON_SITENAME.dev ci-$CIRCLE_BUILD_NUM
+
+  terminus multidev:create $PANTHEON_SITENAME.dev $site_id
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
+
+  site_url="https://${site_id}-sfdesignsystem.pantheonsite.io"
+
+  curl -u "aekong:$GH_ACCESS_TOKEN" -X POST -H "Content-Type: application/json" \
+    -d '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}' \
+    "https://api.github.com/repos/$OWNER/$REPO/statuses/$CIRCLE_SHA1"
 
   # comment on commit with review site
   COMMENT="review site: https://ci-${CIRCLE_BUILD_NUM}-sfdesignsystem.pantheonsite.io"

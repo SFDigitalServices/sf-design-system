@@ -15,7 +15,7 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 GITHUB_REPO="$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
-NPM_PACKAGE_VERSION=$(fx package.json .version)
+NPM_PACKAGE_VERSION=$(npx fx package.json .version)
 GIT_TAG="v$NPM_PACKAGE_VERSION"
 SHORT_SHA="${CIRCLE_SHA1:1:7}"
 

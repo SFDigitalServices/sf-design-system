@@ -36,7 +36,8 @@
   },
   "scripts": {
     "test": "echo 'WARNING: no tests specified!'",
-    "build": "gulp build"
+    "build": "gulp build",
+    "export": "gulp export"
   },
   "repository": {
     "type": "git",

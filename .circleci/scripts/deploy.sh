@@ -63,7 +63,7 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git tag -a $GIT_DIST_TAG -m "$GIT_DIST_MSG"
   git push origin $GIT_DIST_TAG
 else
-  site_id="ci-$CIRCLE_BUILD_NUM"
+  site_id="preview-$CIRCLE_BRANCH"
   git commit -m "build branch '$CIRCLE_BRANCH' to pantheon remote $site_id: $GIT_COMMIT_MSG" --allow-empty
 
   # terminus commands
@@ -85,8 +85,6 @@ else
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
   terminus auth:logout
 
-  site_url="https://$site_id-sfdesignsystem.pantheonsite.io"
-
   # usage: hub METHOD url "{data}"
   function github {
     curl -u "${GH_ACCESS_USER-aekong}:$GH_ACCESS_TOKEN" \
@@ -94,6 +92,8 @@ else
       -d "$3" \
       "https://api.github.com/repos/${GITHUB_REPO}${2}"
   }
+
+  site_url="https://$site_id-sfdesignsystem.pantheonsite.io"
 
   github POST "/statuses/$CIRCLE_SHA1" '{"context":"preview site","state":"success","target_url":"'"$site_url"'","description":"preview deployed"}'
 

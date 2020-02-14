@@ -14,14 +14,14 @@ cd $CIRCLE_BRANCH
 git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
-NPM_PACKAGE_VERSION=$(awk -F'\"' '/\"version\": \".+\"/{ print $4; exit; }' package.json)
-GIT_TAG=v$NPM_PACKAGE_VERSION
-SHORT_SHA=$(git log --pretty=format:"%h" -n 1)
+NPM_PACKAGE_VERSION=$(jq -r .version package.json)
+GIT_TAG="v$NPM_PACKAGE_VERSION"
+SHORT_SHA="${CIRCLE_SHA1:1:7}"
 
 # tag $SOURCE_BRANCH with version
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  echo "Attempting to tag with version ${GIT_TAG}.  Failure probably means the tag already exists.  Be sure to bump the package.json version."
-  git tag -a $GIT_TAG -m "version [${GIT_TAG}] ${GIT_COMMIT_MSG}"
+  echo "Attempting to git tag as '$GIT_TAG'. Failure probably means the tag already exists.  Be sure to bump the package.json version."
+  git tag -a $GIT_TAG -m "version [$GIT_TAG] $GIT_COMMIT_MSG"
   git push origin $GIT_TAG
 fi
 
@@ -58,9 +58,9 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   rm -rf *.txt
   rm -rf components themes *.html
   git add -A
-  git commit -m "${GIT_DIST_MSG}" --allow-empty
-  git push origin -f $SOURCE_BRANCH:distribution
-  git tag -a $GIT_DIST_TAG -m "${GIT_DIST_MSG}"
+  git commit -m "$GIT_DIST_MSG" --allow-empty
+  git push origin -f "$SOURCE_BRANCH:distribution"
+  git tag -a $GIT_DIST_TAG -m "$GIT_DIST_MSG"
   git push origin $GIT_DIST_TAG
 else
   git commit -m "build ${CIRCLE_BRANCH} to pantheon remote ci-${CIRCLE_BUILD_NUM}: ${GIT_COMMIT_MSG}" --allow-empty
@@ -76,7 +76,7 @@ else
       terminus multidev:delete  --delete-branch -y -- $PANTHEON_SITENAME.$multidev
     done
   else
-    echo "No need to remove multidevs.  Count: $MD_COUNT"
+    echo "No need to remove multidevs. Count: $MD_COUNT"
   fi
   terminus multidev:create $PANTHEON_SITENAME.dev ci-$CIRCLE_BUILD_NUM
   git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM

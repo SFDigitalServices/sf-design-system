@@ -31,9 +31,8 @@ ssh-add ~/.ssh/id_rsa_$PANTHEON_SSH_FINGERPRINT
 ssh-keyscan -H -p $PANTHEON_CODESERVER_PORT $PANTHEON_CODESERVER >> ~/.ssh/known_hosts
 
 # static site build and deploy
-export NODE_ENV=production # exit properly on gulp errors
 npm install
-npm run export
+NODE_ENV=production npm run export
 cp -r src .. # copy out src to bring back in later for distribution branch
 cp -r .circleci ..
 git rm -rf .

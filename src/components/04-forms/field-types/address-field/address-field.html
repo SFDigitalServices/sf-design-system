@@ -26,9 +26,9 @@
         <label for="{{ id }}_state">State</label>
         <select id="{{ id }}_state" required="required" data-error="Please choose a state.">
           <option value="">Choose a state</option>
-          {{#each states }}
-            <option value="{{ value }}">{{ name }}</option>
-          {{/each}}
+          {% for state in states %}
+            <option value="{{ state.value }}">{{ state.name }}</option>
+          {% endfor %}
         </select>
         <p class="help-block with-errors with-errors-inline"></p>
       </div>

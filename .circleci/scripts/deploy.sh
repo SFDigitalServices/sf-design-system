@@ -15,7 +15,7 @@ git checkout $CIRCLE_BRANCH || git checkout --orphan $CIRCLE_BRANCH
 
 GITHUB_REPO="$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
 GIT_COMMIT_MSG=$(git log --pretty=format:"%h: %s" -n 1)
-NPM_PACKAGE_VERSION=$(jq -r .version package.json)
+NPM_PACKAGE_VERSION=$(fx package.json .version)
 GIT_TAG="v$NPM_PACKAGE_VERSION"
 SHORT_SHA="${CIRCLE_SHA1:1:7}"
 
@@ -31,9 +31,8 @@ ssh-add ~/.ssh/id_rsa_$PANTHEON_SSH_FINGERPRINT
 ssh-keyscan -H -p $PANTHEON_CODESERVER_PORT $PANTHEON_CODESERVER >> ~/.ssh/known_hosts
 
 # static site build and deploy
-npm install
 export NODE_ENV=production # exit properly on gulp errors
-./node_modules/gulp/bin/gulp.js export # gulp task defined in gulpfile.babel.js to export static reference site
+npm run export
 cp -r src .. # copy out src to bring back in later for distribution branch
 cp -r .circleci ..
 git rm -rf .

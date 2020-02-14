@@ -63,7 +63,7 @@ if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git tag -a $GIT_DIST_TAG -m "$GIT_DIST_MSG"
   git push origin $GIT_DIST_TAG
 else
-  site_id="preview-$CIRCLE_BRANCH"
+  site_id="preview-$CIRCLE_BUILD_NUM"
   git commit -m "build branch '$CIRCLE_BRANCH' to pantheon remote $site_id: $GIT_COMMIT_MSG" --allow-empty
 
   # terminus commands
@@ -82,7 +82,7 @@ else
   fi
 
   terminus multidev:create $PANTHEON_SITENAME.dev $site_id
-  git push -f pantheon $CIRCLE_BRANCH:ci-$CIRCLE_BUILD_NUM
+  git push -f pantheon "$CIRCLE_BRANCH:$site_id"
   terminus auth:logout
 
   # usage: hub METHOD url "{data}"

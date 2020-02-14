@@ -9,6 +9,9 @@ const fractal = module.exports = require('@frctl/fractal').create();
 /* Set the title of the project */
 fractal.set('project.title', 'San Francisco Design System');
 
+fractal.components.engine('@frctl/nunjucks');
+fractal.components.set('ext', '.html');
+
 /* Tell Fractal where the components will live */
 fractal.components.set('path', __dirname + '/src/components');
 

@@ -34,7 +34,9 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: npm install
+          command: |
+            npm install
+            npm install -g fx
 
       - save_cache:
           paths:

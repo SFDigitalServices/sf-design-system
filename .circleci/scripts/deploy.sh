@@ -3,10 +3,10 @@
 set -eo pipefail
 
 # add terminus to path
-export PATH=$PATH:/home/circleci/vendor/bin
+export PATH="$PATH:/home/circleci/vendor/bin"
 
-git config --global user.email $GH_EMAIL
-git config --global user.name $GH_NAME
+git config --global user.email "$GH_EMAIL"
+git config --global user.name "$GH_NAME"
 
 git clone $CIRCLE_REPOSITORY_URL $CIRCLE_BRANCH
 cd $CIRCLE_BRANCH

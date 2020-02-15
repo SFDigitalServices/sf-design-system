@@ -1,13 +1,20 @@
 label: Radio buttons
 context:
+  # This set the data-id attribute, *not* the id attribute. It will also be
+  # used as the input name(s) if no name (or per-option name) is provided.
   id: billing_contact
   title: Who should we contact to pay application fees?
+
+  # this is the shared input name for all radio buttons
+  name: billing-contact
+
   options:
-  - title: The owner
-    index: 1
+    - title: The owner
+      value: owner
+      id: billing-owner
 
-  - title: The application contact
-    index: 2
+    - title: The application contact
+      value: contact
 
-  - title: Someone else
-    index: 3
+    - title: Someone else
+      value: other

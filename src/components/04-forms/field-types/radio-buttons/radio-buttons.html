@@ -5,7 +5,7 @@
       <div class="field-wrapper">
         {% for option in options %}
           <label>
-            <input type="radio" id="{{ id }}-{{ loop.index }}" value="{{ option.value | default(loop.index) }}" data-formtype="s08" name="{{ name }}" required="">
+            <input type="radio" id="{{ id }}-{{ loop.index }}" value="{{ option.value | default(loop.index) }}" data-formtype="s08" name="{{ name | default(id) }}" required="">
             <span class="inline-label">{{ option.title }}</span>
           </label>
         {% endfor %}

@@ -1,10 +1,7 @@
 'use strict';
 
-/* Require the path module */
-const path = require('path');
-
 /* Create a new Fractal instance and export it for use elsewhere if required */
-const fractal = module.exports = require('@frctl/fractal').create();
+const fractal = require('@frctl/fractal').create();
 
 /* Set the title of the project */
 fractal.set('project.title', 'San Francisco Design System');
@@ -13,15 +10,16 @@ fractal.components.engine('@frctl/nunjucks');
 fractal.components.set('ext', '.html');
 
 /* Tell Fractal where the components will live */
-fractal.components.set('path', __dirname + '/src/components');
+fractal.components.set('path', 'src/components');
 
 /* Tell Fractal where the documentation pages will live */
-fractal.docs.set('path', __dirname + '/src/docs');
+fractal.docs.set('path', 'src/docs');
 
 /* Tell the Fractal web preview plugin where to look for static assets. */
-fractal.web.set('static.path', path.join(__dirname, '/public/dist'));
+fractal.web.set('static.path', 'public/dist');
+fractal.web.set('static.mount', 'public/dist');
 
-fractal.web.set('builder.dest', __dirname + '/build');
+fractal.web.set('builder.dest', 'build');
 
 // fractal.components.set('default.preview', '@preview');
 

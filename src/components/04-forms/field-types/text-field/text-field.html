@@ -4,11 +4,11 @@
     <div class="field-wrapper">
       <input id="{{ id }}" data-formtype="i02" name="{{ id }}" type="text" required="">
       <div class="help-block with-errors"></div>
-      {{#if helptext}}
-      	<div class="help-text">
-      		<p>{{ helptext }}</p>
-      	</div>
-      {{/if}}
+      {% if helptext %}
+        <div class="help-text">
+          <p>{{ helptext }}</p>
+        </div>
+      {% endif %}
     </div>
   </div>
 </form>

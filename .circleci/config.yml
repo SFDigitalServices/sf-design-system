@@ -51,7 +51,7 @@ jobs:
           name: Install terminus
           command: |
             cd ..
-            curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
+            composer require pantheon-systems/terminus
 
       - deploy:
           name: Deploy

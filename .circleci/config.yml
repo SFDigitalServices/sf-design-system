@@ -3,6 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+
 jobs:
   build:
     branches:
@@ -33,23 +34,25 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: npm install
+          command: |
+            npm install
+            npm install --no-save fx
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
-      
+
       - run:
           name: Install composer
           command: ./.circleci/scripts/install-composer.sh
-      
+
       - run:
           name: Install terminus
           command: |
             cd ..
             curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
 
-      - deploy: 
+      - deploy:
           name: Deploy
           command: ./.circleci/scripts/deploy.sh

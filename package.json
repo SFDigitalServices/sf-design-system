@@ -22,6 +22,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
+    "gulp-cli": "^2.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^6.2.0",
@@ -36,7 +37,8 @@
   },
   "scripts": {
     "test": "echo 'WARNING: no tests specified!'",
-    "build": "gulp build"
+    "build": "gulp build",
+    "export": "gulp export"
   },
   "repository": {
     "type": "git",

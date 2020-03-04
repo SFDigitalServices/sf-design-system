@@ -21,9 +21,12 @@ SHORT_SHA="${CIRCLE_SHA1:1:7}"
 
 # tag $SOURCE_BRANCH with version
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-  echo "Attempting to git tag as '$GIT_TAG'. Failure probably means the tag already exists.  Be sure to bump the package.json version."
-  git tag -a $GIT_TAG -m "version [$GIT_TAG] $GIT_COMMIT_MSG"
-  git push origin $GIT_TAG
+  tagged=$(git tag --list $GIT_TAG)
+  if [ "$tagged" == "" ]; then
+    echo "No tag '$GIT_TAG' found. Tagging and pushing..."
+    git tag -a $GIT_TAG -m "version [$GIT_TAG] $GIT_COMMIT_MSG"
+    git push origin $GIT_TAG
+  fi
 fi
 
 ssh-add -D
@@ -48,20 +51,8 @@ terminus -n auth:login --machine-token="$TERMINUS_MACHINE_TOKEN"
 
 if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
   git commit -m "automated static site deploy: $GIT_COMMIT_MSG" --allow-empty
-  git push origin -f $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
+  git push -f origin $SOURCE_BRANCH:$TARGET_BRANCH # push to gh-pages
   git push -f pantheon $SOURCE_BRANCH # push to pantheon master
-
-  # copy src back in, remove unnecessary things, commit, tag, and push distribution branch
-  GIT_DIST_TAG=$GIT_TAG-dist
-  GIT_DIST_MSG="distribution build. version [$GIT_DIST_TAG] $GIT_COMMIT_MSG"
-  cp -r ../src .
-  rm -rf *.txt
-  rm -rf components themes *.html
-  git add -A
-  git commit -m "$GIT_DIST_MSG" --allow-empty
-  git push origin -f "$SOURCE_BRANCH:distribution"
-  git tag -a $GIT_DIST_TAG -m "$GIT_DIST_MSG"
-  git push origin $GIT_DIST_TAG
 else
   site_id="preview-$CIRCLE_BUILD_NUM"
   git commit -m "build branch '$CIRCLE_BRANCH' to pantheon remote $site_id: $GIT_COMMIT_MSG" --allow-empty

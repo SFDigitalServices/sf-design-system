@@ -37,8 +37,32 @@ npm run build
 
 This will create a `public/dist` directory containing `css/all.css` and `js/all.js`.
 
+### Releases
+
+This project uses [primer/publish] to publish an npm release for every push, depending on branch:
+
+| branch | tag | version |
+| :----- | :-- | :------ |
+| `master` | `latest` | per `package.json` |
+| `release-<version>` | `next` | `<version>-rc.<sha>` |
+| all others | `canary` | `0.0.0-<sha>` |
+
+To test a canary or release candidate in another project, just `npm install` the published version, e.g.
+
+```sh
+# install the most recently published release candidate
+npm install sf-design-system@next
+
+# install from a specific commit, e.g https://github.com/SFDigitalServices/sf-design-system/commit/e4c9704
+npnm install sf-design-system@0.0.0-e4c9704
+```
+
+## License
+[MIT](./LICENSE)
+
 [sfgov]: https://sf.gov/
 [digital services]: https://digitalservices.sfgov.org/
 [sass]: https://sass-lang.com/
 [scss]: https://sass-lang.com/documentation/syntax#scss
 [npm]: https://docs.npmjs.com/about-npm/
+[primer/publish]: https://github.com/primer/publish#readme

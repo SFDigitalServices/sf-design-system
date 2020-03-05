@@ -3,12 +3,13 @@ html {
 }
 
 body {
-	@include rubik;
-	color: $slate;
+  @include rubik;
+
+  color: $slate;
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }

@@ -5,14 +5,18 @@ $fw-bold: 700;
 $fw-black: 900;
 
 @mixin antialiasing($type:antialiased) {
-  /* antialiased, none, subpixel-antialiased*/
+  /* antialiased, none, subpixel-antialiased */
   @if $type == antialiased {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  } @else if $type == none {
+  }
+
+  @else if $type == none {
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
-  } @else {
+  }
+
+  @else {
     -moz-osx-font-smoothing: auto;
   }
 }
@@ -31,14 +35,17 @@ $fw-black: 900;
   margin: 1.75rem 0 0;
   font-size: px-to-rem(33);
   line-height: px-to-rem(44);
+
   &.title {
     line-height: normal;
     font-weight: $fw-light;
   }
+
   @media screen and (min-width: 40rem) {
     font-size: px-to-rem(62);
     line-height: normal;
     letter-spacing: -0.3px;
+
     &.title {
       font-size: px-to-rem(50);
       letter-spacing: 0;
@@ -60,6 +67,7 @@ $fw-black: 900;
   font-size: px-to-rem(24);
   line-height: px-to-rem(30);
   margin: 1.25rem 0 0.875rem;
+
   @media screen and (min-width: $mq-narrow) {
     font-size: px-to-rem(30);
     line-height: px-to-rem(42);
@@ -97,9 +105,12 @@ $fw-black: 900;
   font-size: px-to-rem(20);
   line-height: px-to-rem(27);
   font-weight: $fw-medium;
+
   &.zh-TW {
     line-height: px-to-rem(30);
+
     @include antialiasing;
+
     font-weight: $fw-bold;
     letter-spacing: 0.12rem;
   }
@@ -109,6 +120,7 @@ $fw-black: 900;
   font-size: 1rem;
   font-weight: $fw-regular;
   line-height: px-to-rem(24);
+
   &.zh-TW {
     font-size: px-to-rem(18);
     line-height: px-to-rem(30);

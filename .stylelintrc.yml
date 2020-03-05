@@ -1,0 +1,7 @@
+plugins:
+  - stylelint-scss
+extends: stylelint-config-standard
+syntax: scss
+rules:
+  at-rule-no-unknown: false
+  scss/at-rule-no-unknown: true

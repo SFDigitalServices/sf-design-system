@@ -8,6 +8,7 @@
   "scripts": {
     "test": "echo 'WARNING: no tests specified!'",
     "build": "gulp build",
+    "lint-js": "standard *.js src/**/*.js",
     "export": "gulp export"
   },
   "files": [

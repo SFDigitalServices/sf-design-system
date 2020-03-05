@@ -1,25 +1,68 @@
+# The SF Design System
+
 [![CircleCI](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master.svg?style=shield)](https://circleci.com/gh/SFDigitalServices/sf-design-system/tree/master)
-[![Site sf-design-system](https://img.shields.io/badge/site-sf--design--system-blue.svg)](https://sfdigitalservices.github.io/sf-design-system/)
 
-# SFGOV Pattern Library.
+This is the CSS design system built by and for the [City & County of San Francisco's][sfgov] [Digital Services] team.
 
-This project is based off [Fractal](https://fractal.build/), with an [adapter for Twig.](https://github.com/WondrousLLC/fractal-twig-drupal-adapter)
+## Installation
 
-## Dependencies
+You can install the SF design system source files with [npm]:
 
-- [NodeJS](https://nodejs.org/)
+```sh
+npm install sf-design-system
+```
 
-## Getting Started
+This will create a `node_modules/sf-design-system` directory and add `sf-design-system` as a dependency in your project's `package.json`.
 
-1. `npm install`
+## Usage
 
-2. `gulp fractal` (You might need to re-install with `npm install gulp -g`)
+The design system is distributed as [SCSS] source files, which must be imported and built with a [Sass] compiler.
 
-### Documentation
+## Development
 
-- Edit the preview layout's `<head>` in `/components/preview.twig`.
-- Edit pattern markup and placeholder data in `components`.
-- Edit styles, JS and images in `public`
-- Add or edit Markdown files to `docs` to document the usage and context of each pattern.
+The development environment for this project is [Fractal](https://fractal.build/). To run it, clone the repository and run:
 
-All changes in `/public/` automatically compile to `/public/dist`.
+1. `npm install` to install the development dependencies
+2. `npx gulp fractal` to run the development server and view the Fractal site in your browser
+
+Modifying any of the `.scss`, `.html`, or `.yml` files in the `src` directory should prompt Fractal to refresh your browser automatically.
+
+### Compiling assets
+
+You can compile all of the CSS and JavaScript assets with:
+
+```
+npm run build
+```
+
+This will create a `public/dist` directory containing `css/all.css` and `js/all.js`.
+
+### Releases
+
+This project uses [primer/publish] to publish an npm release for every push, depending on branch:
+
+| branch | tag | version |
+| :----- | :-- | :------ |
+| `master` | `latest` | per `package.json` |
+| `release-<version>` | `next` | `<version>-rc.<sha>` |
+| all others | `canary` | `0.0.0-<sha>` |
+
+To test a canary or release candidate in another project, just `npm install` the published version, e.g.
+
+```sh
+# install the most recently published release candidate
+npm install sf-design-system@next
+
+# install from a specific commit, e.g https://github.com/SFDigitalServices/sf-design-system/commit/e4c9704
+npnm install sf-design-system@0.0.0-e4c9704
+```
+
+## License
+[MIT](./LICENSE)
+
+[sfgov]: https://sf.gov/
+[digital services]: https://digitalservices.sfgov.org/
+[sass]: https://sass-lang.com/
+[scss]: https://sass-lang.com/documentation/syntax#scss
+[npm]: https://docs.npmjs.com/about-npm/
+[primer/publish]: https://github.com/primer/publish#readme

@@ -57,14 +57,16 @@
   }
 }
 
-.sf-colors li {
-  width: 100%;
+.sf-color {
+  @include rubik;
   @include swatch-border;
+
+  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  @include rubik;
+
   @media screen and (min-width: 30rem) {
     width: 48%;
   }
@@ -100,8 +102,9 @@
 }
 
 .sf-icon-item {
-  text-align: center;
   @include swatch-border;
+
+  text-align: center;
   padding: 1.5rem;
 
   img {

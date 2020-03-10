@@ -2,9 +2,13 @@ context:
   items:
     - title: "Service card 1"
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum purus odio, ut dictum justo scelerisque ac. Quisque vitae nisl lectus. Morbi semper ante purus, eget porta magna eleifend at."
+      url: "#service1"
     - title: "Service card 2"
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum purus odio, ut dictum justo scelerisque ac."
+      url: "#service2"
     - title: "Service card 3"
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      url: "#service3"
     - title: "Service card 4"
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      url: "#service4"

@@ -1,56 +1,77 @@
 context:
-  colorset:
-    - label: $black
-      color: "#212123"
-    - label: $slate
-      color: "#1c3e57"
-    - label: $dark-blue
-      color: "#0c1464"
-    - label: $bright-blue
-      color: "#4f66ee"
-    - label: $blue-2
-      color: "#a9d6ea"
-    - label: $blue-1
-      color: "#edf4f7"
-    - label: $green-4
-      color: "#1b674d"
-    - label: $green-3
-      color: "#00896d"
-    - label: $green-2
-      color: "#c0e2c5"
-    - label: $green-1
-      color: "#e9f7ec"
-    - label: $red-4
-      color: "#bc4427"
-    - label: $red-3
-      color: "#c9563a"
-    - label: $red-2
-      color: "#efcabb"
-    - label: $red-1
-      color: "#f5e9e5"
-    - label: $purple-4
-      color: "#5a3e94"
-    - label: $purple-3
-      color: "#7d61b3"
-    - label: $purple-2
-      color: "#cccced"
-    - label: $purple-1
-      color: "#edebf6"
-    - label: $yellow-4
-      color: "#e7b22e"
-    - label: $yellow-3
-      color: "#f4c435"
-    - label: $yellow-2
-      color: "#f9e3a3"
-    - label: $yellow-1
-      color: "#f8f1df"
-    - label: $grey-4
-      color: "#d3d3d3"
-    - label: $grey-3
-      color: "#e9e9e9"
-    - label: $grey-2
-      color: "#f1f1f1"
-    - label: $grey-1
-      color: "#f8f8f8"
-    - label: $white
-      color: "#ffffff"
+  colors:
+    white: "#ffffff"
+    grey-1: "#f8f8f8"
+    grey-2: "#f1f1f1"
+    grey-3: "#e9e9e9"
+    grey-4: "#d3d3d3"
+    black: "#212123"
+    slate: "#1c3e57"
+    dark-blue: "#0c1464"
+    bright-blue: "#4f66ee"
+    blue-2: "#a9d6ea"
+    blue-1: "#edf4f7"
+    green-4: "#1b674d"
+    green-3: "#00896d"
+    green-2: "#c0e2c5"
+    green-1: "#e9f7ec"
+    red-4: "#bc4427"
+    red-3: "#c9563a"
+    red-2: "#efcabb"
+    red-1: "#f5e9e5"
+    purple-4: "#5a3e94"
+    purple-3: "#7d61b3"
+    purple-2: "#cccced"
+    purple-1: "#edebf6"
+    yellow-4: "#e7b22e"
+    yellow-3: "#f4c435"
+    yellow-2: "#f9e3a3"
+    yellow-1: "#f8f1df"
+
+  groups:
+    - title: Black & White
+      colors:
+        - black
+        - white
+
+    - title: Gray
+      colors:
+        - grey-1
+        - grey-2
+        - grey-3
+        - grey-4
+
+    - title: Blue
+      colors:
+        - blue-1
+        - blue-2
+        - bright-blue
+        - dark-blue
+
+    - title: Red
+      colors:
+        - red-1
+        - red-2
+        - red-3
+        - red-4
+
+    - title: Green
+      colors:
+        - green-1
+        - green-2
+        - green-3
+        - green-4
+
+    - title: Purple
+      colors:
+        - purple-1
+        - purple-2
+        - purple-3
+        - purple-4
+
+    - title: Yellow
+      colors:
+        - yellow-1
+        - yellow-2
+        - yellow-3
+        - yellow-4

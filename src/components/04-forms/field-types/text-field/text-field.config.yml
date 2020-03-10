@@ -6,4 +6,4 @@ variants:
   - name: with-help-text
     label: "With help text"
     context:
-      help-text: Please avoid abbreviations or acronyms.
+      helptext: Please avoid abbreviations or acronyms.

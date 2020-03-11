@@ -7,10 +7,9 @@
 @import 'components/00-design-tokens/typography-mixins';
 @import 'components/00-design-tokens/breakpoints';
 
-
 #sf-patterns {
   -webkit-box-sizing: border-box !important;
-          box-sizing: border-box !important;
+  box-sizing: border-box !important;
   max-width: 100%;
   padding: 1em;
 }
@@ -40,7 +39,6 @@
   cursor: pointer;
 }
 
-
 .sf-colors {
   display: flex;
   flex-wrap: wrap;
@@ -49,30 +47,35 @@
 }
 
 @mixin swatch-border {
-  border: 1px solid rgba(#000,0.2);
-  box-shadow: 0 1px 2px rgba(#000,0.1);
+  border: 1px solid rgba(#000, 0.2);
+  box-shadow: 0 1px 2px rgba(#000, 0.1);
   margin: 0 1% 5%;
+
   @media screen and (min-width: 30rem) {
     margin-bottom: 2%;
   }
 }
 
-.sf-color {
-  @include rubik;
+.sf-colors li {
+  width: 100%;
+
   @include swatch-border;
 
-  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 
+  @include rubik;
+
   @media screen and (min-width: 30rem) {
     width: 48%;
   }
+
   @media screen and (min-width: 45rem) {
     width: 31%;
   }
+
   @media screen and (min-width: 60rem) {
     width: 23%;
   }
@@ -81,7 +84,7 @@
 .sf-swatch {
   display: block;
   height: 4em;
-  box-shadow: inset 0 -1px 0 rgba(#000,0.1);
+  box-shadow: inset 0 -1px 0 rgba(#000, 0.1);
 }
 
 .sf-label {
@@ -102,9 +105,10 @@
 }
 
 .sf-icon-item {
+  text-align: center;
+
   @include swatch-border;
 
-  text-align: center;
   padding: 1.5rem;
 
   img {

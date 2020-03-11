@@ -1,12 +1,11 @@
-$(document).ready(function(){
+/* eslint-env browser, jquery */
+$(document).ready(function () {
+  // Initialize 1000hz-bootstrap-validator
+  $('form').validator()
 
-	// Initialize 1000hz-bootstrap-validator
-	$("form").validator();
-
-	// File inputs
-	$("input[type='file']").change(function() {
-	  var file = $(this).val().replace(/C:\\fakepath\\/i, '');
-
-	  $(this).next('.file-custom').attr('data-filename', file);
-	});
-});
+  // File inputs
+  $('input[type=file]').change(function () {
+    var file = $(this).val().replace(/C:\\fakepath\\/i, '')
+    $(this).next('.file-custom').attr('data-filename', file)
+  })
+})

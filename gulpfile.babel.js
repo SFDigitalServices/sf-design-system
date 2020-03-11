@@ -104,11 +104,9 @@ const serve = () => {
 }
 
 const fractalExport = async () => {
-  fractal.web.builder({
-    dest: './export'
-  }).build().then(function () {
+  fractal.web.builder().build().then(function () {
     logger.success('Fractal static build complete')
-    logger.log('Replacing css paths for gh-pages')
+    // logger.log('Replacing css paths for gh-pages')
     // return gulp.src(['./export/components/preview/**/*.html'])
     //     .pipe(replace(/href="\/css\//g, 'href="/sf-design-system/css/'))
     //     .pipe(replace(/src="\/js\//g, 'src="/sf-design-system/js/'))

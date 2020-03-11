@@ -13,7 +13,7 @@ fractal.components.set('ext', '.html')
 fractal.components.set('path', join(__dirname, 'src/components'))
 
 /* Tell Fractal where the documentation pages will live */
-fractal.docs.set('path', join(__dirname, 'src/docs'))
+fractal.docs.set('path', 'docs')
 
 /* Tell the Fractal web preview plugin where to look for static assets. */
 fractal.web.set('static.path', join(__dirname, 'public/dist'))

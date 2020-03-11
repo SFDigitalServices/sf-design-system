@@ -23,7 +23,7 @@ The design system is distributed as [SCSS] source files, which must be imported 
 The development environment for this project is [Fractal](https://fractal.build/). To run it, clone the repository and run:
 
 1. `npm install` to install the development dependencies
-2. `npx gulp fractal` to run the development server and view the Fractal site in your browser
+2. `npm start` to run the development server and view the Fractal site in your browser
 
 Modifying any of the `.scss`, `.html`, or `.yml` files in the `src` directory should prompt Fractal to refresh your browser automatically.
 

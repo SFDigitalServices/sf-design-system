@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "gulp fractal",
-    "test": "echo 'WARNING: no tests specified!'",
+    "test": "scripts/test.sh",
     "build": "gulp build",
     "lint-js": "standard *.js src/**/*.js",
     "lint-css": "stylelint src/**/*.scss",

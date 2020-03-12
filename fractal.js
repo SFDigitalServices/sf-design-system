@@ -1,6 +1,5 @@
 'use strict'
 
-const { join } = require('path')
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = module.exports = require('@frctl/fractal').create()
 
@@ -10,7 +9,7 @@ fractal.components.engine('@frctl/nunjucks')
 fractal.components.set('ext', '.html')
 
 /* Tell Fractal where the components will live */
-fractal.components.set('path', join(__dirname, 'src/components'))
+fractal.components.set('path', 'src/components')
 
 /* Tell Fractal where the documentation pages will live */
 fractal.docs.set('path', 'docs')

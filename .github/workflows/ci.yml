@@ -13,7 +13,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
-      - run: gulp build
+      - run: npm run build
 
       - uses: primer/publish@v2.0.0
         env:

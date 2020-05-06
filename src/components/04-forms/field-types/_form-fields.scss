@@ -39,20 +39,8 @@ input[type='search'] {
   -webkit-appearance: none;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: rgba($slate, 0.6);
-}
-
-::-moz-placeholder { /* Firefox 19+ */
-  color: rgba($slate, 0.6);
-}
-
-:-ms-input-placeholder { /* IE 10+ */
-  color: rgba($slate, 0.6);
-}
-
-:-moz-placeholder { /* Firefox 18- */
-  color: rgba($slate, 0.6);
+::placeholder {
+  color: $light-slate;
 }
 
 button,

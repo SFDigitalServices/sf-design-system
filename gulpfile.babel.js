@@ -7,13 +7,9 @@ import notify from 'gulp-notify'
 import autoprefix from 'gulp-autoprefixer'
 import glob from 'gulp-sass-glob'
 import sourcemaps from 'gulp-sourcemaps'
-// import shell from 'gulp-shell';
-import concat from 'gulp-concat'
-import babel from 'gulp-babel'
 import imagemin from 'gulp-imagemin'
 import gulpif from 'gulp-if'
 import rename from 'gulp-rename'
-// Initialize browser sync.
 
 // Read the default configuration.
 const config = require('./config.json')
@@ -23,11 +19,6 @@ const importOnce = require('node-sass-import-once')
 const fractal = require('./fractal')
 const logger = fractal.cli.console
 const production = process.env.NODE_ENV === 'production'
-
-// Require a copy of the JS compiler for uswds.
-// the gulptask is called "javascript"
-// the following task compiles the node_modules/uswds/src/js/start.js file.
-// require('./gulptasks/javascript');
 
 // Pattern Lab CSS.
 // -------------------------------------------------------------- //
@@ -69,22 +60,8 @@ const images = () => {
 // ------------------------------------------------------------------- //
 
 const watch = async () => {
-  gulp.watch(config.js.src, js)
   gulp.watch(config.css.src, css)
   gulp.watch(config.images.src, images)
-}
-
-// // Component JS.
-// // -------------------------------------------------------------------- //
-const js = () => {
-  return gulp.src(config.js.src)
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['env']
-    }))
-    .pipe(concat('all.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.js.dest))
 }
 
 // fractal dev server
@@ -115,17 +92,16 @@ const fractalExport = async () => {
 }
 
 exports.css = gulp.series(css)
-exports.js = gulp.series(js)
 exports.images = gulp.series(images)
 
-exports.build = gulp.parallel(css, js, images)
+exports.build = gulp.parallel(css, images)
 
 exports.export = gulp.series(
-  gulp.parallel(css, js, images),
+  gulp.parallel(css, images),
   fractalExport
 )
 
 exports.fractal = gulp.series(
-  gulp.parallel(css, js, images),
+  gulp.parallel(css, images),
   gulp.parallel(watch, serve)
 )

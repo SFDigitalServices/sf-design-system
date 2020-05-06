@@ -19,6 +19,11 @@
     "public",
     "src"
   ],
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "ie 11"
+  ],
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@frctl/fractal": "^1.2.0",

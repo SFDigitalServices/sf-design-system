@@ -22,7 +22,7 @@
   "browserslist": [
     "last 2 versions",
     "> 1%",
-    "ie 11"
+    "not ie 10"
   ],
   "devDependencies": {
     "@babel/core": "^7.7.2",

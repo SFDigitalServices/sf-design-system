@@ -1,30 +1,26 @@
-import gulp from 'gulp'
-
-// Include plugins.
-import sass from 'gulp-sass'
-import plumber from 'gulp-plumber'
-import notify from 'gulp-notify'
-import autoprefix from 'gulp-autoprefixer'
-import glob from 'gulp-sass-glob'
-import sourcemaps from 'gulp-sourcemaps'
-import imagemin from 'gulp-imagemin'
-import gulpif from 'gulp-if'
-import rename from 'gulp-rename'
-
-// Read the default configuration.
+const autoprefix = require('gulp-autoprefixer')
 const config = require('./config.json')
-
-const importOnce = require('node-sass-import-once')
-
 const fractal = require('./fractal')
+const gulp = require('gulp')
+const gulpif = require('gulp-if')
+const imagemin = require('gulp-imagemin')
+// const importOnce = require('node-sass-import-once')
+const notify = require('gulp-notify')
+const plumber = require('gulp-plumber')
+const rename = require('gulp-rename')
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps')
+const nodeSassIndexImporter = require('./lib/node-sass-index-importer')
+const nodeSassWarnDuplicateImporter = require('./lib/node-sass-warn-duplicate-importer')
+
 const logger = fractal.cli.console
 const production = process.env.NODE_ENV === 'production'
 
 // Pattern Lab CSS.
 // -------------------------------------------------------------- //
 const css = () => {
+  // sass.compiler = require('sass')
   return gulp.src(config.css.src)
-    .pipe(glob())
     .pipe(gulpif(!production, plumber({
       errorHandler: function (error) {
         notify.onError({
@@ -41,7 +37,10 @@ const css = () => {
       outputStyle: 'expanded',
       errLogToConsole: true,
       includePaths: config.css.includePaths,
-      importer: importOnce
+      importer: [
+        nodeSassIndexImporter,
+        nodeSassWarnDuplicateImporter
+      ]
     }))
     .pipe(autoprefix())
     .pipe(sourcemaps.write('./'))

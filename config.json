@@ -2,7 +2,8 @@
   "name": "components",
   "css": {
     "src": [
-      "src/**/*.scss"
+      "src/all.scss",
+      "src/pattern_scaffolding.scss"
     ],
     "dest": "public/dist/css"
   },

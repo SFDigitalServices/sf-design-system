@@ -7,6 +7,7 @@ rules:
   no-descending-specificity: null
   plugin/no-unsupported-browser-features:
     - true
-    - severity: warn
+    - severity: warning
       ignore:
         - rem
+  property-no-vendor-prefix: true

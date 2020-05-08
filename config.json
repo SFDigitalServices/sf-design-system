@@ -6,12 +6,6 @@
     ],
     "dest": "public/dist/css"
   },
-  "js": {
-    "src": [
-      "src/**/*.js"
-    ],
-    "dest": "public/dist/js"
-  },
   "images": {
     "src": [
       "src/**/*.{png,gif,jpg,jpeg}"

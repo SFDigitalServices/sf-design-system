@@ -1,6 +1,12 @@
 plugins:
   - stylelint-scss
+  - stylelint-no-unsupported-browser-features
 extends: stylelint-config-standard-scss
 syntax: scss
 rules:
   no-descending-specificity: null
+  plugin/no-unsupported-browser-features:
+    - true
+    - severity: warn
+      ignore:
+        - rem

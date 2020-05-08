@@ -19,6 +19,11 @@
     "public",
     "src"
   ],
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not ie 10"
+  ],
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@frctl/fractal": "^1.2.0",
@@ -46,6 +51,7 @@
     "stylelint": "^13.2.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-config-standard-scss": "^1.1.0",
+    "stylelint-no-unsupported-browser-features": "^4.0.0",
     "stylelint-scss": "^3.14.2"
   }
 }

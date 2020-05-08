@@ -23,7 +23,6 @@ const production = process.env.NODE_ENV === 'production'
 // Pattern Lab CSS.
 // -------------------------------------------------------------- //
 const css = () => {
-  console.log(production)
   return gulp.src(config.css.src)
     .pipe(glob())
     .pipe(gulpif(!production, plumber({
@@ -44,7 +43,7 @@ const css = () => {
       includePaths: config.css.includePaths,
       importer: importOnce
     }))
-    .pipe(autoprefix('last 2 versions', '> 1%', 'ie 9', 'ie 10'))
+    .pipe(autoprefix())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.css.dest))
 }

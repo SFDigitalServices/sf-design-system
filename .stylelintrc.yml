@@ -10,3 +10,4 @@ rules:
     - severity: warning
       ignore:
         - rem
+  property-no-vendor-prefix: true

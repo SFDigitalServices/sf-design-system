@@ -22,20 +22,19 @@ const {
 
 const imageGlob = 'src/**/*.{png,gif,jpg}'
 
-exports.css = gulp.series(css)
-exports.images = gulp.series(images)
-
-exports.build = gulp.parallel(css, images)
-
-exports.export = gulp.series(
-  gulp.parallel(css, images),
-  fractalExport
-)
-
-exports.fractal = gulp.series(
-  gulp.parallel(css, images),
-  gulp.parallel(watch, serve)
-)
+module.exports = {
+  css,
+  images,
+  build: gulp.parallel(css, images),
+  export: gulp.series(
+    gulp.parallel(css, images),
+    fractalExport
+  ),
+  fractal: gulp.series(
+    gulp.parallel(css, images),
+    gulp.parallel(watch, serve)
+  )
+}
 
 function css () {
   if (SASS_COMPILER) {

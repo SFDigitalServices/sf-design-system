@@ -1,5 +1,4 @@
 const autoprefix = require('gulp-autoprefixer')
-const config = require('./config.json')
 const fractal = require('./fractal')
 const gulp = require('gulp')
 const imagemin = require('gulp-imagemin')
@@ -13,67 +12,7 @@ const logger = fractal.cli.console
 const { NODE_ENV } = process.env
 const production = NODE_ENV === 'production'
 
-// Pattern Lab CSS.
-// -------------------------------------------------------------- //
-const css = () => {
-  // sass.compiler = require('sass')
-  return gulp.src(config.css.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: production ? 'compact' : 'nested',
-      errLogToConsole: true,
-      includePaths: config.css.includePaths,
-      importer: [
-        nodeSassIndexImporter,
-        nodeSassWarnDuplicateImporter
-      ]
-    }))
-    .pipe(autoprefix())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(config.css.dest))
-}
-
-const images = () => {
-  return gulp.src(config.images.src)
-    .pipe(imagemin())
-    .pipe(rename({ dirname: '' }))
-    .pipe(gulp.dest(config.images.dest))
-}
-
-// Watch task.
-// ------------------------------------------------------------------- //
-
-const watch = async () => {
-  gulp.watch(config.css.src, css)
-  gulp.watch(config.images.src, images)
-}
-
-// fractal dev server
-const serve = () => {
-  const server = fractal.web.server({ // uses fractal's builtin integration with browsersync
-    sync: true,
-    syncOptions: {
-      open: true,
-      notify: true,
-      reload: true
-    }
-  })
-  server.on('error', err => logger.error(err.message))
-  return server.start().then(() => {
-    logger.success(`Fractal server is now running at ${server.url}`)
-  })
-}
-
-const fractalExport = async () => {
-  fractal.web.builder().build().then(function () {
-    logger.success('Fractal static build complete')
-    // logger.log('Replacing css paths for gh-pages')
-    // return gulp.src(['./export/components/preview/**/*.html'])
-    //     .pipe(replace(/href="\/css\//g, 'href="/sf-design-system/css/'))
-    //     .pipe(replace(/src="\/js\//g, 'src="/sf-design-system/js/'))
-    //     .pipe(gulp.dest('./export/components/preview'));
-  })
-}
+const imageGlob = 'src/**/*.{png,gif,jpg}'
 
 exports.css = gulp.series(css)
 exports.images = gulp.series(images)
@@ -89,3 +28,53 @@ exports.fractal = gulp.series(
   gulp.parallel(css, images),
   gulp.parallel(watch, serve)
 )
+
+function css () {
+  return gulp.src('src/scss/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: production ? 'compact' : 'nested',
+      errLogToConsole: true,
+      importer: [
+        nodeSassIndexImporter,
+        nodeSassWarnDuplicateImporter
+      ]
+    }))
+    .pipe(autoprefix())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('public/dist/css'))
+}
+
+function images () {
+  return gulp.src(imageGlob)
+    .pipe(imagemin())
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest('public/dist/images'))
+}
+
+function watch () {
+  gulp.watch('src/scss', css)
+  gulp.watch(imageGlob, images)
+}
+
+async function serve () {
+  // uses fractal's builtin integration with browsersync
+  const server = fractal.web.server({
+    sync: true,
+    syncOptions: {
+      open: true,
+      notify: true,
+      reload: true
+    }
+  })
+
+  server.on('error', err => logger.error(err.message))
+
+  await server.start()
+  logger.success(`Fractal server is now running at ${server.url}`)
+}
+
+async function fractalExport () {
+  await fractal.web.builder().build()
+  logger.success('Fractal static build complete')
+}

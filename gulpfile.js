@@ -9,16 +9,8 @@ const nodeSassIndexImporter = require('./lib/node-sass-index-importer')
 const nodeSassWarnDuplicateImporter = require('./lib/node-sass-warn-duplicate-importer')
 
 const logger = fractal.cli.console
-const {
-  NODE_ENV,
-  SASS_COMPILER = 'sass'
-} = process.env
-
+const { NODE_ENV } = process.env
 const production = NODE_ENV === 'production'
-
-const {
-  SASS_OUTPUT_STYLE = production ? 'expanded' : null
-} = process.env
 
 const imageGlob = 'src/**/*.{png,gif,jpg}'
 
@@ -37,22 +29,42 @@ module.exports = {
 }
 
 function css () {
-  if (SASS_COMPILER) {
-    sass.compiler = require(SASS_COMPILER)
+  const {
+    SASS_COMPILER: compiler = 'sass',
+    SASS_OUTPUT_STYLE: outputStyle = defaultSassOutputStyle(compiler, production)
+  } = process.env
+
+  const importers = []
+  if (compiler) {
+    sass.compiler = require(compiler)
   }
+  if (compiler === 'node-sass') {
+    importers.push(nodeSassIndexImporter)
+  }
+
   return gulp.src('src/scss/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      outputStyle: SASS_OUTPUT_STYLE,
+      outputStyle,
       errLogToConsole: true,
-      importer: [
-        nodeSassIndexImporter,
-        nodeSassWarnDuplicateImporter
-      ]
+      importer: importers
     }))
     .pipe(autoprefix())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('public/dist/css'))
+
+  function defaultSassOutputStyle (compiler, production) {
+    return {
+      'node-sass': {
+        true: 'compressed',
+        false: 'nested'
+      },
+      sass: {
+        true: 'compressed',
+        false: 'expanded'
+      }
+    }[compiler][production]
+  }
 }
 
 function images () {

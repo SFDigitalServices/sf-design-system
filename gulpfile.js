@@ -6,7 +6,6 @@ const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const nodeSassIndexImporter = require('./lib/node-sass-index-importer')
-const nodeSassWarnDuplicateImporter = require('./lib/node-sass-warn-duplicate-importer')
 
 const logger = fractal.cli.console
 const { NODE_ENV } = process.env

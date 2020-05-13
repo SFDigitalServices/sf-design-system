@@ -9,8 +9,16 @@ const nodeSassIndexImporter = require('./lib/node-sass-index-importer')
 const nodeSassWarnDuplicateImporter = require('./lib/node-sass-warn-duplicate-importer')
 
 const logger = fractal.cli.console
-const { NODE_ENV } = process.env
+const {
+  NODE_ENV,
+  SASS_COMPILER = 'sass'
+} = process.env
+
 const production = NODE_ENV === 'production'
+
+const {
+  SASS_OUTPUT_STYLE = production ? 'expanded' : null
+} = process.env
 
 const imageGlob = 'src/**/*.{png,gif,jpg}'
 
@@ -30,10 +38,13 @@ exports.fractal = gulp.series(
 )
 
 function css () {
+  if (SASS_COMPILER) {
+    sass.compiler = require(SASS_COMPILER)
+  }
   return gulp.src('src/scss/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      outputStyle: production ? 'compact' : 'nested',
+      outputStyle: SASS_OUTPUT_STYLE,
       errLogToConsole: true,
       importer: [
         nodeSassIndexImporter,

@@ -1,10 +1,4 @@
-$fw-light: 300;
-$fw-regular: 400;
-$fw-medium: 500;
-$fw-bold: 700;
-$fw-black: 900;
-
-@mixin antialiasing($type:antialiased) {
+@mixin antialiasing($type: antialiased) {
   /* antialiased, none, subpixel-antialiased */
   @if $type == antialiased {
     -webkit-font-smoothing: antialiased;

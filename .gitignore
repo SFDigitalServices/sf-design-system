@@ -1,8 +1,6 @@
-composer.phar
-/vendor/
-node_modules/*
-public/
-*.css.map
-.vscode
 .DS_Store
+.sass-cache/
+.vscode
 export/
+node_modules/
+public/

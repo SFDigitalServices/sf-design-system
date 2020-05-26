@@ -1,0 +1,3 @@
+@mixin deprecated-import($from-path, $to-path) {
+  @warn "'sf-design-system/src/components/#{$from-path}' has moved to: 'sf-design-system/src/scss/#{$to-path}'";
+}

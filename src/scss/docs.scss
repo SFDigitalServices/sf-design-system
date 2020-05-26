@@ -1,11 +1,7 @@
 // This stylesheet is for styles you want to include only when displaying demo
 // styles for grids, animations, color swatches, etc.
-// These styles will not be your production CSS.
-
-@import 'components/00-design-tokens/colors';
-@import 'components/00-design-tokens/functions';
-@import 'components/00-design-tokens/typography-mixins';
-@import 'components/00-design-tokens/breakpoints';
+@import './support/variables';
+@import './typography/mixins';
 
 #sf-patterns {
   box-sizing: border-box !important;

@@ -62,7 +62,7 @@
   line-height: px-to-rem(30);
   margin: 1.25rem 0 0.875rem;
 
-  @media screen and (min-width: $mq-narrow) {
+  @include breakpoint(narrow) {
     font-size: px-to-rem(30);
     line-height: px-to-rem(42);
   }
@@ -88,7 +88,7 @@
   font-weight: $fw-light;
   letter-spacing: 0;
 
-  @media screen and (min-width: $mq-medium) {
+  @include breakpoint(md) {
     font-size: px-to-rem(72);
     line-height: px-to-rem(80.2);
     letter-spacing: -0.12rem;
@@ -144,7 +144,7 @@
     letter-spacing: 0.12rem;
   }
 
-  @media screen and (min-width: $mq-medium) {
+  @include breakpoint(md) {
     font-size: px-to-rem(24);
     line-height: px-to-rem(36);
 

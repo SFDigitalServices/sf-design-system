@@ -1,7 +1,9 @@
 @import './colors';
 @import './breakpoints';
 
+$base-font-size: 17;
 $rhythm: 0.5882rem;
+
 $radius: 8px;
 
 $fw-light: 300;
@@ -9,3 +11,15 @@ $fw-regular: 400;
 $fw-medium: 500;
 $fw-bold: 700;
 $fw-black: 900;
+
+$spacing-scale: (
+  0: 0,
+  // "half"
+  1_2: 5px,
+  1: 10px,
+  2: 20px,
+  3: 30px,
+  4: 40px,
+  5: 60px,
+  6: 96px,
+) !default;

@@ -1,9 +1,6 @@
-*.css.map
 .DS_Store
-.sass-cache
+.sass-cache/
 .vscode
-/vendor/
-composer.phar
 export/
-node_modules/*
+node_modules/
 public/

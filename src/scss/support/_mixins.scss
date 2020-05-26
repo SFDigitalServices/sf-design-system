@@ -1,8 +1,8 @@
-@mixin breakpoint($name-or-threshold) {
-  $threshold: $name-or-threshold;
+@mixin breakpoint($alias-or-threshold) {
+  $threshold: $alias-or-threshold;
 
-  @if map-has-key($breakpoint-aliases, $name-or-threshold) {
-    $threshold: map-get($breakpoint-aliases, $name-or-threshold);
+  @if map-has-key($breakpoint-aliases, $alias-or-threshold) {
+    $threshold: map-get($breakpoint-aliases, $alias-or-threshold);
   }
 
   @if $threshold {
@@ -37,7 +37,7 @@
   padding-right: 20px;
   width: 100%;
 
-  @media screen and (min-width: $mq-wide) {
+  @include breakpoint(lg) {
     padding: 0;
   }
 }

@@ -1,3 +1,10 @@
+@function radius($index) {
+  @return map-get($radii, $index);
+}
+
+@function color($name) {
+  @return map-get($color-map, $name);
+}
 
 @function px-to-rem($px-number) {
   @return ($px-number * 1rem) / $base-font-size;

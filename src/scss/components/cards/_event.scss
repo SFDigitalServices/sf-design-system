@@ -52,7 +52,7 @@
       opacity: 0.65;
       display: none;
 
-      @media screen and (min-width: $mq-narrow) {
+      @include breakpoint(narrow) {
         display: block;
         padding-top: px-to-rem(26);
       }

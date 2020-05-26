@@ -17,7 +17,7 @@
 // Layout
 
 .form-content {
-  @include contain-1090;
+  @include container;
 
   margin-top: 2rem;
 }
@@ -108,7 +108,7 @@ legend {
 }
 
 .form-section {
-  @include contain-1090;
+  @include container;
 }
 
 // Base styles

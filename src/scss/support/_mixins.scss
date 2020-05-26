@@ -1,4 +1,6 @@
 @mixin contain-1090 { // Most contents.
+  @warn "The contain-1090 mixin is deprecated! Please use '@mixin container { }'.";
+
   margin: 0 auto;
   max-width: 1090px;
   padding-left: 20px;

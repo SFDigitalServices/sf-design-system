@@ -5,7 +5,6 @@ const imagemin = require('gulp-imagemin')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
-const nodeSassIndexImporter = require('./lib/node-sass-index-importer')
 
 const logger = fractal.cli.console
 const { NODE_ENV } = process.env
@@ -36,9 +35,6 @@ function css () {
   const importers = []
   if (compiler) {
     sass.compiler = require(compiler)
-  }
-  if (compiler === 'node-sass') {
-    importers.push(nodeSassIndexImporter)
   }
 
   return gulp.src('src/scss/*.scss')

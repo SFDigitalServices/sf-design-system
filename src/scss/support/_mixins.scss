@@ -1,3 +1,33 @@
+@mixin breakpoint($name-or-threshold) {
+  $threshold: $name-or-threshold;
+
+  @if map-has-key($breakpoint-aliases, $name-or-threshold) {
+    $threshold: map-get($breakpoint-aliases, $name-or-threshold);
+  }
+
+  @if $threshold {
+    @media screen and (min-width: $threshold) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+@mixin container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $width-container;
+  padding-left: spacer(2);
+  padding-right: spacer(2);
+
+  @include breakpoint(lg) {
+    padding: 0;
+  }
+}
+
 @mixin contain-1090 { // Most contents.
   @warn "The contain-1090 mixin is deprecated! Please use '@mixin container { }'.";
 

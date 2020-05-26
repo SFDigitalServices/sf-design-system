@@ -4,13 +4,35 @@
 $base-font-size: 17;
 $rhythm: 0.5882rem;
 
-$radius: 8px;
+$border-widths: (
+  0: 0,
+  1: 1px,
+  2: 2px,
+  3: 3px,
+);
 
-$fw-light: 300;
-$fw-regular: 400;
-$fw-medium: 500;
-$fw-bold: 700;
-$fw-black: 900;
+// TODO: deprecate $radius
+$radii: (
+  0: 0,
+  1: 6px,
+  2: 8px,
+);
+
+$radius: map-get($radii, 2);
+
+$font-weights: (
+  light:    300,
+  regular:  400,
+  medium:   500,
+  bold:     700,
+);
+
+$fw-light: map-get($font-weights, light);
+$fw-regular: map-get($font-weights, regular);
+$fw-medium: map-get($font-weights, medium);
+$fw-bold: map-get($font-weights, bold);
+// TODO: deprecate this (it's not in our typography system)
+$fw-black: map-get($font-weights, black);
 
 $spacing-scale: (
   0: 0,
@@ -23,3 +45,17 @@ $spacing-scale: (
   5: 60px,
   6: 96px,
 ) !default;
+
+$CSS_EDGE_ALIAS: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+
+$CSS_CORNER_ALIAS: (
+  tr: top-right,
+  br: bottom-right,
+  bl: bottom-left,
+  tl: top-left,
+);

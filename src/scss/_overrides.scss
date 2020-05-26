@@ -1,0 +1,7 @@
+// This file is imported last, and is reserved for styles that *must* override
+// any other styles, such as utilities, that would have precedence if they were
+// declared after these ones.
+
+[hidden] {
+  display: none !important;
+}

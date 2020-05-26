@@ -9,7 +9,8 @@ $width-container: 1090px;
 $breakpoint-aliases: (
   xs: $mq-tiny,
   sm: $mq-small,
-  // narrow: $mq-narrow,
+  // TODO: deprecate this breakpoint
+  narrow: $mq-narrow,
   md: $mq-medium,
   lg: $mq-wide,
 );

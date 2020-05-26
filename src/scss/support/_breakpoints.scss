@@ -3,3 +3,19 @@ $mq-small: 43.75rem;
 $mq-narrow: 48.063rem;
 $mq-medium: 64rem;
 $mq-wide: 80rem;
+
+$width-container: 1090px;
+
+$breakpoint-aliases: (
+  xs: $mq-tiny,
+  sm: $mq-small,
+  // narrow: $mq-narrow,
+  md: $mq-medium,
+  lg: $mq-wide,
+);
+
+$breakpoint-variants: ('': null, );
+
+@each $key, $value in $breakpoint-aliases {
+  $breakpoint-variants: map-merge($breakpoint-variants, ('-#{$key}': $value, ));
+}

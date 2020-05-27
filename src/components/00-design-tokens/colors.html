@@ -1,40 +1,46 @@
 {% for group in groups %}
-  <h2>{{ group.title }}</h2>
-  <ul class="sf-colors">
-    {% for color in group.colors %}
-      <li class="sf-color">
-        <span class="sf-swatch" style="background-color: {{ colors[color] }};"></span>
-        <span class="sf-label">
-          ${{ color }}
-          <br>
-          <code>{{ colors[color] }}</code>
-        </span>
-      </li>
-    {% endfor %}
-  </ul>
+  <section class="d-flex mb-6" id="{{ group.title }}">
+    <div class="col-2 mr-4 flex-no-shrink">
+      <h3 class="mt-0 mb-3">{{ group.title }}</h3>
+      <div>{{ group.description | safe }}</div>
+    </div>
+    <div class="flex-auto">
+      <div class="d-flex flex-wrap">
+        {% if group.groups %}
+          {% for subgroup in group.groups %}
+            <div class="mr-3 mb-3 flex-no-shrink">
+              <h5 class="mt-0 mb-1">{{ subgroup.title }}</h5>
+              <div class="d-flex">
+                {% for swatch in subgroup.swatches %}
+                  <div class="mr-3 flex-no-shrink">
+                    <h5 class="my-0">{{ swatch.label }}</h5>
+                    <div class="mb-1_2">
+                      <code>{{ colors[swatch.color] }}</code>
+                    </div>
+                    <div
+                      class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
+                      style="width: {{ 64 if swatch.small else 96 }}px; height: 96px;">
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for swatch in group.swatches %}
+            <div class="mr-3 mb-3 flex-no-shrink">
+              <h5 class="mt-1 mb-0">{{ swatch.label }}</h5>
+              <div class="mb-1_2">
+                <code>{{ colors[swatch.color] }}</code>
+              </div>
+              <div
+                class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
+                style="width: 96px; height: 96px;">
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
 {% endfor %}
-
-<h2>Uncategorized</h2>
-<ul class="sf-colors">
-  {% for name, color in colors %}
-    {% set grouped = false %}
-    {% for group in groups %}
-      {% if group.colors.indexOf(name) > -1 %}
-        {% set grouped = true %}
-      {% endif %}
-    {% endfor %}
-    {% if not grouped %}
-      <li class="sf-color">
-        <span class="sf-swatch" style="background-color: {{ color }};"></span>
-        <span class="sf-label">
-          ${{ name }}
-          <br>
-          <code>{{ color }}</code>
-        </span>
-      </li>
-    {% endif %}
-  {% endfor %}
-</div>
-
-{% macro swatch(name, color) %}
-{% endmacro %}

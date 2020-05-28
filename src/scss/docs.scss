@@ -3,12 +3,6 @@
 @import './support';
 @import './typography/mixins';
 
-#sf-patterns {
-  box-sizing: border-box !important;
-  max-width: 100%;
-  padding: 1em;
-}
-
 .display-1 {
   @include display-1;
 }

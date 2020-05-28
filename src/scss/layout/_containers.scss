@@ -1,3 +1,7 @@
+.sfgov-container {
+  @include container;
+}
+
 .sfgov-container-two-column,
 .sfgov-container-three-column {
   flex-direction: column;

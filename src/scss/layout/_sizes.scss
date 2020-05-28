@@ -1,0 +1,5 @@
+@each $name, $size in $sizes {
+  @each $variant, $threshold in $breakpoint-variants {
+    .mw#{$variant}-#{$name} { max-width: $size !important; }
+  }
+}

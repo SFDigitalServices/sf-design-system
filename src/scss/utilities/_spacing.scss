@@ -1,5 +1,7 @@
-@each $index, $space in $spacing-scale {
-  @each $variant, $threshold in $breakpoint-variants {
+$edge-groups: (x: (left, right), y: (top, bottom));
+
+@each $variant, $threshold in $breakpoint-variants {
+  @each $index, $space in $spacing-scale {
     $suffix: "#{$variant}-#{$index}";
 
     @include breakpoint($threshold) {
@@ -16,7 +18,7 @@
         }
       }
 
-      @each $alias, $edges in (x: (left, right), y: (top, bottom)) {
+      @each $alias, $edges in $edge-groups {
         .m#{$alias}#{$suffix} {
           @each $edge in $edges {
             margin-#{$edge}: $space !important;
@@ -30,5 +32,10 @@
         }
       }
     }
+  }
+
+  .mx#{$variant}-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }

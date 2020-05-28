@@ -15,11 +15,14 @@
                   <div class="mr-3 flex-no-shrink">
                     <h5 class="my-0">{{ swatch.label }}</h5>
                     <div class="mb-1_2">
-                      <code>{{ colors[swatch.color] }}</code>
+                      <code>{{ theme.colors[swatch.color] }}</code>
                     </div>
                     <div
                       class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
-                      style="width: {{ 64 if swatch.small else 96 }}px; height: 96px;">
+                      style="width: {{ theme.space[5] if swatch.small else theme.space[6] }}; height: {{ theme.space[6] }};">
+                    </div>
+                    <div>
+                      <code>${{ swatch.color }}</code>
                     </div>
                   </div>
                 {% endfor %}
@@ -30,12 +33,15 @@
           {% for swatch in group.swatches %}
             <div class="mr-3 mb-3 flex-no-shrink">
               <h5 class="mt-1 mb-0">{{ swatch.label }}</h5>
-              <div class="mb-1_2">
-                <code>{{ colors[swatch.color] }}</code>
+              <div>
+                <code>{{ theme.colors[swatch.color] }}</code>
               </div>
               <div
-                class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
-                style="width: 96px; height: 96px;">
+                class="my-1_2 round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
+                style="width: {{ theme.space[6] }}; height: {{ theme.space[6] }};">
+              </div>
+              <div>
+                <code>${{ swatch.color }}</code>
               </div>
             </div>
           {% endfor %}

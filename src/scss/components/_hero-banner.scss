@@ -2,7 +2,7 @@
   display: block;
   height: 3px;
   margin: 0 auto;
-  max-width: $width-container;
+  max-width: size(container);
   width: 100%;
 
   .hero-banner--border-contain {

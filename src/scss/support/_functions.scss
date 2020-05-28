@@ -19,3 +19,7 @@
     @return map-get($spacing-scale, $index);
   }
 }
+
+@function size($key) {
+  @return map-get($sizes, $key);
+}

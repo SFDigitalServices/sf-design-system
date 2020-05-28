@@ -4,8 +4,6 @@ $mq-narrow: 48.063rem;
 $mq-medium: 64rem;
 $mq-wide: 80rem;
 
-$width-container: 1090px;
-
 $breakpoint-aliases: (
   xs: $mq-tiny,
   sm: $mq-small,
@@ -15,8 +13,13 @@ $breakpoint-aliases: (
   lg: $mq-wide,
 );
 
+$sizes: (
+  container: 1090px,
+);
+
 $breakpoint-variants: ('': null, );
 
 @each $key, $value in $breakpoint-aliases {
   $breakpoint-variants: map-merge($breakpoint-variants, ('-#{$key}': $value, ));
+  $sizes: map-merge($sizes, ('#{$key}': $value));
 }

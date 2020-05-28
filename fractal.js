@@ -21,7 +21,7 @@ fractal.components.set('ext', '.html')
 
 fractal.web.theme(require('@frctl/mandelbrot')({
   skin: 'white',
-  panels: ['html', 'view', 'notes', 'info']
+  panels: ['html', 'notes', 'info']
 }))
 
 /* Tell Fractal where the components will live */

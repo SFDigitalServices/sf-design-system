@@ -1,26 +1,30 @@
-{% for group in groups %}
-  <section class="d-flex mb-6" id="{{ group.title }}">
-    <div class="col-2 mr-4 flex-no-shrink">
-      <h3 class="mt-0 mb-3">{{ group.title }}</h3>
-      <div>{{ group.description | safe }}</div>
-    </div>
-    <div class="flex-auto">
-      <div class="d-flex flex-wrap">
+{% macro box(swatch, width=6, height=6) %}
+  <div
+    class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
+    style="width: {{ theme.space[width] }}; height: {{ theme.space[height] }};">
+  </div>
+{% endmacro %}
+
+<div class="mw-lg">
+  {% for group in groups %}
+    <section class="d-flex flex-wrap flex-md-nowrap mb-6" id="{{ group.title }}">
+      <div class="col-6 col-md-2 mr-md-4 flex-no-shrink">
+        <h3 class="mt-0 mb-2 mb-md-3">{{ group.title }}</h3>
+        <div class="mb-2">{{ group.description | safe }}</div>
+      </div>
+      <div class="flex-auto">
         {% if group.groups %}
           {% for subgroup in group.groups %}
-            <div class="mr-3 mb-3 flex-no-shrink">
+            <div class="mb-3 flex-no-shrink">
               <h5 class="mt-0 mb-1">{{ subgroup.title }}</h5>
-              <div class="d-flex">
+              <div class="d-flex flex-wrap">
                 {% for swatch in subgroup.swatches %}
                   <div class="mr-3 flex-no-shrink">
                     <h5 class="my-0">{{ swatch.label }}</h5>
                     <div class="mb-1_2">
                       <code>{{ theme.colors[swatch.color] }}</code>
                     </div>
-                    <div
-                      class="round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
-                      style="width: {{ theme.space[5] if swatch.small else theme.space[6] }}; height: {{ theme.space[6] }};">
-                    </div>
+                    {{ box(swatch, 5 if swatch.small else 6) }}
                     <div>
                       <code>${{ swatch.color }}</code>
                     </div>
@@ -30,23 +34,24 @@
             </div>
           {% endfor %}
         {% else %}
-          {% for swatch in group.swatches %}
-            <div class="mr-3 mb-3 flex-no-shrink">
-              <h5 class="mt-1 mb-0">{{ swatch.label }}</h5>
-              <div>
-                <code>{{ theme.colors[swatch.color] }}</code>
+          <div class="d-flex flex-wrap">
+            {% for swatch in group.swatches %}
+              <div class="mr-3 mb-2 flex-no-shrink">
+                <h5 class="mt-1 mb-0">{{ swatch.label }}</h5>
+                <div>
+                  <code>{{ theme.colors[swatch.color] }}</code>
+                </div>
+                <div class="my-1_2">
+                  {{ box(swatch) }}
+                </div>
+                <div>
+                  <code>${{ swatch.color }}</code>
+                </div>
               </div>
-              <div
-                class="my-1_2 round-1 bg-{{ swatch.color }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
-                style="width: {{ theme.space[6] }}; height: {{ theme.space[6] }};">
-              </div>
-              <div>
-                <code>${{ swatch.color }}</code>
-              </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         {% endif %}
       </div>
-    </div>
-  </section>
-{% endfor %}
+    </section>
+  {% endfor %}
+</div>

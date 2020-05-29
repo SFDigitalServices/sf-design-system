@@ -5,9 +5,14 @@
   </div>
 {% endmacro %}
 
+<p class="big-description mb-4">
+  See the <a target="_top" href="{{ '@colors' | link }}">Color utilities documentation</a>
+  for help using these colors in your application.
+</p>
+
 <div class="mw-lg">
   {% for group in groups %}
-    <section class="d-flex flex-wrap flex-md-nowrap mb-6" id="{{ group.title }}">
+    <section class="d-flex flex-wrap flex-md-nowrap mb-5" id="{{ group.title }}">
       <div class="col-6 col-md-2 mr-md-4 flex-no-shrink">
         <h3 class="mt-0 mb-2 mb-md-3">{{ group.title }}</h3>
         <div class="mb-2">{{ group.description | safe }}</div>

@@ -11,29 +11,29 @@
   </div>
 {% endmacro %}
 
+<p class="big-description mb-4">
+  See the <a target="_top" href="{{ '@color-system' | link }}">Color system documentation</a> for more information on color usage.
+</p>
+
 <h2>Color utilities</h2>
 
 <div class="d-flex flex-wrap mb-5">
-  <div class="col-6 col-md-2 pr-md-4 sv-2">
-    <div class="sv-1">
-      <h3 class="h5 my-0">Background utilities</h3>
-      <div>The <code>bg-*</code> classes set the background color. Consult <a href="#recommended">the list of recommended colors above</a> for text and link colors with suitable color contrast ratios.</div>
-    </div>
+  <div class="col-6 col-md-2 pr-md-4">
+    <h3 class="h5 mt-0 mb-1">Background utilities</h3>
+    <div>The <code>bg-*</code> classes set the background color. Consult <a href="#recommended">the list of recommended colors above</a> for text and link colors with suitable color contrast ratios.</div>
 
-    <div class="sv-1">
-      <h3 class="h5 my-0">Foreground (text) utilities</h3>
-      <div>The <code>fg-*</code> classes set the CSS <code>color</code> property, which applies to text.</div>
-      <div>The <code>fg-inherit</code> class applies the color of the element's parent.</div>
-      <div>You can apply the text color to the fill of inline SVG elements with the <code>fill-currentColor</code> class.</div>
-    </div>
+    <h3 class="h5 mt-2 mb-1">Foreground (text) utilities</h3>
+    <div class="mb-1">The <code>fg-*</code> classes set the CSS <code>color</code> property, which applies to text.</div>
 
-    <div class="sv-1">
-      <h3 class="h5 my-0">Border utilities</h3>
-      <div>The <code>border-*</code> utility classes apply border width, color, and radius.</div>
-    </div>
+    <div class="mb-1">The <code>fg-inherit</code> class applies the color of the element's parent.</div>
+
+    <div>You can apply the text color to the fill of inline SVG elements with the <code>fill-currentColor</code> class.</div>
+
+    <h3 class="h5 mt-2 mb-1">Border utilities</h3>
+    <div class="mb-1">The <code>border-*</code> utility classes apply border width, color, and radius.</div>
   </div>
 
-  <div class="col-6 col-md-4">
+  <div class="col-6 col-md-4 mb-5">
     <div class="d-flex flex-wrap mt-4">
       <div class="round-1 p-2 bg-dark-blue fg-white mr-1 mb-1">
         <pre class="m-0">class="bg-dark-blue fg-white"</pre>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="round-1 p-2 bg-grey-3 mr-1 mb-1">
-        <pre class="mt-0 mb-1">class="bg-grey-3"</pre>
+        <pre class="mt-0 mb-2">class="bg-grey-3"</pre>
         <button>
           &lt;button&gt;
         </button>
@@ -65,9 +65,12 @@
       </div>
 
       <div class="round-1 p-2 bg-dark-grey fg-white mr-1 mb-1">
-        <pre class="mt-0 mb-1">class="bg-dark-grey fg-white"</pre>
-        <button class="bg-white fg-slate border-none">
-          class="bg-white fg-slate border-none"
+        <pre class="mt-0 mb-2">class="bg-dark-grey fg-white"</pre>
+        <button class="border-none">
+          &lt;button class="border-none"&gt;
+        </button>
+        <button class="bg-white fg-bright-blue border-none">
+          class="bg-white fg-bright-blue border-none"
         </button>
       </div>
 

@@ -1,5 +1,6 @@
 @each $variant, $breakpoint in $breakpoint-variants {
   @include breakpoint($breakpoint) {
+
     @each $key, $value in $border-widths {
       .border#{$variant}-#{$key} { border: $value solid !important; }
 
@@ -9,6 +10,8 @@
         }
       }
     }
+
+    .border#{$variant}-none { border: none !important; }
 
     @each $index, $value in $radii {
       .round#{$variant}-#{$index} { border-radius: $value !important; }

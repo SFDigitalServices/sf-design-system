@@ -5,6 +5,11 @@ $edge-groups: (x: (left, right), y: (top, bottom));
     $suffix: "#{$variant}-#{$index}";
 
     @include breakpoint($threshold) {
+      // space direct descendents vertically
+      .sv#{$suffix} > * + * { margin-top: $space !important; }
+      // space direct descendents horizontally
+      .sh#{$suffix} > * + * { margin-left: $space !important; }
+
       .m#{$suffix} { margin: $space !important; }
       .p#{$suffix} { padding: $space !important; }
 

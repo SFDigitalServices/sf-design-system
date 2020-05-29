@@ -1,0 +1,143 @@
+notes: |
+  See the [Figma file](https://www.figma.com/file/B31xR1EqmSnhjSV0RuX2Ckgn/SF-Colors?node-id=157%3A0) for more information.
+
+context:
+  groups:
+    - swatches:
+        - label: Dark blue
+          bg: dark-blue
+          fg: white
+          link: white
+        - label: Blue L2
+          bg: blue-2
+          fg: slate
+          link: slate
+        - label: Blue L1
+          bg: blue-1
+          fg: slate
+          link: bright-blue
+        - label: Black
+          bg: black
+          fg: white
+          link: white
+        - label: Dark grey
+          bg: dark-grey
+          fg: white
+          link: white
+        - label: White
+          bg: white
+          fg: slate
+          link: bright-blue
+          border: light-slate
+          alt: light-slate
+
+    - swatches:
+        - label: L3
+          bg: green-3
+          fg: white
+          link: white
+        - label: L2
+          bg: green-2
+          fg: slate
+          link: slate
+        - label: L1
+          bg: green-1
+          fg: slate
+          link: bright-blue
+
+    - swatches:
+        - bg: purple-3
+          fg: white
+          link: white
+        - bg: purple-2
+          fg: slate
+          link: slate
+        - bg: purple-1
+          fg: slate
+          link: bright-blue
+
+    - swatches:
+        - bg: red-3
+          fg: white
+          link: white
+        - bg: red-2
+          fg: slate
+          link: slate
+        - bg: red-1
+          fg: slate
+          link: bright-blue
+
+    - swatches:
+        - bg: yellow-3
+          fg: slate
+          link: slate
+        - bg: yellow-2
+          fg: slate
+          link: slate
+        - bg: yellow-1
+          fg: slate
+          link: bright-blue
+
+    - swatches:
+        - bg: grey-3
+          fg: slate
+          link: slate
+        - bg: grey-2
+          fg: slate
+          link: slate
+        - bg: grey-1
+          fg: slate
+          link: bright-blue
+
+  matrix:
+    bg:
+      - label: Dark blue
+        color: dark-blue
+      - label: Blue L2
+        color: blue-2
+      - label: Blue L1
+        color: blue-1
+      - label: Dark grey
+        color: dark-grey
+      - label: White
+        color: white
+        border: light-slate
+      - label: Green L3
+        color: green-3
+      - label: Green L2
+        color: green-2
+      - label: Green L1
+        color: green-1
+      - label: Purple L3
+        color: purple-3
+      - label: Purple L2
+        color: purple-2
+      - label: Purple L1
+        color: purple-1
+      - label: Red L3
+        color: red-3
+      - label: Red L2
+        color: red-2
+      - label: Red L1
+        color: red-1
+      - label: Yellow L3
+        color: yellow-3
+      - label: Yellow L2
+        color: yellow-2
+      - label: Yellow L1
+        color: yellow-1
+      - label: Grey L3
+        color: grey-3
+      - label: Grey L2
+        color: grey-2
+      - label: Grey L1
+        color: grey-1
+    fg:
+      - label: Slate
+        color: slate
+      - label: Light slate
+        color: light-slate
+      - label: Bright blue
+        color: bright-blue
+      - label: White
+        color: white

@@ -1,0 +1,198 @@
+{% macro box(swatch, size=140) %}
+  <div
+    class="small-text round-1 p-2 bg-{{ swatch.bg }}{% if swatch.border %} border-1 border-{{ swatch.border }}{% endif %}"
+    style="width: {{ size }}px; min-height: {{ size }}px;">
+    <div class="fg-{{ swatch.fg }} mb-1_2">bg-{{ swatch.bg }}</div>
+    <div class="fg-{{ swatch.fg }} mb-1_2">fg-{{ swatch.fg }}</code></div>
+    <a href="#" class="d-block fg-{{ swatch.link }}">fg-{{ swatch.link }}</a>
+    {% if swatch.alt %}
+      <div class="fg-{{ swatch.alt }} mt-1">fg-{{ swatch.alt }}</div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+<h2>Color utilities</h2>
+
+<div class="d-flex flex-wrap mb-5">
+  <div class="col-6 col-md-2 pr-md-4 sv-2">
+    <div class="sv-1">
+      <h3 class="h5 my-0">Background utilities</h3>
+      <div>The <code>bg-*</code> classes set the background color. Consult <a href="#recommended">the list of recommended colors above</a> for text and link colors with suitable color contrast ratios.</div>
+    </div>
+
+    <div class="sv-1">
+      <h3 class="h5 my-0">Foreground (text) utilities</h3>
+      <div>The <code>fg-*</code> classes set the CSS <code>color</code> property, which applies to text.</div>
+      <div>The <code>fg-inherit</code> class applies the color of the element's parent.</div>
+      <div>You can apply the text color to the fill of inline SVG elements with the <code>fill-currentColor</code> class.</div>
+    </div>
+
+    <div class="sv-1">
+      <h3 class="h5 my-0">Border utilities</h3>
+      <div>The <code>border-*</code> utility classes apply border width, color, and radius.</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="d-flex flex-wrap mt-4">
+      <div class="round-1 p-2 bg-dark-blue fg-white mr-1 mb-1">
+        <pre class="m-0">class="bg-dark-blue fg-white"</pre>
+      </div>
+      <div class="round-1 p-2 bg-grey-1 fg-bright-blue mr-1 mb-1">
+        <pre class="m-0">class="bg-grey-1 fg-bright-blue"</pre>
+      </div>
+      <div class="round-1 p-2 bg-yellow-3 fg-dark-grey mr-1 mb-1">
+        <pre class="m-0">class="bg-yellow-3 fg-dark-grey"</pre>
+        <a href="" class="fg-inherit"><pre class="m-0">class="fg-inherit"</pre></a>
+      </div>
+      <div class="round-1 p-2 bg-green-3 fg-white mr-1 mb-1">
+        <pre class="m-0">class="bg-green-3 fg-white"</pre>
+        <svg class="fill-currentColor" viewBox="0 0 65 20" height="20">
+          <circle cx="10" cy="10" r="10"></circle>
+          <rect x="25" y="0" width="20" height="20"></rect>
+          <path d="m0,0L15,10L0,20Z" transform="translate(50,0)"></path>
+        </svg>
+      </div>
+
+      <div class="round-1 p-2 bg-grey-3 mr-1 mb-1">
+        <pre class="mt-0 mb-1">class="bg-grey-3"</pre>
+        <button>
+          &lt;button&gt;
+        </button>
+        <button class="bg-white border-3 fg-bright-blue border-currentColor">
+          class="bg-white border-3 fg-bright-blue border-currentColor"
+        </button>
+      </div>
+
+      <div class="round-1 p-2 bg-dark-grey fg-white mr-1 mb-1">
+        <pre class="mt-0 mb-1">class="bg-dark-grey fg-white"</pre>
+        <button class="bg-white fg-slate border-none">
+          class="bg-white fg-slate border-none"
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<h2 id="recommended">Recommended colors</h2>
+
+<div class="d-flex flex-wrap mb-5">
+  <div class="col-6 col-md-2 pr-md-4">
+
+    <div>Depending on contrast ratios, different colors are recommended for plain text and for links on each background color.</div>
+
+    <h3 class="h5 mt-2 mb-1">Text</h3>
+    <div>Most text is either Slate or White, depending on the background color. On white backgrounds, Light slate can also be used at 65% transparency for creating hierarchy or denoting inactive text elements.</div>
+
+    <h3 class="h5 mt-2">Links</h3>
+    <div>Bright blue is used for links on White or L1 colors. On darker colors, Bright blue has insufficient contrast and only Slate or White is available to use. Because this has no differentiation between link and plain text color, it is especially important to underline the link text.</div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    {% for group in groups %}
+      <div class="d-flex flex-wrap">
+        {% for swatch in group.swatches %}
+          <div class="mr-3 mb-3">
+            {% if swatch.label %}
+              <h5 class="mt-0 mb-1">{{ swatch.label }}</h5>
+            {% endif %}
+            {{ box(swatch) }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<h2>Contrast ratios</h2>
+
+<div class="d-flex flex-wrap mb-5">
+  <div class="col-6 col-md-2 pr-md-4">
+    <div>WCAG 2 requires a color ratio of 3:1 or higher for AA and 4.5:1 for AAA for large text.</div>
+    <div class="mt-1">We strive for a contrast ratio of 7:1 or higher. Except for where noted, the recommended combinations achieve this goal.</div>
+
+    <h3 class="h5 mt-2 mb-1">Text on L3 backgrounds</h3>
+    <div>Our recommended text colors on L3 shades have contrast ratios ranging from 4.31:1 to 6.82:1. Therefore, we recommend avoiding body copy on L3 backgrounds. Large headlines and other bold text are acceptable as the size and thickness will increase readability.</div>
+
+    <div class="d-flex mb-3">
+      <div class="col-3 mr-2">
+        <h5 class="mb-0">Do</h5>
+        <div class="round-1 bg-green-3 p-2">
+          <div class="h3 mt-0 mb-2 fg-white">Big headline</div>
+          <div class="h5 my-0 fg-white">Bold text</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <h5 class="mb-0">Do not</h5>
+        <div class="round-1 bg-green-3 p-2">
+          <div class="small-text fg-white">Long paragraphs of body copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed ullamcorper morbi tincidunt ornare massa eget egestas. Nunc non blandit massa enim nec dui nunc mattis enim.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h5 mt-2 mb-1">Links on white and L1 backgrounds</h3>
+    <div>The <span class="fg-bright-blue">bright blue</span> link color passes WCAG 2 requirements for 3:1 for AA large text, and in some cases also passes AAA. Although this does not meet our goal of 7:1, we are willing to accept lower contrast with the background color in favor of link contrast against other text. This will help people identify links and actionable elements on a page.</div>
+
+    <div class="d-flex mb-3">
+      <div class="col-3 mr-2">
+        <h5 class="mb-0">Do</h5>
+        <div class="round-1 bg-yellow-2 fg-slate p-2">
+          Text with <a href="#" class="fg-slate">a link</a>
+        </div>
+      </div>
+      <div class="col-3">
+        <h5 class="mb-0">Do not</h5>
+        <div class="round-1 bg-yellow-2 fg-slate p-2">
+          Text with <a href="#">a link</a>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h5 mt-2 mb-1">Links on L2 backgrounds</h3>
+    <div>Bright blue on L2 backgrounds passes WCAG 2 AA large text requirements. However it is just barely passing, and we do not recommend using it. In this case, it is better to use Slate (which meets our goal of 7:1) and distinguish links using an underline.</div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <table class="small-text">
+      <tdead>
+        <tr>
+          <td></td>
+          <th colspan="{{ matrix.fg | length + 1 }}">
+            Text colors →
+          </th>
+        <tr>
+          <th align="right" class="pr-2">Backgrounds ↓</th>
+          {% for fg in matrix.fg %}
+            <td align="left" class="p-2">{{ fg.label }}</td>
+          {% endfor %}
+        </tr>
+      </tdead>
+      <tbody>
+        {% for bg in matrix.bg %}
+          <tr>
+            <td align="right" class="pr-2">{{ bg.label }}</td>
+            {% for fg in matrix.fg %}
+              {% set contrast = theme.colorContrast[bg.color][fg.color] %}
+              {% if contrast > 3 %}
+                <td>
+                  <div class="round-1 px-2 py-1 bg-{{ bg.color }} fg-{{ fg.color }}{% if bg.border %} border-1 border-{{ bg.border }}{% endif %}">
+                    fg-{{ fg.color }}<br>
+                    bg-{{ bg.color }}
+                    {% if contrast < 7 %} ({{ contrast.toFixed(1) }}){% endif %}
+                  </div>
+                </td>
+              {% else %}
+                <td align="center">
+                  {% if contrast > 0 %}
+                    <span class="fg-light-slate" title="Insufficient contrast ratio: {{ contrast.toFixed(1) }}">&mdash;</span>
+                  {% endif %}
+                </td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

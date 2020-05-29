@@ -2,3 +2,14 @@
   .fg-#{"" + $name} { color: $value !important; }
   .bg-#{"" + $name} { background-color: $value !important; }
 }
+
+// explicitly inherit the text color from the parent element,
+// which can be useful for links
+.fg-inherit { color: inherit !important; }
+
+// explicitly "pass" the current text color to inline SVG elements,
+// in conjunction with an fg-* utility
+.fill-currentColor { fill: currentColor !important; }
+
+// set the border color to the same color as the text
+.border-currentColor { border-color: currentColor !important; }

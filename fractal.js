@@ -1,11 +1,18 @@
 const { join } = require('path')
 const theme = require('./src/theme')
 const defaultContext = { theme }
+const statuses = require('./lib/statuses')
 
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = module.exports = require('@frctl/fractal').create()
 
 fractal.set('project.title', 'San Francisco Design System')
+
+fractal.components.set('statuses', statuses)
+fractal.components.set('default.status', 'unknown')
+
+fractal.docs.set('statuses', statuses)
+fractal.docs.set('default.status', 'unknown')
 
 fractal.components.set('default.context', defaultContext)
 fractal.docs.set('default.context', defaultContext)

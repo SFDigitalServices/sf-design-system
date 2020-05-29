@@ -12,7 +12,8 @@ fractal.docs.set('default.context', defaultContext)
 
 const engine = require('@frctl/nunjucks')({
   filters: {
-    markdownify: require('nunjucks-markdown-filter')
+    markdownify: require('nunjucks-markdown-filter'),
+    link: require('./lib/fractal-link')
   }
 })
 

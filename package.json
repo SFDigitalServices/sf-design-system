@@ -1,6 +1,6 @@
 {
   "name": "sf-design-system",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "The San Francisco Digital Services Design System",
   "repository": "SFDigitalServices/sf-design-system",
   "author": "SF Digital Services",
@@ -13,6 +13,9 @@
     "lint-css": "stylelint src/**/*.scss",
     "lint": "npm run lint-css && npm run lint-js",
     "export": "gulp export"
+  },
+  "@primer/publish": {
+    "releaseBranch": "main"
   },
   "files": [
     "docs",

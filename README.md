@@ -43,7 +43,7 @@ This project uses [primer/publish] to publish an npm release for every push, dep
 
 | branch | tag | version |
 | :----- | :-- | :------ |
-| `master` | `latest` | per `package.json` |
+| `main` | `latest` | per `package.json` |
 | `release-<version>` | `next` | `<version>-rc.<sha>` |
 | all others | `canary` | `0.0.0-<sha>` |
 
